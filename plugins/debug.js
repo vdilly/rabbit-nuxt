@@ -1,0 +1,43 @@
+/**
+ *  usage
+ *  dans les components: this.$debug(...)
+ *  dans le store : this._vm.$debug(...);
+ */
+
+import Vue from "vue";
+const d = function () {
+  if (!process.isProd) {
+    let error;
+    try {
+      throw new Error("");
+    } catch (e) {
+      error = e;
+    }
+    // IE9 does not have .stack property
+    if (error.stack === undefined) {
+      return "";
+    }
+    let stackTrace = error.stack.split("\n")[2];
+    if (/ /.test(stackTrace)) {
+      stackTrace = stackTrace.trim().split(" ")[1];
+    }
+    if (stackTrace && stackTrace.indexOf(".") > -1) {
+      stackTrace = stackTrace.split(".")[1];
+    }
+    if (stackTrace.length < 20) {
+      while (stackTrace.length < 20) {
+        stackTrace += " ";
+      }
+    }
+
+    var args = Array.prototype.slice.call(arguments);
+    args.unshift(
+      "background-color: #D2D2D2; color: #2E2E2E; padding: 2px 5px;"
+    );
+    args.unshift("%c " + stackTrace + " ");
+    console.log.apply(console, args);
+  }
+}
+
+export const debug = d;
+Vue.prototype.$debug = d;

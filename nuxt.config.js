@@ -1,12 +1,23 @@
 export default {
-  // Target: https://go.nuxtjs.dev/config-target
+  // Environment variables (https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-env)
+  env: {
+    apiUrl: process.env.API_URL || "http://localhost:1337/graphql",
+    strapiUrl: process.env.STRAPI_URL || "http://localhost:1337",
+    isProd: process.env.NODE_ENV == "production",
+    siteName: "Rabbit"
+  },
+  vue: {
+    config: {
+      productionTip: true,
+      devtools: true
+    }
+  },
   target: 'static',
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'front',
+    title: 'Rabbit',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'fr'
     },
     meta: [
       { charset: 'utf-8' },
@@ -15,17 +26,47 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: ""
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap",
+      },
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    "@/assets/scss/global.scss",
+    'aos/dist/aos.css'
   ],
+  // Global var SCSS
+  styleResources: {
+    scss: [
+      '~/assets/scss/_settings.scss',
+    ]
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~plugins/notify/notify.client', mode: 'client' },
+    { src: '~plugins/notify/notify.server', mode: 'server' },
+    { src: '~plugins/debug' },
+    { src: '~plugins/global' },
+    { src: '~plugins/ui-feedback/ui-feedback.js', mode: 'client' },
+    { src: '~plugins/confirm-dialog/confirm-dialog', mode: 'client' },
+    { src: '~plugins/v-intersect', mode: 'client' },
+    { src: '@/plugins/aos.js', mode: 'client' },
   ],
+  // serverMiddleware: ['~/api/index.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -36,6 +77,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/style-resources',
+    'cookie-universal-nuxt'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

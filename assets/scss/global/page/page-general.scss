@@ -1,0 +1,82 @@
+html {
+  background-color: $color__page-bg;
+  font-size: 62.5%;
+
+  body {
+    overflow-x: hidden;
+    font-family: $font__main;
+    font-size: rem($fsi);
+    font-weight: 500;
+    line-height: 1.4em;
+    color: $color__text;
+    letter-spacing: .4px;
+
+    @include RWD(mobile) {
+      font-size: #{math.div($fsim , 10)}rem;
+    }
+    & > svg {
+      display: none;
+    }
+  }
+  #app {
+    overflow: hidden;
+  }
+
+  
+  &.no-scroll body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &.overlayed {
+    &:before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(#000000, 0.8);
+    }
+  }
+}
+
+// Selection de texte
+::selection {
+  background-color: rgba($color__core, 0.5);
+  color: black;
+}
+
+::-moz-selection {
+  background-color: rgba($color__core, 0.5);
+  color: black;
+}
+
+// Placeholders
+::-webkit-input-placeholder {
+  // color: rgba($color: #000000, $alpha: 0.6);
+}
+
+:-moz-placeholder {
+  // color: rgba($color: #000000, $alpha: 0.6);
+}
+
+:-ms-input-placeholder {
+  // color: rgba($color: #000000, $alpha: 0.6);
+}
+
+.element-invisible,
+.hidden {
+  display: none;
+}
+
+
+.admin-console{
+  transform: scale(.8);
+  z-index: 999;
+  position: fixed;
+  bottom: 4rem;
+  right: 0;
+  background-color: $color__bg-500;
+}

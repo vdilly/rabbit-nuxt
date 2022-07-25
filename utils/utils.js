@@ -1,34 +1,5 @@
 import validator from "validator";
 
-export const flattenStrapiEntry = (strapiEntry) => {
-  if (!strapiEntry) return null;
-  // If nested in parent data, get rid of "data" key
-  let entry = Object.assign({}, strapiEntry);
-  entry = Object.seal(entry)
-  entry = entry.data ? entry.data : entry;
-
-  if (!entry.attributes) return entry; // Déjà flatten
-
-  // Save l'id
-  const entryId = entry.id;
-  // Flatten les attributes
-  entry = entry.attributes;
-  entry.id = entryId;
-  delete entry.__typename;
-
-  return entry;
-}
-
-export const StrapiIndexToIndex = (strapiIndex) => {
-  if (!strapiIndex) return null;
-  return (parseInt(strapiIndex) - 1).toString();
-}
-
-export const IndexToStrapiIndex = (index) => {
-  if (!index) return null;
-  return (parseInt(index) + 1).toString();
-}
-
 /**
  * Valide le pattern des champs de formulaire présents
  * Ne gère pas leur required

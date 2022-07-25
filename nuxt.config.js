@@ -1,8 +1,7 @@
 export default {
   // Environment variables (https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-env)
   env: {
-    apiUrl: process.env.API_URL || "http://localhost:1337/graphql",
-    strapiUrl: process.env.STRAPI_URL || "http://localhost:1337",
+    CMSUrl: process.env.CMS_URL,
     isProd: process.env.NODE_ENV == "production",
     siteName: "Rabbit"
   },
@@ -78,9 +77,13 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/style-resources',
-    'cookie-universal-nuxt'
+    'cookie-universal-nuxt',
+    '@nuxtjs/axios'
   ],
 
+  axios: {
+    baseURL: process.env.CMS_URL, // Used as fallback if no runtime config is provided
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

@@ -58,14 +58,14 @@ Vue.mixin({
         "accepted": "Acceptée"
       },
       url: {
-        strapi: process?.env?.strapiUrl,
-        api: process?.env?.apiUrl
+        cms: process?.env?.CMSUrl
       }
     }
   },
   computed: {
     ...mapState("window", ["window"]),
     ...mapState("device", ["device"]),
+    ...mapState("pages", ["pages"]),
     // ...mapState("siteLoad", ["siteLoaded", "siteLoad"]),
   },
 });

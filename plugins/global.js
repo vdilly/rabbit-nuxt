@@ -65,7 +65,6 @@ Vue.mixin({
   computed: {
     ...mapState("window", ["window"]),
     ...mapState("device", ["device"]),
-    ...mapState("pages", ["pages"]),
     // ...mapState("siteLoad", ["siteLoaded", "siteLoad"]),
   },
 });

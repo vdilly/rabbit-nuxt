@@ -1,4 +1,3 @@
-import { fetchPaged, formatWpEntity, getEntries } from "../plugins/source-wp";
 
 export const state = () => ({
   pages: []

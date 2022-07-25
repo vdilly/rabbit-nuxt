@@ -1,4 +1,4 @@
-import { fetchPaged, formatWpEntity, getEntries } from "../utils/source-wp";
+import { fetchPaged, formatWpEntity, getEntries } from "../plugins/source-wp";
 
 export const state = () => ({
   pages: []
@@ -12,7 +12,7 @@ export const mutations = {
 
 export const actions = {
   getPages: async function ({ state, commit }) {
-    let pages = await getEntries(this.$axios, '/pages')
+    let pages = await this._vm.$sourceWp.getEntries('/pages')
     commit('setPages', pages)
   }
 }

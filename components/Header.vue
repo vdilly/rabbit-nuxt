@@ -87,8 +87,8 @@ $header-bg: transparent;
   }
   .logo {
     display: flex;
-    height: 100%;
-    width: 317px;
+    height: 8rem;
+    width: auto;
 
     @include RWD(mobile) {
       width: 20rem;

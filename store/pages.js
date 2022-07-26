@@ -3,6 +3,19 @@ export const state = () => ({
   pages: []
 })
 
+export const getters = {
+  getPageByTemplate: (state) => (template) => {
+    return state.pages.find(el => {
+      return el.template == template
+    })
+  },
+  getPageBySlug: (state) => (slug) => {
+    return state.pages.find(el => {
+      return el.slug == slug
+    })
+  }
+}
+
 export const mutations = {
   setPages(state, pages) {
     state.pages = pages;

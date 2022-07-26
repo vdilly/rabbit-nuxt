@@ -3,6 +3,14 @@ export const state = () => ({
   posts: []
 })
 
+export const getters = {
+  getPostBySlug: (state) => (slug) => {
+    return state.posts.find(el => {
+      return el.slug == slug
+    })
+  }
+}
+
 export const mutations = {
   setPosts(state, posts) {
     state.posts = posts;

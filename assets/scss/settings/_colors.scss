@@ -19,11 +19,11 @@ $color__bg-500: #037482;
 
 $gradient-1 : linear-gradient(180deg, #6553B3 0%, rgba(101, 83, 179, 0) 100%);
 
-$color__text: white;
-$color__title: white;
+$color__text: $color__core-font;
+$color__title: $color__text;
 $color__success: #95c11e;
 $color__error: #F30B2D;
 
 $color__overlay: rgba(0, 0, 0, 0.7);
 
-$color__page-bg: $color__bg-300;
+$color__page-bg: white;

@@ -76,7 +76,7 @@ export default {
     font-size: 1.6rem;
     font-family: $font__fancy;
     font-weight: 600;
-    color: white;
+    color: $color__core;
     display: flex;
     align-items: center;
     span {
@@ -86,7 +86,7 @@ export default {
   .icon {
     width: 1.6rem;
     height: 1.2rem;
-    fill: white;
+    fill: $color__core;
   }
 
   &:not([class^="h-"]):not([class*=" h-"]) {

@@ -3,7 +3,7 @@
   Header
   Nuxt.nuxt-content
   Footer
-  notifications(group="all")
+  //- notifications(group="all")
 </template>
 
 <script>

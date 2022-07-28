@@ -9,11 +9,7 @@ Navbar
         Logo(:linked="true")
       .filler
       MainMenu1(v-show="window.range == 'desktop'")
-      Popin(
-        v-show="window.range != 'desktop'",
-        panelType="side-right-panel",
-        @close="closeDrawers"
-      )
+      Popin(panelType="side-right-panel", @close="closeDrawers")
         BurgerIcon(slot="trigger")
         div(slot="close") 
           svg.burger-close.icon
@@ -45,11 +41,9 @@ export default {
 </script>
 
 <style lang="scss">
-$header-force-full-height: false;
-$header-bg: transparent;
 .header {
   height: 100%;
-  background-color: $header-bg;
+  background-color: transparent;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -60,38 +54,7 @@ $header-bg: transparent;
     flex: 1;
   }
 
-  .menu {
-    display: flex;
-    align-items: center;
-    & > li {
-      margin-left: 2rem;
-      position: relative;
-    }
-    a:not(.btn) {
-      font-size: 1.3rem;
-      color: white;
-      text-decoration: none;
-      padding: 1rem 2rem;
-      display: inline-flex;
-    }
-    .btn {
-    }
-    .btn__text {
-      font-size: 1.3rem;
-    }
-    .notif {
-      background-color: $color__core;
-      height: 2rem;
-      width: 2rem;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-  }
+  // Logo
   h1 {
     height: 100%;
     display: flex;
@@ -105,6 +68,27 @@ $header-bg: transparent;
       width: 20rem;
     }
   }
+
+  // Menu desktop
+  .menu {
+    display: flex;
+    align-items: center;
+    & > li {
+      margin-left: 2rem;
+      position: relative;
+    }
+  }
+  .main__menu-label {
+    font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    display: inline-flex;
+  }
+}
+
+// Menu rwd
+.header {
   .popin__close {
     width: 100%;
     display: flex;
@@ -116,10 +100,6 @@ $header-bg: transparent;
     fill: $color__text;
     margin: 2rem;
   }
-}
-
-// Menu rwd
-.header {
   .popin {
     @include RWD(desktop) {
       display: none;
@@ -157,25 +137,6 @@ $header-bg: transparent;
     }
     a {
       font-size: 1.5rem;
-    }
-  }
-}
-
-// Header dark
-body.annonce-id-candidatures,
-body[class^="dashboard"],
-body[class*=" dashboard"] {
-  .navbar {
-    // height: 13rem;
-    background-color: #02004d;
-    @include RWD(mobile) {
-      // height: 8rem;
-    }
-  }
-  header {
-    padding-bottom: 3rem;
-    @include RWD(mobile) {
-      padding-bottom: 0;
     }
   }
 }

@@ -14,7 +14,7 @@ export default {
       lazyImg($root);
 
       vm.$debug('Refresh AOS')
-      vm.$aos.refreshHard()
+      vm.$aos?.refreshHard()
 
     }
 

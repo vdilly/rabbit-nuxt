@@ -58,14 +58,14 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~plugins/notify/notify.client', mode: 'client' },
-    { src: '~plugins/notify/notify.server', mode: 'server' },
+    // { src: '~plugins/notify/notify.client', mode: 'client' },
+    // { src: '~plugins/notify/notify.server', mode: 'server' },
     { src: '~plugins/debug' },
     { src: '~plugins/global' },
     { src: '~plugins/ui-feedback/ui-feedback.js', mode: 'client' },
-    { src: '~plugins/confirm-dialog/confirm-dialog', mode: 'client' },
+    // { src: '~plugins/confirm-dialog/confirm-dialog', mode: 'client' },
     { src: '~plugins/v-intersect', mode: 'client' },
-    { src: '@/plugins/aos.js', mode: 'client' },
+    // { src: '@/plugins/aos.js', mode: 'client' },
   ],
   // serverMiddleware: ['~/api/index.js'],
 

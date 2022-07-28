@@ -13,9 +13,11 @@
 <script>
 import { mapState } from "vuex";
 import BlocsAuto from "@/components/blocs/BlocsAuto.vue";
+import pageMixin from "@/mixins/page/page";
 export default {
   layout: "Default",
   name: "IndexPage",
+  mixins: [pageMixin],
   components: { BlocsAuto },
   computed: {
     page() {

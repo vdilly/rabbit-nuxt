@@ -6,6 +6,7 @@ export const actions = {
   async nuxtServerInit({ state, commit, dispatch }, { app, req }) {
 
     // Init WordpressSourceModule
+    // console.log(this.$axios.defaults)
     let source = new WordPressSource(this.$axios);
     Vue.prototype.$sourceWp = source;
 
@@ -13,5 +14,6 @@ export const actions = {
     // Call tous les GET dans le store
     await dispatch('pages/getPages')
     await dispatch('posts/getPosts')
+    await dispatch('globalDatas/getGlobalDatas')
   }
 }

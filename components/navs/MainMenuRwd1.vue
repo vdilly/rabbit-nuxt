@@ -1,14 +1,12 @@
 <template lang="pug">
 nav.main-menu-rwd
   .main-menu-rwd__item(v-for="(item, index) in menu")
-    a.main-menu-rwd__label(
+    Link.main-menu-rwd__label(
       v-if="item.acf_fc_layout == 'liens'",
-      :href="parseWpUrl(item.liens.url)",
-      :title="item.liens.title",
-      :target="item.liens.target",
-      v-html="item.liens.title",
+      :link="item.liens",
+      :class="item.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null",
       :key="index",
-      :class="item.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null"
+      v-html="item.liens.title"
     )
     Drawer.main-menu-rwd__sub(
       v-if="item.acf_fc_layout == 'submenu'",
@@ -19,10 +17,8 @@ nav.main-menu-rwd
     )
       component.main-menu-rwd__label.main-menu-rwd__sub-label(
         slot="label",
-        :is="item.liens ? 'a' : 'div'",
-        :href="item.liens ? parseWpUrl(item.liens.url) : null",
-        :title="item.liens ? item.liens.title : null",
-        :target="item.liens ? item.liens.target : null",
+        :is="item.liens ? 'Link' : 'div'",
+        :link="item.liens",
         v-html="item.liens ? item.liens.title : item.label",
         :class="getActiveClassFromSublist(item.submenu) && $route.path != '/' ? 'active' : null"
       )
@@ -32,25 +28,20 @@ nav.main-menu-rwd
         svg.icon
           use(xlink:href="#chevron")
         span(v-html="item.liens ? item.liens.title : item.label")
-      a.main-menu-rwd__label(
+      Link.main-menu-rwd__label(
         v-for="(subitem, subindex) in item.submenu",
+        :link="subitem.liens",
         :key="subindex",
-        :href="parseWpUrl(subitem.liens.url)",
-        :target="subitem.liens.target",
-        :title="subitem.liens.title",
         v-html="subitem.liens.title"
       )
-  Btn Devis
 </template>
 
 <script>
 export default {
   computed: {
-    option() {
-      return this.$static.allAcfOption.edges[0].node;
-    },
     menu() {
-      return this.option.menu_header.menu;
+      return this.$store?.state?.globalDatas?.globalDatas?.acf?.menu_header
+        ?.menu;
     },
   },
   methods: {
@@ -126,6 +117,7 @@ export default {
         width: 1rem;
         transform: rotate(90deg);
         margin-right: 2rem;
+        flex-shrink: 0;
       }
       span {
         font-weight: 700;

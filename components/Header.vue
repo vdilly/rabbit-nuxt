@@ -8,28 +8,39 @@ Navbar
       template(v-else)
         Logo(:linked="true")
       .filler
-      ul.menu.desktop
-      //- .filler
-      Popin(panelType="side-right-panel")
-        svg.icon(slot="trigger") 
-          use(xlink:href="#burger")
+      MainMenu1(v-show="window.range == 'desktop'")
+      Popin(
+        v-show="window.range != 'desktop'",
+        panelType="side-right-panel",
+        @close="closeDrawers"
+      )
+        BurgerIcon(slot="trigger")
         div(slot="close") 
           svg.burger-close.icon
             use(xlink:href="#close-circled")
-        ul.menu.rwd
+        MainMenuRwd1(ref="menuRwd")
 </template>
 
 <script>
+import { mapState } from "vuex";
 import Navbar from "~/components/layouts/Navbar.vue";
 import Logo from "./atoms/Logo.vue";
+import MainMenu1 from "~/components/navs/MainMenu1.vue";
+import MainMenuRwd1 from "~/components/navs/MainMenuRwd1.vue";
+import BurgerIcon from "@/components/atoms/BurgerIcon.vue";
 export default {
-  components: { Navbar, Logo },
+  components: { Navbar, MainMenu1, MainMenuRwd1, Logo, BurgerIcon },
   computed: {
     isFront() {
       return this.$route.path == "/";
     },
   },
-  methods: {},
+  methods: {
+    closeDrawers: function () {
+      // Au close du burger on close les éventuels drawers, on achemine l'event: Default -> MainMenuRwd -> Drawer
+      this.$refs.menuRwd.closeDrawers();
+    },
+  },
 };
 </script>
 
@@ -128,7 +139,7 @@ $header-bg: transparent;
   .popin__trigger .icon {
     height: 3rem;
     width: 3rem;
-    fill: white;
+    fill: $color__core;
   }
   .popin__panel {
     background-color: $color__core;

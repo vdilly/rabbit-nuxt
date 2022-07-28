@@ -1,49 +1,42 @@
 <template lang="pug">
 nav.main-menu
   .main-menu__item(v-for="(item, index) in menu")
-    a.main-menu__label(
+    Link.main-menu__label(
       v-if="item.acf_fc_layout == 'liens'",
-      :href="parseWpUrl(item.liens.url)",
-      :title="item.liens.title",
-      :target="item.liens.target",
-      v-html="item.liens.title",
+      :link="item.liens",
+      :class="item.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null",
       :key="index",
-      :class="item.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null"
+      v-html="item.liens.title"
     )
     Dropdown(v-if="item.acf_fc_layout == 'submenu'", :key="index")
       component.main-menu__label(
         slot="trigger",
-        :is="item.liens ? 'a' : 'div'",
-        :href="item.liens ? parseWpUrl(item.liens.url) : null",
-        :title="item.liens ? item.liens.title : null",
-        :target="item.liens ? item.liens.target : null",
+        :is="item.liens ? 'Link' : 'div'",
+        :link="item.liens",
         v-html="item.liens ? item.liens.title : item.label",
         :class="getActiveClassFromSublist(item.submenu) && $route.path != '/' ? 'active' : null"
       )
-      a.main-menu__label(
+      Link.main-menu__label(
         v-for="(subitem, subindex) in item.submenu",
+        :link="subitem.liens",
         :key="subindex",
-        :href="parseWpUrl(subitem.liens.url)",
-        :target="subitem.liens.target",
-        :title="subitem.liens.title",
         v-html="subitem.liens.title"
       )
-  BtnAvatar.main-menu__item.main-menu__highlight-btn(target="_blank") V. Dilly
-    Avatar(slot="pre", :bordered="false")
-      img(src="https://avatars0.githubusercontent.com/u/41357661?s=88&v=4")
 </template>
 
 <script>
 export default {
   computed: {
-    option() {
-      return this.$static.allAcfOption.edges[0].node;
-    },
     menu() {
-      return this.option.menu_header.menu;
+      return this.$store?.state?.globalDatas?.globalDatas?.acf?.menu_header
+        ?.menu;
     },
   },
   methods: {
+    isInternalLink(link) {
+      console.log(link, this.url.site, link.indexOf(this.url.site));
+      return link.indexOf(this.url.site) != -1;
+    },
     getActiveClassFromSublist(submenu) {
       let vm = this;
       let r = false;

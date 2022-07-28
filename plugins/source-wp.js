@@ -10,6 +10,8 @@ export default class WordPressSource {
     const defaultOptions = {
       perPage: 100,
       concurrent: 10,
+      route: '/wp/v2',
+      routeOptions: '/acf/v3'
     }
     this.options = {
       ...defaultOptions,
@@ -42,6 +44,10 @@ export default class WordPressSource {
     })
     return entries;
   }
+  getGlobalDatas = async (path) => {
+    let datas = await this.fetch({ url: '/options/option', baseURL: process.env.WP_API_URL + this.options.routeOptions })
+    return this.formatWpEntity(datas.data);
+  }
   fetchPaged = async (path) => {
     const { perPage, concurrent } = this.options
 
@@ -49,7 +55,7 @@ export default class WordPressSource {
       let res
 
       try {
-        res = await this.fetch(path, { per_page: perPage })
+        res = await this.fetch({ url: path, params: { per_page: perPage } })
       } catch (err) {
         return reject(err)
       }
@@ -85,15 +91,15 @@ export default class WordPressSource {
       resolve(res.data)
     })
   }
-  fetch = async (url, params = {}, fallbackData = []) => {
+  fetch = async (config, fallbackData = []) => {
     let res
 
     try {
-      console.log('try  ' + url);
-      res = await this.client.request({ url, params })
-    } catch ({ response, code, config }) {
+      if (!config.url) config = { url: config }
+      console.log('try  ' + config.url);
+      res = await this.client.request(config)
+    } catch ({ message, response, code, config }) {
       if (!response && code) {
-        console.log(response);
         throw new Error(`${code} - ${config.url}`)
       }
       if ([401, 403].includes(response.status)) {
@@ -104,7 +110,7 @@ export default class WordPressSource {
         throw new Error(`${response.status} - ${config.url}`)
       }
     }
-    console.log('ok succeed ' + url)
+    console.log('ok succeed ' + config.url)
     return res
   }
   formatWpEntity = (entry) => {

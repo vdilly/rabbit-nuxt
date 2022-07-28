@@ -8,7 +8,7 @@ export default function (string, debug = false) {
     if (debug) console.log("--------------");
     if (debug) console.log("Search for " + url + " in " + string);
     const wpurl = new RegExp(url, "g");
-    string = string.replace(wpurl, process.env.SITE_URL);
+    string = string.replace(wpurl, '');
     if (debug) console.log("Result: " + string);
   });
 

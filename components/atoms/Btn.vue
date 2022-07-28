@@ -1,7 +1,7 @@
 <template lang="pug">
 component.btn(
-  :is="forceDiv ? 'div' : href ? 'a' : to ? 'NuxtLink' : 'button'",
-  v-bind="computedLinkAttr",
+  :is="link ? 'Link' : forceDiv ? 'div' : 'button'",
+  :link="link",
   @click="$emit('click')"
 )
   Loader
@@ -16,34 +16,18 @@ component.btn(
 
 <script>
 import Loader from "./Loader.vue";
+import Link from "./Link.vue";
 export default {
   props: {
-    href: {
-      type: String,
-      default: null,
-    },
-    to: {
-      type: String,
+    link: {
       default: null,
     },
     forceDiv: {
       default: false,
     },
   },
-  computed: {
-    computedLinkAttr() {
-      return {
-        [`${this.linkAttr}`]: this.linkValue,
-      };
-    },
-    linkAttr() {
-      return this.href ? "href" : this.to ? "to" : null;
-    },
-    linkValue() {
-      return this.href ? this.href : this.to ? this.to : null;
-    },
-  },
-  components: { Loader },
+  computed: {},
+  components: { Loader, Link },
 };
 </script>
 

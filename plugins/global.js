@@ -23,6 +23,7 @@ import FormSelect from "~/components/form/FormSelect.vue";
 import FormTextarea from "~/components/form/FormTextarea.vue";
 import FormFieldset from "~/components/form/FormFieldset.vue";
 import FormInfo from "~/components/form/FormInfo.vue";
+import Link from "~/components/atoms/Link.vue";
 
 Vue.component("Container", Container);
 Vue.component("Dropdown", Dropdown);
@@ -30,6 +31,7 @@ Vue.component("Drawer", Drawer);
 Vue.component("Popin", Popin);
 Vue.component("RTE", RTE);
 Vue.component("Btn", Btn);
+Vue.component("Link", Link);
 Vue.component("Logo", Logo);
 Vue.component("Loader", Loader);
 Vue.component("FormGroup", FormGroup);
@@ -58,7 +60,8 @@ Vue.mixin({
         "accepted": "Acceptée"
       },
       url: {
-        api: process?.env?.apiUrl
+        api: process?.env?.apiUrl,
+        site: process?.env?.siteUrl
       }
     }
   },

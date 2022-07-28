@@ -2,6 +2,7 @@
 const { mapKeys, isPlainObject, trimEnd, trimStart } = require('lodash')
 const axiosRetry = require('axios-retry');
 const pMap = require('p-map')
+import parseWpUrl from '@/utils/parseWpUrl';
 
 
 export default class WordPressSource {
@@ -163,6 +164,9 @@ export default class WordPressSource {
         return image;
       } else if (value.hasOwnProperty('rendered')) { // Value nested under "rendered"
         return value.rendered
+      } else if (value.hasOwnProperty('target') && value.hasOwnProperty('url') && value.hasOwnProperty('title') && !value.hasOwnProperty('id')) { // Liens
+        value.url = parseWpUrl(value.url)
+        return value;
       }
 
       return this.normalizeFields(value)

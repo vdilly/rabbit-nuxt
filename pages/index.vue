@@ -1,7 +1,5 @@
 <template lang="pug">
 .hp(v-if="page")
-  .container.rte
-    h1(v-html="page.title")
   BlocsAuto(:blocs="bannerBlocs")
   .container.rte
     h2 Pages

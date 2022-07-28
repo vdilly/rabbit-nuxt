@@ -9,10 +9,6 @@ const pageMixin = {
     }
   },
   async mounted() {
-    // Get user notifications à chaque page load
-    if (this.auth.user)
-      await this.$store.dispatch('userNotifications/getUserNotifications')
-
     // // Scripts à lancer quand le dom change ou est ready
     // // Loadsite + Callback lazyImg
     // // Dom change (trigger dom scripts quand un élément [domchange] du dom écoute un changement dans ses childs (ajax))

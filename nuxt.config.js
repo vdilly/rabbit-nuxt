@@ -1,7 +1,8 @@
 export default {
   // Environment variables (https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-env)
   env: {
-    CMSUrl: process.env.CMS_URL,
+    apiUrl: process.env.API_URL,
+    wpUrl: process.env.WP_URL,
     isProd: process.env.NODE_ENV == "production",
     siteName: "Rabbit"
   },
@@ -82,7 +83,7 @@ export default {
   ],
 
   axios: {
-    baseURL: process.env.CMS_URL, // Used as fallback if no runtime config is provided
+    baseURL: process.env.API_URL, // Used as fallback if no runtime config is provided
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

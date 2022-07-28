@@ -58,7 +58,7 @@ Vue.mixin({
         "accepted": "Acceptée"
       },
       url: {
-        cms: process?.env?.CMSUrl
+        api: process?.env?.apiUrl
       }
     }
   },

@@ -37,7 +37,7 @@ export default {
   display: inline-flex;
   padding: 1.8rem 2rem;
   border: solid 2px;
-  text-decoration: none;
+  text-decoration: none !important;
   border-radius: 10rem;
   position: relative;
   .loader {
@@ -86,12 +86,19 @@ export default {
 .btn.core {
   background-color: $color__core;
   border-color: $color__core;
+  .btn__text {
+    color: white;
+  }
+  .icon {
+    fill: white;
+  }
 }
 .btn.bg {
   background-color: $color__bg-300;
   border-color: $color__bg-300;
 }
 
+// Sizes
 .btn.fat {
   padding: 1.3rem 3.5rem;
   border-radius: 6.5px;

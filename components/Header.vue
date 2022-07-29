@@ -8,13 +8,8 @@ Navbar
       template(v-else)
         Logo(:linked="true")
       .filler
-      MainMenu1(v-show="window.range == 'desktop'")
-      Popin(panelType="side-right-panel", @close="closeDrawers")
-        BurgerIcon(slot="trigger")
-        div(slot="close") 
-          svg.burger-close.icon
-            use(xlink:href="#close-circled")
-        MainMenuRwd1(ref="menuRwd")
+      MainMenu1
+      MainMenuRwd1(ref="menuRwd")
 </template>
 
 <script>
@@ -23,9 +18,8 @@ import Navbar from "~/components/layouts/Navbar.vue";
 import Logo from "./atoms/Logo.vue";
 import MainMenu1 from "~/components/navs/MainMenu1.vue";
 import MainMenuRwd1 from "~/components/navs/MainMenuRwd1.vue";
-import BurgerIcon from "@/components/atoms/BurgerIcon.vue";
 export default {
-  components: { Navbar, MainMenu1, MainMenuRwd1, Logo, BurgerIcon },
+  components: { Navbar, MainMenu1, MainMenuRwd1, Logo },
   computed: {
     isFront() {
       return this.$route.path == "/";
@@ -41,13 +35,23 @@ export default {
 </script>
 
 <style lang="scss">
+/**
+
+4. Gérer la couleur du header
+5. Gérer le placement des différents éléments (logo, menu, etc...)
+6. Go main menu pour gérer les labels
+7. Go mainmenurwd pour gérer le burger menu
+
+*/
+.navbar > .container {
+  height: 100%;
+  max-width: 100%;
+}
 .header {
   height: 100%;
-  background-color: transparent;
+  background-color: $color__page-bg;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  padding: 2rem 0rem;
   position: relative;
 
   .filler:not(.desktop-only) {
@@ -55,88 +59,34 @@ export default {
   }
 
   // Logo
-  h1 {
+  h1,
+  .logo {
     height: 100%;
     display: flex;
+    align-items: center;
   }
   .logo {
-    display: flex;
-    height: 8rem;
-    width: auto;
-
+    img {
+      height: calc(100% - 4rem);
+      width: auto;
+    }
     @include RWD(mobile) {
       width: 20rem;
     }
   }
 
-  // Menu desktop
-  .menu {
-    display: flex;
-    align-items: center;
-    & > li {
-      margin-left: 2rem;
-      position: relative;
+  // Menu 100% hauteur, permet des zones cliquables plus grande et au dropdown de coller à la navbar
+  .main-menu {
+    height: 100%;
+    .item {
+      display: flex;
+      height: 100%;
     }
-  }
-  .main__menu-label {
-    font-size: 1.3rem;
-    color: white;
-    text-decoration: none;
-    padding: 1rem 2rem;
-    display: inline-flex;
-  }
-}
-
-// Menu rwd
-.header {
-  .popin__close {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-  .burger-close {
-    height: 3rem;
-    width: 3rem;
-    fill: $color__text;
-    margin: 2rem;
-  }
-  .popin {
-    @include RWD(desktop) {
-      display: none;
+    .label:not(.btn) {
+      height: 100%;
     }
-  }
-  .menu.desktop {
-    @include RWD(tablet) {
-      display: none;
-    }
-  }
-  .menu.rwd {
-    @include RWD(desktop) {
-      display: none;
-    }
-  }
-
-  .popin__trigger .icon {
-    height: 3rem;
-    width: 3rem;
-    fill: $color__core;
-  }
-  .popin__panel {
-    background-color: $color__core;
-  }
-  .menu.rwd {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0 5rem;
-    li {
-      margin-top: 3rem;
-    }
-    a:not(.btn) {
-      padding-left: 0;
-    }
-    a {
-      font-size: 1.5rem;
+    .btn {
+      align-self: center;
     }
   }
 }

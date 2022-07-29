@@ -1,5 +1,5 @@
 <template lang="pug">
-.container(v-if="page")
+.container.rte(v-if="page")
   h1(v-html="page.title")
 </template>
 <script>

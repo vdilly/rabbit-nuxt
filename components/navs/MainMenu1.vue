@@ -1,26 +1,30 @@
 <template lang="pug">
 nav.main-menu
-  .main-menu__item(v-for="(item, index) in menu")
-    Link.main-menu__label(
+  .item(v-for="(item, index) in menu")
+    component(
       v-if="item.acf_fc_layout == 'liens'",
       :link="item.liens",
-      :class="item.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null",
+      :class="[item.is_btn ? 'core h-white' : 'label label--main', item.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null]",
       :key="index",
-      v-html="item.liens.title"
+      :is="item.is_btn ? 'Btn' : 'Link'"
     )
+      span(v-html="item.liens.title")
     Dropdown(v-if="item.acf_fc_layout == 'submenu'", :key="index")
-      component.main-menu__label(
+      component.label.label--trigger(
         slot="trigger",
         :is="item.liens ? 'Link' : 'div'",
         :link="item.liens",
-        v-html="item.liens ? item.liens.title : item.label",
         :class="getActiveClassFromSublist(item.submenu) && $route.path != '/' ? 'active' : null"
       )
-      Link.main-menu__label(
+        span(v-html="item.liens ? item.liens.title : item.label")
+        svg.icon.dropdown-arrow
+          use(xlink:href="#chevron")
+      Link.label.label--sub(
         v-for="(subitem, subindex) in item.submenu",
         :link="subitem.liens",
         :key="subindex",
-        v-html="subitem.liens.title"
+        v-html="subitem.liens.title",
+        :class="subitem.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null"
       )
 </template>
 
@@ -54,30 +58,13 @@ export default {
 <style lang="scss">
 .main-menu {
   display: flex;
-  &__item {
+  @include RWD(tablet) {
+    display: none;
+  }
+  .item {
     position: relative;
     &:not(:last-child) {
       margin-right: 2rem;
-    }
-  }
-  &__label {
-    text-decoration: none;
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-
-    &.active {
-      &:after {
-        content: "";
-        position: absolute;
-        bottom: 0.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: $color__core;
-        height: 0.5rem;
-        width: 0.5rem;
-        border-radius: 50%;
-      }
     }
   }
   a {
@@ -89,8 +76,92 @@ export default {
   .dropdown {
     height: 100%;
   }
-  .main-menu__highlight-btn {
-    align-self: center;
+}
+
+// Labels (menu, dropdown et popin)
+.main-menu .label {
+  // Shared avec tous les labels
+  & {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+    padding: 1rem 2rem;
+    display: inline-flex;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  // Label ppal
+  &--main {
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateX(-30%);
+      opacity: 0;
+      width: 100%;
+      height: 3rem;
+      background-color: rgba($color__core, 0.1);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      border-radius: 4px;
+    }
+    &:hover:after,
+    &.active:after {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    // Active
+    &.active {
+      &:after {
+      }
+    }
+  }
+  // Label sub
+  &--sub {
+    font-size: 1.5rem;
+    padding: 1.5rem 2rem;
+    width: 100%;
+    transition: box-shadow 0.25s ease, background-color 0.25s ease;
+
+    &:hover {
+      background-color: rgba($color__core, 0.07);
+    }
+    &.active {
+      box-shadow: inset 0.1rem 0.1rem 0.5rem rgb(0 0 0 / 10%);
+      background-color: rgba($color__core, 0.07);
+    }
+  }
+  // Label rwd
+}
+
+// Label menu desktop only (non sub)
+.label--main:not(.btn) {
+}
+
+// Dropdown
+.main-menu .dropdown {
+  // Flèche dropdown
+  .dropdown-arrow {
+    height: 12px;
+    width: 12px;
+    margin-left: 1.5rem;
+  }
+
+  // Panel
+  .dropdown__sub {
+    width: 15rem;
+    box-shadow: 0 0 2rem rgb(0 0 0 / 10%);
+    // border-bottom-left-radius: 1rem;
+    // border-bottom-right-radius: 1rem;
+    border-radius: 7px;
+    border-top: solid 7px $color__core;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    bottom: 2rem;
   }
 }
 </style>

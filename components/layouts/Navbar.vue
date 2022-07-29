@@ -8,17 +8,27 @@ export default {};
 </script>
 
 <style lang="scss">
+/**
+
+1. gérer la position fix ou pas (var)
+2. gérer la height desktop et mobile et scrolled, si la nav est 100% static on peut mettre auto (var)
+3. gérer la boxshadow au scroll (var)
+4. go header.vue
+
+*/
+
 // Position
-$navbar-position: absolute; // Si on passe en absolute, mettre false aux autres options
+$navbar-position: fixed; // Si on passe en absolute, mettre false aux autres options
 $navbar-height: 12rem; // Appliquer le padding sur le body si position != static
-$navbar-height-m: 12rem;
+$navbar-height-m: 8rem;
+$navbar-height-scrolled: 9rem;
 $navbar-apply-ptop: true; // applique un padding top sur le main
 $navbar-disappear-onscroll: false;
-$navbar-appear-onscrolltop: true; // $navbar-disappear-onscroll must be true
+$navbar-appear-onscrolltop: false; // $navbar-disappear-onscroll must be true
 
 // Shadow
 $navbar-bshadow: none;
-$navbar-scrolled-bshadow: none; // none - $bshadow
+$navbar-scrolled-bshadow: 0 2px 20px 0 rgb(0 0 0 / 15%); // none - $bshadow
 
 .navbar {
   z-index: $z-header;
@@ -30,7 +40,7 @@ $navbar-scrolled-bshadow: none; // none - $bshadow
   @if ($navbar-disappear-onscroll) {
     transition: all $transition-m, box-shadow 0s;
   } @else {
-    transition: box-shadow $transition-m;
+    transition: box-shadow $transition-m, height $transition-m;
   }
 
   @include RWD(mobile) {
@@ -41,6 +51,7 @@ $navbar-scrolled-bshadow: none; // none - $bshadow
 // Etat scroll
 body.js-scrolled .navbar {
   box-shadow: $navbar-scrolled-bshadow;
+  height: $navbar-height-scrolled;
 }
 @if $navbar-disappear-onscroll {
   @if $navbar-appear-onscrolltop {

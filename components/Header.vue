@@ -69,9 +69,9 @@ export default {
     img {
       height: calc(100% - 4rem);
       width: auto;
-    }
-    @include RWD(mobile) {
-      width: 20rem;
+      @include RWD(mobile) {
+        height: calc(100% - 3rem);
+      }
     }
   }
 

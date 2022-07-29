@@ -7,8 +7,8 @@
 
 <style lang="scss">
 .burger-icon {
-  height: 2.5rem;
-  width: 5rem;
+  height: 2rem;
+  width: 4rem;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

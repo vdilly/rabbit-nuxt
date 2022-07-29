@@ -1,17 +1,20 @@
 <template lang="pug">
-  div.drawer
-    div.drawer__trigger(v-if="triggerIsLink")
-      div.drawer__trigger-label  
-        slot(name="label")
-      button.drawer__trigger-arrow(@click.stop="openDrawer($event)")
-        slot(name="trigger")
-    button.drawer__trigger(v-else @click.stop="openDrawer($event)")
+.drawer
+  .drawer__trigger(v-if="triggerIsLink")
+    .drawer__trigger-label 
       slot(name="label")
-    transition(:name="drawerType")
-      div.drawer__sub(v-show="drawerOpen")
-        button.drawer__sub-back(@click.stop="closeDrawer($event)")
-          slot(name="back")
-        slot
+    button.drawer__trigger-arrow(@click.stop="openDrawer($event)")
+      slot(name="trigger")
+  .drawer__trigger(v-else, @click.stop="openDrawer($event)")
+    .drawer__trigger-label 
+      slot(name="label")
+    .drawer__trigger-arrow
+      slot(name="trigger")
+  transition(:name="drawerType")
+    .drawer__sub(v-show="drawerOpen")
+      button.drawer__sub-back(@click.stop="closeDrawer($event)")
+        slot(name="back")
+      slot
 </template>
 
 <script>
@@ -19,27 +22,27 @@ export default {
   props: ["triggerIsLink", "drawerType"],
   props: {
     triggerIsLink: {
-      default: false
+      default: false,
     },
     drawerType: {
-      default: "drawer-from-left"
-    }
+      default: "drawer-from-left",
+    },
   },
   data() {
     return {
-      drawerOpen: false
+      drawerOpen: false,
     };
   },
   methods: {
-    openDrawer: function() {
+    openDrawer: function () {
       this.$emit("open");
       this.drawerOpen = true;
     },
-    closeDrawer: function() {
+    closeDrawer: function () {
       this.$emit("close");
       this.drawerOpen = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -49,6 +52,7 @@ export default {
   &__trigger {
     display: flex;
     width: 100%;
+    cursor: pointer;
 
     &-arrow {
       width: 5rem;

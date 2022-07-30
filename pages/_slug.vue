@@ -1,6 +1,21 @@
 <template lang="pug">
-.container.rte(v-if="page")
-  h1(v-html="page.title")
+main(v-if="page")
+  //- Banner
+  .region--banner(v-if="bannerBlocs")
+    BlocsAuto(:blocs="bannerBlocs")
+
+  //- Pre content
+  .region--preContent(v-if="postContentBlocs")
+    BlocsAuto(:blocs="preContentBlocs")
+
+  //- Content
+  .region--content
+    BlocsAuto(:blocs="contentBlocs", v-if="contentBlocs")
+    .container.main-rte.rte(v-else, v-html="page.content")
+
+  //- Post Content
+  .region--postContent(v-if="postContentBlocs")
+    BlocsAuto(:blocs="postContentBlocs")
 </template>
 <script>
 import pageMixin from "@/mixins/page/page";

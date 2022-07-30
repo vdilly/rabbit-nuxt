@@ -169,6 +169,25 @@ export default {
     }
   }
 }
+.btn.h-ghost {
+  transition: background-color 0.25s ease;
+  .icon {
+    transition: fill 0.25s ease;
+  }
+  .btn__text {
+    transition: color 0.25s ease;
+  }
+  &:hover {
+    background-color: transparent;
+    // border-color: white;
+    .icon {
+      fill: $color__core;
+    }
+    .btn__text {
+      color: $color__core;
+    }
+  }
+}
 
 // Btn ajax
 .btn.loading {

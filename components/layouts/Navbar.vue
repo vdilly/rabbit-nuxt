@@ -66,14 +66,14 @@ body.js-scrolled .navbar {
 }
 // Padding sur le main
 @if $navbar-apply-ptop {
-  body .nuxt-content {
+  body .main {
     padding-top: $navbar-height;
     transition: padding-top $transition-m;
     @include RWD(mobile) {
       padding-top: $navbar-height-m;
     }
   }
-  body.js-scrolled .nuxt-content {
+  body.js-scrolled .main {
     // padding-top: 0;
   }
 }

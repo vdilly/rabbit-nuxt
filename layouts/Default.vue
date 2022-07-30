@@ -1,7 +1,7 @@
 <template lang="pug">
 .layout-default
   Header
-  Nuxt.nuxt-content
+  Nuxt.main
   Footer
   //- notifications(group="all")
 </template>

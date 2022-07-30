@@ -27,7 +27,7 @@ export default {
       default: true,
     },
     panelType: {
-      default: "full-panel", // side-left, side-right, center, full, anchor
+      default: "full-panel", // side-left, side-right, center, full-panel, anchor
     },
   },
   data() {
@@ -209,14 +209,6 @@ export default {
 // Animations
 
 // Center panel
-.center-panel-enter-active,
-.center-panel-leave-active {
-  transition: $transition-s;
-}
-.center-panel-enter,
-.center-panel-leave-to {
-  opacity: 0;
-}
 
 // Anchor panel
 .anchor-panel-enter-active,

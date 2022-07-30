@@ -147,7 +147,7 @@ header .popin.menu-rwd-popin {
   display: flex;
   align-items: center;
   color: $color;
-  @include RWD(mobile) {
+  @media (max-width: 400px) {
     padding: 1.5rem;
     font-size: 1.4rem;
   }
@@ -217,6 +217,40 @@ header .popin.menu-rwd-popin {
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+    }
+  }
+}
+
+// Animation RWD
+.menu-rwd-popin {
+  .center-enter-active,
+  .center-leave-active {
+    transition: 0.5s;
+    .main-menu-rwd .itemRwd {
+      transition: $transition-s;
+      @for $i from 1 to 10 {
+        &:nth-child(#{$i}) {
+          transition-delay: #{($i - 1) * 0.1s};
+        }
+      }
+    }
+  }
+  .center-leave-active {
+    transition: 0.5s !important;
+  }
+  .center-leave-to {
+    opacity: 0;
+  }
+  .center-enter {
+    .main-menu-rwd .itemRwd {
+      transform: translateX(-4rem);
+      opacity: 0;
+    }
+  }
+  .center-leave-to {
+    .main-menu-rwd .itemRwd {
+      transform: translateX(6rem);
+      opacity: 0;
     }
   }
 }

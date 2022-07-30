@@ -35,7 +35,7 @@ export default {
 .btn {
   user-select: none;
   display: inline-flex;
-  padding: 1.8rem 2rem;
+  padding: 1.5rem 3rem;
   border: solid 2px;
   text-decoration: none !important;
   border-radius: 10rem;

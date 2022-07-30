@@ -97,6 +97,16 @@ export default {
   background-color: $color__bg-300;
   border-color: $color__bg-300;
 }
+.btn.white {
+  background-color: white;
+  border-color: white;
+  .btn__text {
+    color: white;
+  }
+  .icon {
+    fill: white;
+  }
+}
 
 // Sizes
 .btn.fat {
@@ -118,7 +128,7 @@ export default {
   }
 }
 .btn.ghost {
-  opacity: 0.7;
+  background-color: transparent !important;
 }
 
 // Hovers
@@ -150,6 +160,7 @@ export default {
   }
   &:hover {
     background-color: white;
+    border-color: white;
     .icon {
       fill: $color__core;
     }

@@ -12,9 +12,10 @@
       slot(name="trigger")
   transition(:name="drawerType")
     .drawer__sub(v-show="drawerOpen")
-      button.drawer__sub-back(@click.stop="closeDrawer($event)")
-        slot(name="back")
-      slot
+      .inner-sub
+        button.drawer__sub-back(@click.stop="closeDrawer($event)")
+          slot(name="back")
+        slot
 </template>
 
 <script>
@@ -75,7 +76,8 @@ export default {
     z-index: 3;
     background-color: white;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     & > * {
       max-width: 100%;
     }

@@ -5,13 +5,14 @@ Popin.menu-rwd-popin(panelType="center", @close="closeDrawers")
     use(xlink:href="#close")
   nav.main-menu-rwd
     .itemRwd(v-for="(item, index) in menu")
-      Link.labelRwd.labelRwd--main(
+      component(
         v-if="item.acf_fc_layout == 'liens'",
         :link="item.liens",
-        :class="item.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null",
+        :class="[item.is_btn ? 'ghost white' : 'labelRwd labelRwd--main', item.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null]",
         :key="index",
-        v-html="item.liens.title"
+        :is="item.is_btn ? 'Btn' : 'Link'"
       )
+        span(v-html="item.liens.title")
       Drawer.sub(
         v-if="item.acf_fc_layout == 'submenu'",
         :key="index",
@@ -29,8 +30,9 @@ Popin.menu-rwd-popin(panelType="center", @close="closeDrawers")
         svg.icon(slot="trigger")
           use(xlink:href="#chevron")
         .labelRwd(slot="back")
-          svg.icon
-            use(xlink:href="#chevron")
+          .drawer__sub-back-arrow
+            svg.icon
+              use(xlink:href="#chevron")
           span(v-html="item.liens ? item.liens.title : item.label")
         Link.labelRwd.labelRwd--sub(
           v-for="(subitem, subindex) in item.submenu",
@@ -84,7 +86,7 @@ header .popin.menu-rwd-popin {
     background-color: hsla(0, 0%, 92.5%, 0.9);
   }
 
-  // Panels
+  // Panel
   .popin__panel {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
     width: 135rem;
@@ -93,9 +95,6 @@ header .popin.menu-rwd-popin {
     max-height: 100%;
     top: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
     @media (mobile) {
       max-width: calc(100% - 2rem);
@@ -105,6 +104,11 @@ header .popin.menu-rwd-popin {
   .popin__panel,
   .drawer__sub {
     background-color: $bg;
+  }
+  .popin__panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 6rem 4rem;
     @include RWD(mobile) {
       padding: 6rem 2rem;
@@ -114,8 +118,8 @@ header .popin.menu-rwd-popin {
   // Close
   .popin__close {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 1rem;
+    right: 1rem;
     width: 100%;
     height: 5rem;
     width: 5rem;
@@ -145,15 +149,20 @@ header .popin.menu-rwd-popin {
   color: $color;
   @include RWD(mobile) {
     padding: 1.5rem;
+    font-size: 1.4rem;
   }
 
   // Etat actif
   &.active {
   }
 }
+.main-menu-rwd .btn {
+  margin-left: 3rem;
+}
 
-// Menu RWD
-.main-menu-rwd {
+// Layout du menu
+.main-menu-rwd,
+.inner-sub {
   display: flex;
   flex-direction: column;
   // min-width: 30rem;
@@ -166,42 +175,48 @@ header .popin.menu-rwd-popin {
       margin-bottom: 2rem;
     }
   }
-  .sub {
-    &-label {
-      font-weight: 700;
-    }
-    & > *:not(:first-child) {
-      margin-left: 2rem;
+}
+
+// Drawers
+.main-menu-rwd .drawer {
+  &__sub {
+    top: 6rem; // Laisser la close apparaitre
+    // left: 50%;
+    // transform: translateX(-50%);
+    & > * {
+      transform: translateY(
+        -3rem
+      ); // Recentrer avec l'offset de 6rem de la close
     }
   }
-  .drawer {
-    &__trigger {
-      .icon {
-        height: 1rem;
-        width: 1rem;
-        transform: rotate(-90deg);
-        fill: $bg;
-      }
-      &-arrow {
-        border-color: $color;
-        background-color: $color;
-        width: 4rem;
-        height: 4rem;
-        align-self: center;
-      }
+  // Trigger et sub back
+  &__trigger,
+  &__sub-back {
+    .icon {
+      height: 1rem;
+      width: 1rem;
+      transform: rotate(-90deg);
+      fill: $bg;
     }
-    &__sub-back {
-      .icon {
-        height: 1rem;
-        width: 1rem;
-        transform: rotate(90deg);
-        margin-right: 2rem;
-        flex-shrink: 0;
-        fill: $color;
-      }
-      span {
-        font-weight: 700;
-      }
+    &-arrow {
+      border-color: $color;
+      background-color: $color;
+      width: 4rem;
+      height: 4rem;
+      align-self: center;
+    }
+  }
+  &__sub-back {
+    .icon {
+      transform: rotate(90deg);
+      flex-shrink: 0;
+    }
+    &-arrow {
+      margin-right: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
   }
 }

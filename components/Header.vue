@@ -37,7 +37,6 @@ export default {
 <style lang="scss">
 /**
 
-4. Gérer la couleur du header
 5. Gérer le placement des différents éléments (logo, menu, etc...)
 6. Go main menu pour gérer les labels
 7. Go mainmenurwd pour gérer le burger menu
@@ -49,7 +48,6 @@ export default {
 }
 .header {
   height: 100%;
-  background-color: $color__page-bg;
   display: flex;
   justify-content: flex-start;
   position: relative;

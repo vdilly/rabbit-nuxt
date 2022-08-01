@@ -10,7 +10,7 @@ export default {};
 <style lang="scss">
 /**
 
-1. gérer la position fix ou pas (var)
+1. gérer la position fix ou pas (var) et la couleur
 2. gérer la height desktop et mobile et scrolled, si la nav est 100% static on peut mettre auto (var)
 3. gérer la boxshadow au scroll (var)
 4. go header.vue
@@ -31,6 +31,7 @@ $navbar-bshadow: none;
 $navbar-scrolled-bshadow: 0 2px 20px 0 rgb(0 0 0 / 15%); // none - $bshadow
 
 .navbar {
+  background-color: $color__page-bg;
   z-index: $z-header;
   position: $navbar-position;
   width: 100%;

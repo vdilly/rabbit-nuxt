@@ -1,15 +1,15 @@
 
 
-// export function formatDate(string, override) {
-//   let date = new Date(string);
-//   const options = {
-//     year: "numeric",
-//     month: "long",
-//     day: "numeric"
-//   };
+export function formatDate(string, override) {
+  let date = new Date(string);
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
 
-//   return date.toLocaleDateString(process.env.GRIDSOME_BUILD_LANG, options);
-// }
+  return date.toLocaleDateString(process.env.GRIDSOME_BUILD_LANG, options);
+}
 
 // export function formatDateFromFr(date) { // utilisé que pour les offres d'emploi so far
 //   if (!date) return null;

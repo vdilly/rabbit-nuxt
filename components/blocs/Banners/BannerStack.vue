@@ -1,11 +1,11 @@
 <template lang="pug">
-.bannerStack
+.bannerStack(v-if="bloc")
   Container
     h1.h1(v-html="bloc.titre", v-if="bloc.titre")
     .description.rte(v-html="bloc.description", v-if="bloc.description")
     Btn.core(v-if="bloc.bouton", :link="bloc.bouton")
       span(v-html="bloc.bouton.title")
-  img(:src="bloc.image.mobile.src", v-if="bloc.image")
+  img.img(:src="bloc.image.full.src", v-if="bloc.image")
 </template>
 <script>
 export default {
@@ -27,6 +27,9 @@ export default {
     @include RWD(mobile) {
       font-size: 1.6rem;
     }
+  }
+  .img {
+    margin-top: 4rem;
   }
 }
 </style>

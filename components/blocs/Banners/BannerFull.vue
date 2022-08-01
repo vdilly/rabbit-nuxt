@@ -1,6 +1,6 @@
 <template lang="pug">
-.bannerFull.img-cover
-  img(:src="bloc.image.mobile.src", v-if="bloc.image")
+.bannerFull.img-cover(v-if="bloc")
+  img(:src="bloc.image.full.src", v-if="bloc.image")
   //- .bg(:style="`background-image: url(${bloc.image.mobile.src});`")
   Container
     h1.h1(v-html="bloc.titre", v-if="bloc.titre")

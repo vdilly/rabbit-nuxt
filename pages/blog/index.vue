@@ -27,5 +27,10 @@ export default {
     if (!page) return error({ statusCode: 404, message: "Page introuvable" });
     return { page };
   },
+  mounted() {
+    this.$nuxt.$on("blogpage-change", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  },
 };
 </script>

@@ -108,6 +108,12 @@ export default {
   }
 }
 
+// Disabled
+.btn[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 // Sizes
 .btn.fat {
   padding: 1.3rem 3.5rem;

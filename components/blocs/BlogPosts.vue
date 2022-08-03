@@ -82,10 +82,12 @@ export default {
     nextPage() {
       if (this.currentIndex >= this.totalPages) return;
       this.currentIndex++;
+      $nuxt.$emit("blogpage-change");
     },
     prevPage() {
       if (this.currentIndex <= 1) return;
       this.currentIndex--;
+      $nuxt.$emit("blogpage-change");
     },
   },
 };

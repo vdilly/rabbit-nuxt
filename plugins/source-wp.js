@@ -3,6 +3,8 @@ const { mapKeys, isPlainObject, trimEnd, trimStart } = require('lodash')
 const axiosRetry = require('axios-retry');
 const pMap = require('p-map')
 import parseWpUrl from '@/utils/parseWpUrl';
+import { formatDate } from "@/utils/date";
+const { htmlToText } = require('html-to-text');
 
 
 export default class WordPressSource {
@@ -97,6 +99,7 @@ export default class WordPressSource {
     try {
       if (!config.url) config = { url: config }
       console.log('try  ' + config.url);
+      config.useCache = true;
       res = await this.client.request(config)
     } catch ({ message, response, code, config }) {
       if (!response && code) {
@@ -106,7 +109,6 @@ export default class WordPressSource {
         console.warn(`Error: Status ${response.status} - ${config.url}`)
         return { ...response, data: fallbackData }
       } else {
-        console.log(response);
         throw new Error(`${response.status} - ${config.url}`)
       }
     }
@@ -123,10 +125,32 @@ export default class WordPressSource {
       delete page[el];
     })
 
+
     page = this.normalizeFields(page);
+
+    // Format article
+    if (page.type == 'post') {
+      page = this.formatWpPost(page)
+    }
 
 
     return page;
+  }
+  formatWpPost(post) {
+    post.date = formatDate(post.date);
+
+    // Exerpt
+    let excerpt = post.excerpt || htmlToText(post.content, {
+      wordwrap: null,
+      tags: {
+        a: { format: "skip" },
+        img: { format: "skip" },
+      },
+    });
+    const charLimit = 200;
+    post.excerpt = excerpt.length > charLimit ? excerpt.substring(0, charLimit) + '[...]' : excerpt;
+    post.link = "/blog/" + post.slug + "/";
+    return post
   }
   normalizeFields = (entry) => {
     const res = {}

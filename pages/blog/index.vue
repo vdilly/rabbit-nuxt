@@ -22,10 +22,10 @@ import pageMixin from "@/mixins/page/page";
 export default {
   layout: "Default",
   mixins: [pageMixin],
-  computed: {
-    page() {
-      return this.$store.getters["pages/getPageBySlug"]("blog");
-    },
+  async asyncData({ store, error }) {
+    let page = store.getters["pages/getPageBySlug"]("blog");
+    if (!page) return error({ statusCode: 404, message: "Page introuvable" });
+    return { page };
   },
 };
 </script>

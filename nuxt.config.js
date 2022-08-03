@@ -65,6 +65,7 @@ export default {
     { src: '~plugins/ui-feedback/ui-feedback.js', mode: 'client' },
     // { src: '~plugins/confirm-dialog/confirm-dialog', mode: 'client' },
     { src: '~plugins/v-intersect', mode: 'client' },
+    { src: '~plugins/axios-cache' },
     // { src: '@/plugins/aos.js', mode: 'client' },
   ],
   // serverMiddleware: ['~/api/index.js'],

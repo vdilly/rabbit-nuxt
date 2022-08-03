@@ -3,6 +3,9 @@ main(v-if="page")
   //- Banner
   .region--banner(v-if="bannerBlocs")
     BlocsAuto(:blocs="bannerBlocs")
+  .region--banner
+    BlocsAuto(v-if="bannerBlocs", :blocs="bannerBlocs")
+    BannerStack(v-else, :bloc="{ titre: page.title }")
 
   //- Pre content
   .region--preContent(v-if="postContentBlocs")
@@ -31,17 +34,20 @@ main(v-if="page")
 import { mapState } from "vuex";
 import BlocsAuto from "@/components/blocs/BlocsAuto.vue";
 import pageMixin from "@/mixins/page/page";
+import BannerStack from "../components/blocs/Banners/BannerStack.vue";
 export default {
   layout: "Default",
   name: "HomePage",
   mixins: [pageMixin],
-  components: { BlocsAuto },
+  components: { BlocsAuto, BannerStack },
   computed: {
-    page() {
-      return this.$store.getters["pages/getPageByTemplate"]("homepage.php");
-    },
     ...mapState("pages", ["pages"]),
     ...mapState("posts", ["posts"]),
+  },
+  async asyncData({ store, error }) {
+    let page = store.getters["pages/getPageByTemplate"]("homepage.php");
+    if (!page) return error({ statusCode: 404, message: "Page introuvable" });
+    return { page };
   },
 };
 </script>

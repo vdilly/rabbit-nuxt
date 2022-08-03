@@ -8,7 +8,7 @@
     h1.h2 Une erreur est survenue
     div(v-html="error.message")
 
-  NuxtLink(to="/", v-else) Home page
+  NuxtLink(to="/") Retour à la page d'accueil
 </template>
 
 <script>

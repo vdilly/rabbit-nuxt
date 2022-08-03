@@ -1,11 +1,14 @@
 <template lang="pug">
 .teaser-blog(v-if="post")
-  NuxtLink.teaser-blog__overlay-link(:to="link")
-  .teaser-blog__bg(:style="`background-image: url(${thumbnail.mobile.src});`")
-  h3.teaser-blog__title(v-html="post.title")
-  p.teaser-blog__date(v-html="date")
-  .teaser-blog__lead(v-html="excerpt")
-  ul.teaser-blog__tags
+  NuxtLink.teaser-blog__overlay-link(:to="post.link", v-if="post.link")
+  .teaser-blog__bg(
+    :style="`background-image: url(${thumbnail.mobile.src});`",
+    v-if="thumbnail && thumbnail.mobile"
+  )
+  h3.teaser-blog__title(v-html="post.title", v-if="post.title")
+  p.teaser-blog__date(v-html="post.date", v-if="post.date")
+  .teaser-blog__lead(v-html="post.excerpt", v-if="post.excerpt")
+  ul.teaser-blog__tags(v-if="post.tags")
     li.teaser-blog__tag(v-for="(tag, index) in post.tags", :key="index")
       .blogpost-tag.blogpost-tag--grey(v-html="tag.title")
 </template>

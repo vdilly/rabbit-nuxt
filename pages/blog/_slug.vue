@@ -21,15 +21,16 @@ export default {
   computed: {
     bannerBloc() {
       return {
-        titre: this.page.title,
+        titre: this.page?.title,
         image: this.thumbnail,
       };
     },
-    page() {
-      const slug = this.$route.params.slug;
-      return this.$store.getters["posts/getPostBySlug"](slug);
-    },
   },
   components: { BannerStack },
+  async asyncData({ store, params, error }) {
+    let page = store.getters["posts/getPostBySlug"](params.slug);
+    if (!page) return error({ statusCode: 404, message: "Page introuvable" });
+    return { page };
+  },
 };
 </script>

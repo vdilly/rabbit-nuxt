@@ -10,7 +10,8 @@ FormGroup(
     v-if="field.acf_fc_layout == 'select'",
     :name="id",
     :id="id",
-    :required="field.requis"
+    :required="field.requis",
+    :value="getSelectValueFromOptions(field.options)"
   )
     option(
       v-for="(option, index) in field.options",
@@ -121,6 +122,16 @@ export default {
   },
   methods: {
     slugify: slugify,
+    getSelectValueFromOptions(options) {
+      let selected = "";
+      options.some((el) => {
+        if (el.selected) {
+          selected = slugify(el.value);
+          return true;
+        }
+      });
+      return selected;
+    },
   },
 };
 </script>

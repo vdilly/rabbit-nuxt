@@ -13,7 +13,7 @@ export default {
   computed: {
     model: {
       get() {
-        return this.value;
+        return this.value ? this.value : "";
       },
       set(value) {
         this.$emit("input", value);
@@ -22,7 +22,7 @@ export default {
   },
   mounted() {
     // Je sais pas pourquoi sur le textarea uniquement faut forcer une value alors que l'input c'est ok
-    this.$refs.textarea.setAttribute("value", this.value);
+    this.$refs.textarea.setAttribute("value", this.model);
   },
 };
 </script>

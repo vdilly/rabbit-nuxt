@@ -1,0 +1,57 @@
+& {
+  $gutter : 3rem;
+
+  // Form group simple
+  .form__group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: #{$gutter};
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &>* {
+      max-width: 100%;
+    }
+
+    // radios/checbkboxes
+    &.form__field--checkboxes,
+    &.form__field--radios {
+      label {
+        order: 0;
+      }
+
+      .form__group {
+        order: 1;
+      }
+    }
+
+  }
+
+  // Ligne de champs
+  .form__line {
+    display: flex;
+    margin-left: -2rem;
+    margin-top: -2rem;
+
+    .form__group {
+      margin-bottom: 0;
+      margin-left: 2rem;
+      margin-top: 2rem;
+      flex: 1;
+    }
+
+    @include RWD(mobile) {
+      flex-direction: column;
+    }
+
+    &.small {
+      .form__group {
+        width: 50%;
+        flex: unset;
+      }
+    }
+  }
+}

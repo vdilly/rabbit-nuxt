@@ -37,6 +37,7 @@ export default class WordPressSource {
       },
     });
     this.client.defaults.timeout = 10000;
+    console.log('Base url :' + this.client.defaults.baseURL)
   }
 
   getEntries = async (path) => {

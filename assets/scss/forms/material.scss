@@ -1,0 +1,142 @@
+.form--material {
+  @import "material/_layout";
+  @import "material/_fieldset";
+
+  @import "material/_input";
+  @import "material/_file";
+  // @import "material/_imagePick";
+  @import "material/_info";
+
+  @import "material/_checkbox";
+  @import "material/_radio";
+  @import "material/_multichoice";
+
+  @import "material/_select";
+
+  //   position: relative;
+
+  //   %form__label {
+  //     font-family: $font__main;
+  //     font-weight: 500;
+  //     font-size: 1.2rem;
+  //     color: $color__error;
+  //     // line-height: 1.4em;
+  //   }
+
+  //   // Labels
+  //   .form__label {
+  //     @extend %form__label;
+  //   }
+
+  //   // Input box
+
+
+
+
+  //   // Champs Input, select, textarea , label en placeholder
+
+
+  //   /**
+  //     LAYOUTS
+  // */
+
+
+
+  //   // Validation
+  //   &.validate .form__field {
+  //     border-bottom: 4px transparent solid;
+  //   }
+
+  //   &.validate .form__field:required:invalid {
+  //     border-bottom: solid 4px $color__error;
+  //   }
+
+  //   &.validate .form__field:required:valid {
+  //     border-bottom: solid 4px $color__success;
+  //   }
+
+  //   .errors {
+  //     background-color: $color__core;
+  //     border-radius: 1rem;
+  //     margin-bottom: 4rem;
+  //     padding: 2rem;
+  //     font-size: 1.4rem;
+
+  //     a {
+  //       color: white;
+  //       text-decoration: underline;
+  //     }
+  //   }
+
+  //   &.error {}
+
+  //   .success {
+  //     position: absolute;
+  //     top: 50%;
+  //     left: 50%;
+  //     transform: translate(-50%, -50%);
+  //     text-align: center;
+  //     font-size: 2rem;
+  //     line-height: 1.6;
+  //     width: calc(100% + 4rem);
+  //     height: calc(100% + 4rem);
+  //     border-radius: 2rem;
+  //     background-color: rgba(0, 0, 0, 0.05);
+  //     display: flex;
+  //     align-items: center;
+  //     flex-direction: column;
+  //     justify-content: center;
+  //     padding: 2rem;
+  //     z-index: 90;
+  //   }
+
+  //   &:not(.success) .success {
+  //     display: none;
+  //   }
+
+  //   &.success {
+  //     .form-content {
+  //       opacity: 0.05;
+  //       pointer-events: none;
+  //     }
+  //   }
+
+  //   .loader {
+  //     position: absolute;
+  //     top: 40%;
+  //     left: 40%;
+  //     z-index: 90;
+  //   }
+
+  //   .form__group>* {
+  //     // transition: opacity 0.25s ease;
+  //   }
+
+  //   &:not(.pending) {
+  //     .loader {
+  //       display: none;
+  //     }
+  //   }
+
+  //   &.pending {
+  //     .form__group {
+  //       cursor: not-allowed;
+  //     }
+
+  //     .form-content {
+  //       opacity: 0.2;
+  //       pointer-events: none;
+  //     }
+  //   }
+
+  //   // Class forbidden
+  //   .forbidden {
+  //     opacity: 0.3;
+  //     pointer-events: none;
+
+  //     input {
+  //       pointer-events: none !important;
+  //     }
+  //   }
+
+}

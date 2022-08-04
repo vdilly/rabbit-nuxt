@@ -2,39 +2,41 @@
 .form {
   padding-top: 0.5rem; // Pour éviter que le label qui remonte du premier champ dépasse des overlay d'état
   margin-top: 4rem;
-  .form__subfield {
-    padding-left: 2.8rem;
-    margin-top: 1rem;
-  }
+
   .form__flexbox {
     display: flex;
     align-items: flex-start;
     margin-left: -1.5rem;
     margin-bottom: 3rem;
+
     @include RWD(mobile) {
       display: block;
       margin-bottom: 2rem;
     }
-    .form__group{
+
+    .form__group {
       margin-left: 1.5rem;
       margin-bottom: 0;
-      &:not(.small){
+
+      &:not(.small) {
         flex: 1;
       }
-      &.small{
+
+      &.small {
         width: calc(50% - 1.5rem);
       }
     }
   }
-  .form__line{
+
+  .form__line {
     margin-bottom: 3rem;
+
     &:last-child {
       margin-bottom: 0;
     }
   }
+
   .form__group {
-    margin-bottom: 3rem;
-    position: relative;
 
     &:last-child {
       margin-bottom: 0;
@@ -43,9 +45,11 @@
     .form__group {
       margin-bottom: 0;
     }
+
     &.row {
       @include RWD(mobile) {
         display: block;
+
         .col {
           margin-left: 0 !important;
           margin-bottom: $m2;
@@ -53,26 +57,18 @@
       }
     }
   }
+
   .form__required {
     color: $color__error;
     margin-left: 0.2em;
   }
-  .form__actions{
+
+  .form__actions {
     display: flex;
     justify-content: flex-end;
     margin-top: 3rem;
   }
 
-  // Validation
-  &.validate .form__field{
-    border-bottom: 4px transparent solid;
-  }
-  &.validate .form__field:required:invalid {
-    border-bottom: solid 4px $color__error;
-  }
-  &.validate .form__field:required:valid {
-    border-bottom: solid 4px $color__success;
-  }
 
   // Etats
   position: relative;
@@ -94,36 +90,31 @@
 }
 
 // Contact form
-.form.form--contact{
+.form.form--contact {
   width: 80rem;
   max-width: 100%;
-  .form_content{
+
+  .form_content {
     position: relative
   }
-  textarea{
+
+  textarea {
     padding-bottom: 4rem;
   }
-  .btn{
+
+  .btn {
     position: absolute;
     bottom: 0;
     right: 4rem;
     transform: translateY(50%);
-    @include RWD(mobile){
+
+    @include RWD(mobile) {
       right: 2rem;
     }
   }
-  .success{
+
+  .success {
     top: calc(50% + 1rem);
     height: calc(100% + 6rem);
-  }
-}
-
-// Disabled / forbidden
-.form.forbidden{
-  opacity: 0.3;
-  pointer-events: none;
-
-  input {
-    pointer-events: none !important;
   }
 }

@@ -1,8 +1,11 @@
 <template lang="pug">
-main(v-if="page")
+.template.template--page(v-if="page")
   //- Banner
   .region--banner(v-if="bannerBlocs")
     BlocsAuto(:blocs="bannerBlocs")
+  .region--banner
+    BlocsAuto(v-if="bannerBlocs", :blocs="bannerBlocs")
+    BannerStack(v-else, :bloc="{ titre: page.title }")
 
   //- Pre content
   .region--preContent(v-if="postContentBlocs")
@@ -18,20 +21,11 @@ main(v-if="page")
     BlocsAuto(:blocs="postContentBlocs")
 </template>
 <script>
-import pageMixin from "@/mixins/page/page";
+import BannerStack from "../components/blocs/Banners/BannerStack.vue";
 import pageBuilderMixin from "@/mixins/page/pageBuilder";
 export default {
-  layout: "Default",
-  mixins: [pageMixin, pageBuilderMixin],
-  async asyncData({ store, error }) {
-    let page = store.getters["pages/getPageBySlug"]("blog");
-    if (!page) return error({ statusCode: 404, message: "Page introuvable" });
-    return { page };
-  },
-  mounted() {
-    this.$nuxt.$on("blogpage-change", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  },
+  props: ["page"],
+  mixins: [pageBuilderMixin],
+  components: { BannerStack },
 };
 </script>

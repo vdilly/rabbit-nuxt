@@ -4,17 +4,13 @@ textarea.form__field(
   rows="10",
   ref="textarea",
   v-model="model",
-  :filled="filled"
+  onkeyup="this.setAttribute('value', this.value);"
 )
 </template>
 <script>
 export default {
   props: ["value"],
   computed: {
-    filled() {
-      if (!this.model || this.model.length == 0) return false;
-      return true;
-    },
     model: {
       get() {
         return this.value;
@@ -24,10 +20,9 @@ export default {
       },
     },
   },
+  mounted() {
+    // Je sais pas pourquoi sur le textarea uniquement faut forcer une value alors que l'input c'est ok
+    this.$refs.textarea.setAttribute("value", this.value);
+  },
 };
 </script>
-<style lang="scss">
-textarea {
-  resize: none;
-}
-</style>

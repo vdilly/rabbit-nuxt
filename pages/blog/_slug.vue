@@ -14,10 +14,11 @@ main(v-if="page")
 <script>
 import postMixin from "@/mixins/post";
 import pageMixin from "@/mixins/page/page";
-import BannerStack from "../../components/blocs/Banners/BannerStack.vue";
+import BannerStack from "@/components/blocs/Banners/BannerStack.vue";
+import pageBuilderMixin from "@/mixins/page/pageBuilder";
 export default {
   layout: "Default",
-  mixins: [pageMixin, postMixin],
+  mixins: [pageMixin, postMixin, pageBuilderMixin],
   computed: {
     bannerBloc() {
       return {

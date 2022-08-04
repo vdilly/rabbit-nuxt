@@ -1,14 +1,14 @@
 <template lang="pug">
-input.form__field(ref="input", v-model="model", :filled="filled")
+input.form__field(
+  ref="input",
+  v-model="model",
+  onkeyup="this.setAttribute('value', this.value);"
+)
 </template>
 <script>
 export default {
   props: ["value"],
   computed: {
-    filled() {
-      if (!this.model || this.model.length == 0) return false;
-      return true;
-    },
     model: {
       get() {
         return this.value;
@@ -18,7 +18,5 @@ export default {
       },
     },
   },
-  mounted() {},
 };
 </script>
-<style lang="scss"></style>

@@ -10,15 +10,15 @@ FormGroup.formMultiChoice
       :checked="valid"
     )
     FormGroup(
-      :label="tag.name",
-      :id="slugify(tag.name)",
+      :label="tag.label",
+      :id="hash + slugify(tag.label)",
       v-for="tag in tags",
-      :key="tag.id"
+      :key="slugify(tag.label)"
     )
       FormCheckbox(
         :name="name",
-        :id="slugify(tag.name)",
-        :inputValue="tag.id",
+        :id="hash + slugify(tag.label)",
+        :inputValue="slugify(tag.label)",
         v-model="model",
         :max="max",
         :required="required"
@@ -27,6 +27,12 @@ FormGroup.formMultiChoice
 <script>
 import slugify from "~/utils/slugify";
 export default {
+  data() {
+    return {
+      hash: null,
+      value: [],
+    };
+  },
   props: {
     name: {
       type: String,
@@ -36,9 +42,6 @@ export default {
       type: Array,
     },
     inputValue: {
-      type: String,
-    },
-    value: {
       type: Array,
     },
     max: {
@@ -63,12 +66,17 @@ export default {
       },
       set(value) {
         // Il emit sans se poser de question, la validation se fait au niveau de la checkbox
+        this.value = value;
         this.$emit("input", value);
       },
     },
   },
   methods: {
     slugify: slugify,
+  },
+  mounted() {
+    this.value = this.inputValue || [];
+    this.hash = Math.random().toString(36).substring(7);
   },
 };
 </script>

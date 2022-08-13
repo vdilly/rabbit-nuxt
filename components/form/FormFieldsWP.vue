@@ -61,19 +61,27 @@ FormGroup(
     :checked="field.checked"
   )
 
-  //- Groupe de checkboxes
-  FormGroup(
-    :label="checkbox.label",
-    :id="slugify(checkbox.label)",
-    v-for="checkbox in field.checkboxes",
-    :key="checkbox.label"
+  //- //- Groupe de checkboxes
+  //- FormGroup(
+  //-   :label="checkbox.label",
+  //-   :id="slugify(checkbox.label)",
+  //-   v-for="checkbox in field.checkboxes",
+  //-   :key="checkbox.label"
+  //- )
+  //-   FormCheckbox(
+  //-     :name="slugify(field.label)",
+  //-     :id="slugify(checkbox.label)",
+  //-     :required="field.requis",
+  //-     :checked="checkbox.checked"
+  //-   )
+  FormMultiChoice(
+    v-if="field.acf_fc_layout == 'checkboxes'",
+    :name="slugify(field.label) + '[]'",
+    :tags="field.checkboxes",
+    :required="true",
+    :max="2",
+    :inputValue="getSelectValueFromOptions(field.checkboxes, 'multiple')"
   )
-    FormCheckbox(
-      :name="slugify(field.label)",
-      :id="slugify(checkbox.label)",
-      :required="field.requis",
-      :checked="checkbox.checked"
-    )
 
   //- Groupe de radios
   FormGroup(
@@ -122,15 +130,19 @@ export default {
   },
   methods: {
     slugify: slugify,
-    getSelectValueFromOptions(options) {
+    getSelectValueFromOptions(options, mode = "single") {
       let selected = "";
       options.some((el) => {
         if (el.selected) {
-          selected = slugify(el.value);
+          // Cas d'un select ou radio
+          selected = el.value ? slugify(el.value) : slugify(el.label);
           return true;
+        } else if (el.checked) {
+          // cas d'un checkbox
+          selected = slugify(el.label);
         }
       });
-      return selected;
+      return mode == "multiple" ? [selected] : selected;
     },
   },
 };

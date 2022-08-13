@@ -5,7 +5,7 @@ FormGroup(
   :required="field.requis",
   :class="'form__field--' + field.acf_fc_layout"
 )
-  h2.h4(v-if="field.acf_fc_layout == 'titre'", v-html="field.titre")
+  h3.h3(v-if="field.acf_fc_layout == 'titre'", v-html="field.titre")
   FormSelect(
     v-if="field.acf_fc_layout == 'select'",
     :name="id",
@@ -78,25 +78,22 @@ FormGroup(
     v-if="field.acf_fc_layout == 'checkboxes'",
     :name="slugify(field.label) + '[]'",
     :tags="field.checkboxes",
-    :required="true",
-    :max="2",
-    :inputValue="getSelectValueFromOptions(field.checkboxes, 'multiple')"
+    :required="field.requis",
+    :max="parseInt(field.max)",
+    :min="parseInt(field.min)",
+    :inputValue="getCheckedValuesFromMultipleField(field.checkboxes)",
+    :infos="field.infos"
   )
-
-  //- Groupe de radios
-  FormGroup(
-    :label="radio.label",
-    :id="slugify(radio.label)",
-    v-for="radio in field.radios",
-    :key="radio.label"
+  FormSingleChoice(
+    v-if="field.acf_fc_layout == 'radios'",
+    :name="slugify(field.label)",
+    :tags="field.radios",
+    :required="field.requis",
+    :max="parseInt(field.max)",
+    :min="parseInt(field.min)",
+    :inputValue="getSelectValueFromOptions(field.radios)",
+    :infos="field.infos"
   )
-    FormRadio(
-      :label="radio.label",
-      :name="slugify(field.label)",
-      :id="slugify(radio.label)",
-      :required="field.requis",
-      :selected="radio.selected"
-    )
 </template>
 <script>
 import FormFile from "@/components/form/FormFile.vue";
@@ -108,6 +105,7 @@ import FormInput from "~/components/form/FormInput.vue";
 import FormCheckbox from "~/components/form/FormCheckbox.vue";
 import FormRadio from "~/components/form/FormRadio.vue";
 import slugify from "~/utils/slugify";
+import FormSingleChoice from "./FormSingleChoice.vue";
 export default {
   props: ["field", "parent_labels_display", "parent_id"],
   computed: {
@@ -127,22 +125,29 @@ export default {
     FormRadio,
     FormFieldsWp: () => import("~/components/form/FormFieldsWP.vue"),
     FormFile,
+    FormSingleChoice,
   },
   methods: {
     slugify: slugify,
-    getSelectValueFromOptions(options, mode = "single") {
+    getCheckedValuesFromMultipleField(tags) {
+      let selected = [];
+      tags.forEach((el) => {
+        if (el.checked || el.selected) {
+          selected.push(slugify(el.label));
+        }
+      });
+      return selected;
+    },
+    getSelectValueFromOptions(options) {
       let selected = "";
       options.some((el) => {
         if (el.selected) {
           // Cas d'un select ou radio
           selected = el.value ? slugify(el.value) : slugify(el.label);
           return true;
-        } else if (el.checked) {
-          // cas d'un checkbox
-          selected = slugify(el.label);
         }
       });
-      return mode == "multiple" ? [selected] : selected;
+      return selected;
     },
   },
 };

@@ -21,8 +21,10 @@ FormGroup.formMultiChoice
         :inputValue="slugify(tag.label)",
         v-model="model",
         :max="max",
+        :min="min",
         :required="required"
       )
+  .form__info(v-html="infos")
 </template>
 <script>
 import slugify from "~/utils/slugify";
@@ -34,6 +36,9 @@ export default {
     };
   },
   props: {
+    infos: {
+      required: false,
+    },
     name: {
       type: String,
       required: true,
@@ -45,6 +50,9 @@ export default {
       type: Array,
     },
     max: {
+      type: Number,
+    },
+    min: {
       type: Number,
     },
     required: {

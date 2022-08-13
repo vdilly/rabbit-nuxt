@@ -19,6 +19,9 @@ export default {
     max: {
       type: Number,
     },
+    min: {
+      type: Number,
+    },
     required: {
       type: Boolean,
       default: false,
@@ -49,8 +52,13 @@ export default {
   },
   methods: {
     validLength(value) {
-      if (this.max) return value.length <= this.max;
-      return true;
+      // Si option défini, on test sinon on bypass le test
+      let maxValid = this.max ? false : true;
+      let minValid = this.min ? false : true;
+
+      if (!maxValid) maxValid = value.length <= this.max;
+      if (!minValid) minValid = value.length >= this.min;
+      return maxValid && minValid;
     },
     validRequired(value) {
       if (!this.required) return true;

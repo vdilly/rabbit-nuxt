@@ -22,12 +22,13 @@
 
       .form__label {
         padding: 0.5rem 1rem;
-        border-radius: 1rem;
+        border-radius: 4px;
         border: solid 2px $color__core;
         color: $color__core;
         font-weight: 600;
         transition: 0.25s;
         font-size: 1.4rem;
+        user-select: none;
 
         &:hover {
           opacity: 0.5;

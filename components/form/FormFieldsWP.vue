@@ -58,22 +58,9 @@ FormGroup(
     :name="id",
     :id="id",
     :required="field.requis",
-    :checked="field.checked"
+    :checked="field.checked",
+    :inputValue="'oui'"
   )
-
-  //- //- Groupe de checkboxes
-  //- FormGroup(
-  //-   :label="checkbox.label",
-  //-   :id="slugify(checkbox.label)",
-  //-   v-for="checkbox in field.checkboxes",
-  //-   :key="checkbox.label"
-  //- )
-  //-   FormCheckbox(
-  //-     :name="slugify(field.label)",
-  //-     :id="slugify(checkbox.label)",
-  //-     :required="field.requis",
-  //-     :checked="checkbox.checked"
-  //-   )
   FormMultiChoice(
     v-if="field.acf_fc_layout == 'checkboxes'",
     :name="slugify(field.label) + '[]'",

@@ -23,6 +23,10 @@ export default {
       let filesCount = 0;
 
       for (const [key, value] of formData.entries()) {
+        // Skips
+        if (key.indexOf('radioCheck') != -1) continue;
+
+        // File
         if (value instanceof File) {
           if (value.name) {
             data.files[filesCount] = {
@@ -32,6 +36,7 @@ export default {
             };
             filesCount++;
           }
+          // Data
         } else {
           if (key.indexOf('[]') != -1) { // Si y'a [] dans le nom c'est un groupe faut getall
             data.form[key] = formData.getAll(key);

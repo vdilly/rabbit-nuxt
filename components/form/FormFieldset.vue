@@ -1,6 +1,6 @@
 <template lang="pug">
 fieldset.form__fieldset
-  legend.form__legend
+  legend.form__legend.h3
     span(v-html="fieldsetTitle")
     span.form__required(v-if="required") *
   slot

@@ -1,0 +1,93 @@
+/**
+  .error
+  .success
+  .pending
+  .forbidden
+*/
+
+// Errors
+.errors {
+  background-color: $color__error;
+  border-radius: 1rem;
+  margin-bottom: 4rem;
+  padding: 2rem;
+  font-size: 1.4rem;
+  color: white;
+
+  ul:not(.unstyled) li:before {
+    background-color: white;
+  }
+
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+}
+
+&.error {}
+
+// Success
+.success {
+  text-align: center;
+  font-size: 2rem;
+  line-height: 1.6;
+  width: calc(100% + 4rem);
+  height: calc(100% + 4rem);
+  border-radius: 2rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 90;
+}
+
+&:not(.success) .success {
+  display: none;
+}
+
+&.success {
+  .form-content {
+    opacity: 0.05;
+    pointer-events: none;
+  }
+}
+
+// Pending
+.loader {
+  position: absolute;
+  top: calc(50% - 2rem);
+  left: calc(50% - 2rem);
+  z-index: 90;
+}
+
+&:not(.pending) {
+  .loader {
+    display: none;
+  }
+}
+
+&.pending {
+  user-select: none;
+
+  .form__field {
+    pointer-events: none !important;
+  }
+
+  .form-content,
+  .form__actions {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
+
+//  forbidden
+.forbidden {
+  opacity: 0.3;
+  pointer-events: none;
+
+  .form__field {
+    pointer-events: none !important;
+  }
+}

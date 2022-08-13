@@ -1,0 +1,11 @@
+&.validate .form__field {
+  // border-left: 4px transparent solid;
+}
+
+&.validate .form__field:required:invalid {
+  border-left: solid 4px $color__error;
+}
+
+&.validate .form__field:required:valid {
+  // border-left: solid 4px $color__success;
+}

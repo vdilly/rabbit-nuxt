@@ -1,4 +1,13 @@
 & {
+
+  .form__field--checkboxes,
+  .form__field--radios {
+    &>label {
+      font-weight: 700;
+      margin-bottom: .3rem
+    }
+  }
+
   .form__checkbox {
     position: absolute;
     height: 1px;
@@ -39,17 +48,16 @@
       }
     }
 
-    .form.validate &:required:invalid+label:before {
+    &:required:invalid+label:before {
       border-color: $color__error;
     }
   }
 
-  .form.material {
 
-    // Exception label des checkboxes/radios
-    input[type="checkbox"]+label {
-      font-weight: 400;
-    }
+  // Exception label des checkboxes/radios
+  input[type="checkbox"]+label,
+  input[type="radio"]+label {
+    font-weight: 400;
   }
 
 
@@ -97,14 +105,6 @@
 
     .form.validate &:required:invalid+label:before {
       border-color: $color__error;
-    }
-  }
-
-  .form.material {
-
-    // Exception label des checkboxes/radios
-    input[type="checkbox"]+label {
-      font-weight: 400;
     }
   }
 }

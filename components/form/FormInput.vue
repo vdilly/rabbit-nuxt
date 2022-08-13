@@ -18,5 +18,9 @@ export default {
       },
     },
   },
+  mounted() {
+    // Je sais pas pourquoi sur le textarea uniquement faut forcer une value alors que l'input c'est ok
+    this.$refs.input.setAttribute("value", this.model);
+  },
 };
 </script>

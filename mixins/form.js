@@ -6,13 +6,54 @@ export default {
     return {
       showValidation: false,
       formErrors: [],
-      formSuccessMessage: 'Message bien envoyé',
+      formSuccessMessage: this.form?.success || 'Message bien envoyé',
       formState: '',
       validator: validator,
     }
   },
   methods: {
     getCommonFieldsErrors: getCommonFieldsErrors,
+    async getFormData(formNode) {
+      let data = {
+        form: {},
+        files: {},
+      };
+      let formData = new FormData(formNode);
+
+      let filesCount = 0;
+
+      for (const [key, value] of formData.entries()) {
+        if (value instanceof File) {
+          if (value.name) {
+            data.files[filesCount] = {
+              name: value.name,
+              file: await vm.readFile(value),
+              type: value.type,
+            };
+            filesCount++;
+          }
+        } else {
+          if (key.indexOf('[]') != -1) { // Si y'a [] dans le nom c'est un groupe faut getall
+            data.form[key] = formData.getAll(key);
+          } else {
+            data.form[key] = value;
+          }
+        }
+      }
+      // data = JSON.stringify(data);
+      return data;
+    },
+    readFile(file) {
+      // Read et convert le fichier en base 64 exploitable par mailjet
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          resolve(btoa(reader.result));
+        };
+        reader.onerror = reject;
+        reader.readAsBinaryString(file);
+      });
+    },
     resetFormState() {
       this.formState = '';
       this.formErrors = []

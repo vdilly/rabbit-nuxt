@@ -8,20 +8,26 @@
     BannerStack(v-else, :bloc="{ titre: page.title }")
 
   //- Pre content
-  .region--preContent(v-if="postContentBlocs")
-    BlocsAuto(:blocs="preContentBlocs")
+  Container
+    .main-wrapper
+      //- Partie form
+      FormWP.left.form--material(:form="form")
 
-  //- Content
-  .region--content
-    BlocsAuto(:blocs="contentBlocs", v-if="contentBlocs")
-    .container.main-rte.rte(v-else, v-html="page.content")
+      //- Partie contenu side
+      .content-wrapper.right
+        .region--preContent(v-if="postContentBlocs")
+          BlocsAuto(:blocs="preContentBlocs")
 
-  //- Post Content
-  .region--postContent(v-if="postContentBlocs")
-    BlocsAuto(:blocs="postContentBlocs")
+        //- Content
+        .region--content
+          BlocsAuto(:blocs="contentBlocs", v-if="contentBlocs")
+          .main-rte.rte(v-else, v-html="page.content")
 
-  Container.container--small
-    FormWP.form--material(:form="form")
+        //- Post Content
+        .region--postContent(v-if="postContentBlocs")
+          BlocsAuto(:blocs="postContentBlocs")
+
+    //- Container.container--small
 </template>
 <script>
 import BannerStack from "../components/blocs/Banners/BannerStack.vue";
@@ -39,3 +45,27 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.template.template--page {
+  .main-wrapper {
+    display: flex;
+    box-shadow: 0 2px 74px 0 rgb(0 0 0 / 06%);
+    border-radius: 1rem;
+    overflow: hidden;
+    .right {
+      width: 40rem;
+      padding: 7rem 5rem;
+      background-color: #f1f3f4;
+    }
+    .left {
+      // margin-right: 4rem;
+      flex: 1;
+      margin-top: 0;
+      padding: 7rem 5rem;
+    }
+    .rte p {
+      font-size: 1.4rem;
+    }
+  }
+}
+</style>

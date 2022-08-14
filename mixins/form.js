@@ -31,7 +31,7 @@ export default {
           if (value.name) {
             data.files[filesCount] = {
               name: value.name,
-              file: await vm.readFile(value),
+              file: await this.readFile(value),
               type: value.type,
             };
             filesCount++;

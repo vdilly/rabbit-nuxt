@@ -1,19 +1,20 @@
 & {
-  .form__group--file {
+  .form__field--file {
     display: flex;
     flex-direction: column;
 
-    .form__file {
+    .form__file-wrapper {
       order: 1;
     }
 
     .form__label {
       order: 0;
+      font-weight: 700;
     }
 
     label {
       display: block;
-      margin-bottom: 2rem;
+      margin-bottom: .3rem;
     }
 
     img {

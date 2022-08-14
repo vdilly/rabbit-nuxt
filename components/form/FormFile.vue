@@ -1,8 +1,5 @@
 <template lang="pug">
 .form__file-wrapper
-  template(v-if="oldImage")
-    label Image actuelle :
-    img(:src="image || oldImage", v-if="image || oldImage")
   .form__file.input-box(ref="input")
     .text(v-html="text")
     input(
@@ -15,6 +12,9 @@
       :required="required"
     )
     .validation-box
+  //- template(v-if="oldImage || image")
+  //-   label Aperçu :
+  //-   img(:src="image || oldImage", v-if="image || oldImage")
 </template>
 <script>
 export default {
@@ -23,7 +23,7 @@ export default {
     return {
       image: null,
       text: this.label || "Parcourir...",
-      maxFileSize: 2,
+      maxFileSize: 2, // MO
     };
   },
   beforeMount() {
@@ -58,7 +58,7 @@ export default {
       const vm = this;
 
       reader.onload = (e) => {
-        vm.image = e.target.result;
+        vm.image = e.target.result != undefined ? e.target.result : null;
       };
       reader.readAsDataURL(file);
     },
@@ -68,7 +68,7 @@ export default {
 
       let files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
-      this.createImage(files[0]);
+      if (files[0].type.indexOf("image") != -1) this.createImage(files[0]);
       this.$emit("fileChange", files[0]);
     },
   },

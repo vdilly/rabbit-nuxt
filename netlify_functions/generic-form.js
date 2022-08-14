@@ -9,8 +9,9 @@ exports.handler = async (event, context, callback) => {
   console.log(body);
   const formData = body.form;
   const formFiles = body.files;
+  console.log(formData, formFiles);
   return {
     statusCode: 200,
-    body: body
+    body: { formData, formFiles }
   }
 }

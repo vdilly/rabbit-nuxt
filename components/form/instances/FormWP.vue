@@ -69,12 +69,41 @@ export default {
   },
   methods: {
     async submit(e) {
+      // State pending
       this.startSubmit();
-      const data = await this.getFormData(e.target);
-      console.log(data.form);
-      setTimeout(() => {
-        this.formError(["C pas bon"]);
-      }, 1000);
+
+      // Captcha
+
+      // Get datas && error
+      let data;
+      try {
+        data = await this.getFormData(e.target);
+      } catch (err) {
+        this.formError([err]);
+      }
+
+      data.subject = "Nouvelle soumissions sur le " + this.form.form_title;
+      // console.log(data);
+      data = JSON.stringify(data);
+      try {
+        // await this.$axios.$post(
+        //   "/.netlify/netlify_functions/generic-form",
+        //   data,
+        //   this.formSuccess,
+        //   this.formError
+        // );
+        const res = await this.$axios({
+          url: "/generic-form",
+          baseURL: "/.netlify/netlify_functions",
+          data: data,
+        });
+        console.log(res);
+      } catch (err) {
+        this.formError([err]);
+      }
+      // setTimeout(() => {
+      //   this.formError(["C pas bon"]);
+      // }, 1000);
       // this.formSuccess();
       // this.$emit("submit");
     },

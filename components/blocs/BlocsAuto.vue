@@ -10,9 +10,10 @@ import BannerFull from "@/components/blocs/Banners/BannerFull.vue";
 import BannerStack from "@/components/blocs/Banners/BannerStack.vue";
 import BlogPosts from "@/components/blocs/BlogPosts.vue";
 import ContentSBS from "@/components/blocs/ContentSBS.vue";
+import Optin from "@/components/blocs/Optin.vue";
 export default {
   props: ["blocs", "displayName"],
-  components: { BannerFull, BannerStack, BlogPosts, ContentSBS },
+  components: { BannerFull, BannerStack, BlogPosts, ContentSBS, Optin },
   methods: {
     getBlocName(bloc) {
       if (bloc.acf_fc_layout == "Banner") {

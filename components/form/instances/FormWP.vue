@@ -57,10 +57,9 @@ form.formWp(
 import Loader from "@/components/atoms/Loader.vue";
 import formMixin from "@/mixins/form";
 import "@/assets/scss/forms/material.scss";
-import FormMultiChoice from "../FormMultiChoice.vue";
 export default {
   props: ["form"],
-  components: { Loader, FormMultiChoice },
+  components: { Loader },
   mixins: [formMixin],
   data() {
     return {

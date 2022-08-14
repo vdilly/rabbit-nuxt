@@ -10,9 +10,10 @@ main(v-if="page")
 </template>
 <script>
 import pageMixin from "@/mixins/page/page";
+import pageBuilderMixin from "@/mixins/page/pageBuilder";
 export default {
   layout: "Default",
-  mixins: [pageMixin],
+  mixins: [pageMixin, pageBuilderMixin],
   async asyncData({ store, error }) {
     let page = store.getters["pages/getPageBySlug"]("showcase-blocs");
     if (!page) return error({ statusCode: 404, message: "Page introuvable" });

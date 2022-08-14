@@ -47,6 +47,10 @@ export default {
 </script>
 <style lang="scss">
 .template.template--page {
+  .bannerStack {
+    padding-bottom: 8rem;
+    padding-top: 4rem;
+  }
   .main-wrapper {
     display: flex;
     box-shadow: 0 2px 74px 0 rgb(0 0 0 / 06%);

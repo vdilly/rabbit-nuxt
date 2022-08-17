@@ -32,14 +32,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
-
-    &:hover,
-    &:focus {
-      & ~ .teaser-blog__title {
-        text-decoration: underline;
-      }
-    }
+    z-index: 2;
   }
   &__bg {
     height: 20rem;
@@ -47,13 +40,41 @@ export default {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0.7rem;
+    position: relative;
+    overflow: hidden;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: linear-gradient(
+        to bottom left,
+        rgba($color__core, 0.2) 0%,
+        rgba($color__core, 0.3) 80%,
+        rgba($color__core, 0.8) 100%
+      );
+      transform-origin: center;
+      transition: opacity 0.25s ease;
+      opacity: 0;
+    }
   }
   &__title {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    color: $color__core;
   }
   &__date {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  &__lead {
+    font-size: 1.6rem;
   }
   &__tag {
     pointer-events: all;
@@ -69,6 +90,20 @@ export default {
     }
     & + & {
       margin-left: 0.5rem;
+    }
+  }
+  // hover
+  &__overlay-link {
+    &:hover,
+    &:focus {
+      & ~ .teaser-blog__title {
+        text-decoration: underline;
+      }
+      & ~ .teaser-blog__bg {
+        &:after {
+          opacity: 0.5;
+        }
+      }
     }
   }
 }

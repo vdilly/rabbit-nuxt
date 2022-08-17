@@ -13,6 +13,8 @@ export const actions = {
     // Call tous les GET dans le store
     await dispatch('pages/getPages')
     await dispatch('posts/getPosts')
+    await dispatch('posts/getCategories')
+    await dispatch('posts/getTags')
     await dispatch('globalDatas/getGlobalDatas')
   }
 }

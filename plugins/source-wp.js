@@ -211,8 +211,10 @@ export default class WordPressSource {
 function ensureArrayData(url, data) {
   if (!Array.isArray(data)) {
     try {
-      data = JSON.parse(data)
+      data = JSON.parse(JSON.stringify(data))
     } catch (err) {
+      console.log(err);
+      console.log(data);
       throw new Error(
         `Failed to fetch ${url}\n` +
         `Expected JSON response but received:\n` +

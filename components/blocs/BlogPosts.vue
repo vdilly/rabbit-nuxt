@@ -28,7 +28,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("posts", ["posts"]),
+    ...mapState("posts", ["posts", "categories", "tags"]),
     pages() {
       const perPage = parseInt(this.bloc.posts_par_page);
 
@@ -105,6 +105,13 @@ export default {
       margin-left: #{$gutter};
       margin-top: #{$gutter};
       width: calc(33.33% - #{$gutter});
+
+      @include RWD(tablet) {
+        width: calc(50% - #{$gutter});
+      }
+      @include RWD(mobile) {
+        width: 100%;
+      }
     }
   }
 }

@@ -6,7 +6,7 @@ export default {
     return {
       showValidation: false,
       formErrors: [],
-      formSuccessMessage: this.form?.success || 'Message bien envoyé',
+      formSuccessMessage: this.form?.success || this.bloc?.success || 'Message bien envoyé',
       formState: '',
       validator: validator,
     }
@@ -68,7 +68,6 @@ export default {
       this.formState = 'pending'
     },
     formError(errors) {
-      window.scrollTo({ top: 0 });
       this.formState = 'error'
       this.formErrors = errors;
     },

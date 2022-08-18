@@ -22,7 +22,7 @@ $navbar-position: fixed; // Si on passe en absolute, mettre false aux autres opt
 $navbar-height: 12rem; // Appliquer le padding sur le body si position != static
 $navbar-height-m: 8rem;
 $navbar-height-scrolled: 9rem;
-$navbar-apply-ptop: true; // applique un padding top sur le main
+$navbar-apply-ptop: false; // applique un padding top sur le main
 $navbar-disappear-onscroll: false;
 $navbar-appear-onscrolltop: false; // $navbar-disappear-onscroll must be true
 

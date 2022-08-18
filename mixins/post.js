@@ -7,7 +7,7 @@ export default {
         ?.default_thumbnail;
     },
     thumbnail() {
-      return this.post?.acf?.featured_image || this.defaultThumbnail;
+      return this.page?.acf?.featured_image || this.post?.acf?.featured_image || this.defaultThumbnail;
     },
 
   }

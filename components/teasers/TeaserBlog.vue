@@ -3,12 +3,17 @@
   component.link-wrapper(:to="post.link", :is="post.link ? 'NuxtLink' : 'div'")
     .img-cover(v-if="thumbnail && thumbnail.mobile")
       img(:src="thumbnail.mobile.src", :alt="thumbnail.mobile.alt")
-    h3.teaser-blog__title(v-html="post.title", v-if="post.title")
-    p.teaser-blog__date(v-html="post.date", v-if="post.date")
-    .teaser-blog__lead(v-html="post.excerpt", v-if="post.excerpt")
-  ul.teaser-blog__tags(v-if="post.tags")
-    li.teaser-blog__tag(v-for="(tag, index) in post.tags", :key="index")
-      NuxtLink.tag(v-html="tag.name", :to="`/blog/tag/${tag.id}`")
+  .content
+    component.link-wrapper(
+      :to="post.link",
+      :is="post.link ? 'NuxtLink' : 'div'"
+    )
+      h3.teaser-blog__title(v-html="post.title", v-if="post.title")
+      p.teaser-blog__date(v-html="post.date", v-if="post.date")
+      .teaser-blog__lead(v-html="post.excerpt", v-if="post.excerpt")
+    ul.teaser-blog__tags(v-if="post.tags")
+      li.teaser-blog__tag(v-for="(tag, index) in post.tags", :key="index")
+        NuxtLink.tag(v-html="tag.name", :to="`/blog/tag/${tag.id}`")
 </template>
 
 <script>
@@ -23,35 +28,26 @@ export default {
 // https://codepen.io/pwkip/pen/oGMZjb link inside link
 .teaser-blog {
   position: relative;
+  background-color: $color__page-bg;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: $bshadow;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
   .link-wrapper {
     text-decoration: none;
   }
   .img-cover {
     height: 20rem;
     width: 100%;
-    margin-bottom: 2rem;
-    border-radius: 0.7rem;
     position: relative;
     overflow: hidden;
-
-    &:after {
-      content: "";
-      position: absolute;
-      top: 0%;
-      left: 0%;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      background: linear-gradient(
-        to bottom left,
-        rgba($color__core, 0.2) 0%,
-        rgba($color__core, 0.3) 80%,
-        rgba($color__core, 0.8) 100%
-      );
-      transform-origin: center;
-      transition: opacity 0.25s ease;
-      opacity: 0;
-    }
+  }
+  .content {
+    padding: 2rem 3rem;
+    flex: 1;
   }
   &__title {
     font-size: 2rem;
@@ -100,22 +96,38 @@ export default {
     }
   }
   // hover
-  .link-wrapper {
+  & {
+    transition: transform 0.25s ease;
     img {
       transform-origin: 20% center;
       transition: transform 0.5s ease;
     }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: $gradient-1;
+      transform-origin: center;
+      transition: opacity 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
     &:hover,
     &:focus {
+      transform: translateY(-1rem);
+      &:after {
+        opacity: 0.2;
+      }
       .teaser-blog__title {
         // text-decoration: underline;
       }
       .img-cover {
         img {
           transform: scale(1.1);
-        }
-        &:after {
-          opacity: 0.5;
         }
       }
     }

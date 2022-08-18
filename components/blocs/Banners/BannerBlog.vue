@@ -1,9 +1,10 @@
 <template lang="pug">
-.bannerFull
+.bannerBlog
   .img-cover(v-if="bloc")
     img(:src="bloc.image.full.src", :alt="bloc.image.alt", v-if="bloc.image")
-  //- .bg(:style="`background-image: url(${bloc.image.mobile.src});`")
   Container
+    .categories(v-if="bloc.categories")
+      span(v-for="category in bloc.categories", v-html="category.name")
     h1.h1(v-html="bloc.titre", v-if="bloc.titre")
     .description.rte(v-html="bloc.description", v-if="bloc.description")
     Btn.core(v-if="bloc.bouton", :link="bloc.bouton")
@@ -16,11 +17,11 @@ export default {
 </script>
 
 <style lang="scss">
-.bannerFull {
+.bannerBlog {
   .img-cover {
     position: relative;
     height: 80vw;
-    max-height: 45rem;
+    max-height: 40rem;
     &:after {
       content: "";
       position: absolute;
@@ -32,7 +33,7 @@ export default {
       background: linear-gradient(
         to bottom,
         rgba(black, 0.2) 0%,
-        rgba(white, 0.2) 60%,
+        rgba(white, 0.4) 60%,
         rgba(white, 1) 100%
       );
     }
@@ -40,11 +41,27 @@ export default {
   .container {
     position: relative;
     z-index: 3;
-    margin-top: -5rem;
+    margin-top: -8rem;
     margin-bottom: 4rem;
   }
+  .categories {
+    color: $color__title;
+    // opacity: 0.5;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+
+    span {
+      background-color: $color__core;
+      color: $color__core-font;
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.5rem;
+    }
+  }
   .h1 {
-    font-weight: 500;
+    font-weight: 600;
+    padding-right: 4rem;
   }
 }
 </style>

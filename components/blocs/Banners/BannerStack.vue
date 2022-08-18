@@ -1,5 +1,5 @@
 <template lang="pug">
-.bannerStack(v-if="bloc")
+.bannerStack.gradient.decalage(v-if="bloc")
   Container
     h1.h1(v-html="bloc.titre", v-if="bloc.titre")
     .description.rte(v-html="bloc.description", v-if="bloc.description")
@@ -32,4 +32,6 @@ export default {
     margin-top: 4rem;
   }
 }
+
+// Gradient + décalage contenu
 </style>

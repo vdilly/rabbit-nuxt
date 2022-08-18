@@ -77,6 +77,7 @@ export default {
 <style lang="scss">
 $color: white;
 $bg: $color__title;
+$bg-gradient: $gradient-1;
 // Popin
 header .popin.menu-rwd-popin {
   @include RWD(desktop) {
@@ -104,6 +105,7 @@ header .popin.menu-rwd-popin {
   .popin__panel,
   .drawer__sub {
     background-color: $bg;
+    background: $bg-gradient;
   }
   .popin__panel {
     display: flex;
@@ -124,6 +126,7 @@ header .popin.menu-rwd-popin {
     height: 5rem;
     width: 5rem;
     background-color: $bg;
+    background: $bg-gradient;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -196,11 +199,13 @@ header .popin.menu-rwd-popin {
       height: 1rem;
       width: 1rem;
       transform: rotate(-90deg);
-      fill: $bg;
+      fill: $color;
     }
     &-arrow {
-      border-color: $color;
+      // border-color: $color;
+      border: none;
       background-color: $color;
+      background: $bg-gradient;
       width: 4rem;
       height: 4rem;
       align-self: center;

@@ -1,5 +1,5 @@
 <template lang="pug">
-.template.template--page(v-if="page")
+.template.template--contact(v-if="page")
   //- Banner
   .region--banner(v-if="bannerBlocs")
     BlocsAuto(:blocs="bannerBlocs")
@@ -46,7 +46,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.template.template--page {
+.template.template--contact {
   .bannerStack {
     padding-bottom: 8rem;
     padding-top: 4rem;
@@ -62,6 +62,7 @@ export default {
       background-color: #f1f3f4;
     }
     .left {
+      background-color: $color__page-bg;
       // margin-right: 4rem;
       flex: 1;
       margin-top: 0;

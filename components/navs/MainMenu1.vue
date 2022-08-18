@@ -4,7 +4,7 @@ nav.main-menu
     component(
       v-if="item.acf_fc_layout == 'liens'",
       :link="item.liens",
-      :class="[item.is_btn ? 'core h-ghost' : 'label label--main', item.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null]",
+      :class="[item.is_btn ? 'core' : 'label label--main', item.liens.url.indexOf($route.path) != -1 && $route.path != '/' ? 'active' : null]",
       :key="index",
       :is="item.is_btn ? 'Btn' : 'Link'"
     )

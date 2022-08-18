@@ -21,7 +21,7 @@ main(v-if="page")
 import pageMixin from "@/mixins/page/page";
 import pageBuilderMixin from "@/mixins/page/pageBuilder";
 export default {
-  layout: "Default",
+  layout: "Decale",
   mixins: [pageMixin, pageBuilderMixin],
   async asyncData({ store, error }) {
     let page = store.getters["pages/getPageBySlug"]("blog");

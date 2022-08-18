@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import "~/assets/scss/wp-content.scss";
 export default {
   props: ["rte"],
   computed: {
@@ -53,15 +54,16 @@ export default {
   @extend .h1-raw;
   &-raw {
     font-family: $font__fancy;
-    font-size: 5.5rem;
+    font-size: 8rem;
     font-weight: 700;
-    line-height: 1.1em;
+    line-height: 1.2em;
     color: $color__title;
+    // letter-spacing: -0.01em;
     @include RWD(tabsmall) {
-      font-size: 3.5rem;
+      font-size: 5rem;
     }
     @include RWD(mobile) {
-      font-size: 2.6rem;
+      font-size: 4rem;
     }
   }
 }
@@ -238,7 +240,8 @@ export default {
   @extend .rte-headless;
 
   p:not(.unstyled) {
-    line-height: 1.2em;
+    line-height: 1.6em;
+    font-weight: 500;
     margin-bottom: $mb-p;
   }
 

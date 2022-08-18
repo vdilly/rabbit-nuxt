@@ -17,12 +17,15 @@ $color__bg-500: #037482;
 
 $color__grey: #F3F3F3;
 
-$color__core: $color__bg-500;
+$color__core: #3880DA;
+// $color__core: #36096D;
+// $color__core: #37d5d6;
 $color__core-font: white;
 
-$gradient-1 : linear-gradient(180deg, #6553B3 0%, rgba(101, 83, 179, 0) 100%);
+$gradient-1 : linear-gradient(30deg, $color__core 0%, #37d5d6 100%);
+$color__gradient-1: white;
 
-$color__text: #9c9c9c;
+$color__text: #7d7e85;
 $color__title: black;
 $color__success: #95c11e;
 $color__error: #F30B2D;

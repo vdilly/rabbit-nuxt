@@ -9,7 +9,9 @@ import BannerStack from "@/components/blocs/Banners/BannerStack.vue";
 import TemplatePage from "@/templates/TemplatePage.vue";
 import TemplateContact from "@/templates/TemplateContact.vue";
 export default {
-  layout: "Default",
+  layout(ctx) {
+    return ctx.params.slug == "contact" ? "Decale" : "Default";
+  },
   mixins: [pageMixin],
   components: { BannerStack, TemplatePage, TemplateContact },
   async asyncData({ store, params, error }) {

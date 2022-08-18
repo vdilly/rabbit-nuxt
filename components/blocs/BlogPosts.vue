@@ -11,7 +11,8 @@
           labelPropName="name",
           valuePropName="id",
           v-model="pickedCategories",
-          :inputValue="pickedCategories"
+          :inputValue="pickedCategories",
+          @input="changeCategory"
         )
           //- h2.h3(slot="label") Catégories
       .filters__tags(v-if="bloc.display_tags")
@@ -130,6 +131,10 @@ export default {
     },
   },
   methods: {
+    changeCategory() {
+      // On change category on revient première page
+      this.currentIndex = 1;
+    },
     nextPage() {
       if (this.currentIndex >= this.totalPages) return;
       this.currentIndex++;

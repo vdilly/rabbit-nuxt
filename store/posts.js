@@ -10,8 +10,17 @@ export const getters = {
     return state.posts.find(el => {
       return el.slug == slug
     })
+  },
+  getCategoryById: (state) => (id) => {
+    return state.categories.find(category => {
+      return category.id == id
+    })
+  },
+  getTagById: (state) => (id) => {
+    return state.tags.find(tag => {
+      return tag.id == id
+    })
   }
-  // Get Category by ID
 }
 
 export const mutations = {
@@ -27,6 +36,22 @@ export const mutations = {
 }
 
 export const actions = {
+  populateTaxonomies: async ({ state, commit, getters }) => {
+    state.posts = state.posts.map(post => {
+      // Categories
+      post.categories = post.categories.map(categoryId => {
+        return getters.getCategoryById(categoryId)
+      })
+
+      // Tags
+      post.tags = post.tags.map(tagId => {
+        return getters.getTagById(tagId)
+      })
+
+      // console.log(post.categories)
+      return post;
+    })
+  },
   getPosts: async function ({ state, commit }) {
     let posts = await this._vm.$sourceWp.getEntries('/posts')
     commit('setPosts', posts)

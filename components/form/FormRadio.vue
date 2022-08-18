@@ -5,7 +5,7 @@ input(type="radio", v-model="model", :value="inputValue", ref="input")
 export default {
   props: {
     inputValue: {
-      type: String,
+      type: [String, Number],
     },
     value: {
       type: String,

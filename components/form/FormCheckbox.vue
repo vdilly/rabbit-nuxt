@@ -11,7 +11,7 @@ input.form__checkbox(
 export default {
   props: {
     inputValue: {
-      type: String,
+      type: [String, Number],
     },
     value: {
       type: Array,

@@ -1,5 +1,6 @@
 export default function (string) {
   if (!string) return null
+  if (typeof string == 'number') return string
   const a =
     "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;";
   const b =

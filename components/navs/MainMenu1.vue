@@ -90,6 +90,7 @@ export default {
     display: inline-flex;
     cursor: pointer;
     font-weight: 600;
+    color: $color__title;
   }
 
   // Label ppal

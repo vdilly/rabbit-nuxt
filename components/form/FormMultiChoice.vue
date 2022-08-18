@@ -10,15 +10,15 @@ FormGroup.formMultiChoice
       :checked="valid"
     )
     FormGroup(
-      :label="tag.label",
-      :id="hash + slugify(tag.label)",
+      :label="tag[labelPropName]",
+      :id="hash + slugify(tag[labelPropName])",
       v-for="tag in tags",
-      :key="slugify(tag.label)"
+      :key="slugify(tag[labelPropName])"
     )
       FormCheckbox(
         :name="name",
-        :id="hash + slugify(tag.label)",
-        :inputValue="slugify(tag.label)",
+        :id="hash + slugify(tag[labelPropName])",
+        :inputValue="slugify(tag[valuePropName])",
         v-model="model",
         :max="max",
         :min="min",
@@ -40,11 +40,17 @@ export default {
       required: false,
     },
     name: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
     tags: {
       type: Array,
+    },
+    labelPropName: {
+      default: "label",
+    },
+    valuePropName: {
+      default: "label",
     },
     inputValue: {
       type: Array,

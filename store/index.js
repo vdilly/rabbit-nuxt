@@ -12,9 +12,10 @@ export const actions = {
     console.log('---- FETCH WP DATAS ----')
     // Call tous les GET dans le store
     await dispatch('pages/getPages')
-    await dispatch('posts/getPosts')
     await dispatch('posts/getCategories')
     await dispatch('posts/getTags')
+    await dispatch('posts/getPosts')
+    await dispatch('posts/populateTaxonomies')
     await dispatch('globalDatas/getGlobalDatas')
   }
 }

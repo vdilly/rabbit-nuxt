@@ -5,14 +5,15 @@
     .description(v-html="bloc.description", v-if="bloc.description")
     .filters.form--blog-filters(v-if="bloc.display_cats || bloc.display_tags")
       .filters__categories(v-if="bloc.display_cats")
-        FormMultiChoice(
+        FormSingleChoice(
           name="categories",
           :tags="categories",
           labelPropName="name",
           valuePropName="id",
-          v-model="pickedCategories"
+          v-model="pickedCategories",
+          :inputValue="pickedCategories"
         )
-          h2.h3(slot="label") Catégories
+          //- h2.h3(slot="label") Catégories
       .filters__tags(v-if="bloc.display_tags")
         FormMultiChoice(
           name="tags",
@@ -39,15 +40,16 @@
 import { mapState } from "vuex";
 import TeaserBlog from "@/components/teasers/TeaserBlog.vue";
 import Pagination from "@/components/navs/Pagination.vue";
-import FormMultiChoice from "../form/FormMultiChoice.vue";
+import FormMultiChoice from "@/components/form/FormMultiChoice.vue";
+import FormSingleChoice from "@/components/form/FormSingleChoice.vue";
 export default {
   props: ["bloc"], // titre, description, posts_par_page, nombre_de_posts, display_tags, display_cats, forceCats, forceTags
-  components: { TeaserBlog, Pagination, FormMultiChoice },
+  components: { TeaserBlog, Pagination, FormMultiChoice, FormSingleChoice },
   data() {
     return {
       currentIndex: 1,
       totalPages: 1,
-      pickedCategories: [],
+      pickedCategories: -1,
       pickedTags: [],
     };
   },
@@ -94,10 +96,7 @@ export default {
       return this.pages[this.currentIndex - 1];
     },
     filteredPosts() {
-      const categories =
-        this.pickedCategories && this.pickedCategories.length > 0
-          ? this.pickedCategories
-          : this.bloc.forcedCats || null;
+      const categories = this.pickedCategories || this.bloc.forcedCats || null;
       const tags =
         this.pickedTags && this.pickedTags.length > 0
           ? this.pickedTags
@@ -111,10 +110,11 @@ export default {
           });
         });
       }
-      if (categories) {
+      if (categories && categories != -1) {
+        // si -1 = all
         filteredPosts = filteredPosts.filter((post) => {
           return post.categories.find((category) => {
-            return categories.includes(category.id);
+            return categories == category.id;
           });
         });
       }
@@ -145,6 +145,7 @@ export default {
 </script>
 
 <style lang="scss">
+// Filtres
 .form--blog-filters {
   @import "@/assets/scss/forms/material/_layout";
   @import "@/assets/scss/forms/material/_input";
@@ -153,7 +154,43 @@ export default {
   @import "@/assets/scss/forms/material/_checkbox";
   @import "@/assets/scss/forms/material/_radio";
   @import "@/assets/scss/forms/material/_multichoice";
+  margin-bottom: 4rem;
+  & > * {
+    margin-top: 2rem;
+  }
+  // Global fields
+  .formMultiChoice > .form__label {
+    margin-bottom: 2rem;
+  }
+  .formMultiChoice > .form__field {
+    border: none;
+    padding: 0;
+  }
+
+  // Specific
+  .filters__categories {
+    .form__field {
+      width: 100%;
+      border-bottom: solid 1px grey;
+      border-radius: 0;
+    }
+    .form__group .form__label {
+      margin-right: 2rem;
+      border: none;
+      color: $color__text;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+    .form__group input:checked + label {
+      background-color: transparent;
+      color: $color__title;
+    }
+  }
+  .filters__tags {
+  }
 }
+
+// Liste articles
 .blogPosts {
   .posts-list {
     $gutter: 4rem;

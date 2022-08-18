@@ -29,6 +29,10 @@ export const mutations = {
   },
   setCategories(state, categories) {
     state.categories = categories;
+    state.categories.unshift({
+      name: "Tous",
+      id: -1
+    })
   },
   setTags(state, tags) {
     state.tags = tags;

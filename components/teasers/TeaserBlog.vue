@@ -54,19 +54,20 @@ export default {
     }
   }
   &__title {
-    margin-bottom: 0.7rem;
-    line-height: 1.2;
-    color: $color__core;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+    color: $color__title;
   }
   &__date {
     margin-bottom: 0.8rem;
     font-size: 1.4rem;
-    line-height: 1.2;
+    line-height: 1.4;
     font-weight: 700;
   }
   &__lead {
     font-size: 1.6rem;
-    line-height: 1.2;
+    line-height: 1.4;
   }
   &__tags {
     display: flex;

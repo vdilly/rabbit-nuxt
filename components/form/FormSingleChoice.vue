@@ -4,15 +4,15 @@ FormGroup.formMultiChoice
     slot(name="label")
   .form__field
     FormGroup(
-      :label="tag.label",
-      :id="hash + slugify(tag.label)",
+      :label="tag[labelPropName]",
+      :id="hash + slugify(tag[labelPropName])",
       v-for="tag in tags",
-      :key="slugify(tag.label)"
+      :key="slugify(tag[labelPropName])"
     )
       FormRadio(
         :name="name",
-        :id="hash + slugify(tag.label)",
-        :inputValue="slugify(tag.label)",
+        :id="hash + slugify(tag[labelPropName])",
+        :inputValue="slugify(tag[valuePropName])",
         v-model="model",
         :required="required"
       )
@@ -29,7 +29,13 @@ export default {
       type: Array,
     },
     inputValue: {
-      type: String,
+      type: [String, Number],
+    },
+    labelPropName: {
+      default: "label",
+    },
+    valuePropName: {
+      default: "label",
     },
     required: {
       type: Boolean,

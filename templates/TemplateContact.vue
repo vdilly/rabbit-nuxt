@@ -53,7 +53,7 @@ export default {
   }
   .main-wrapper {
     display: flex;
-    box-shadow: 0 2px 74px 0 rgb(0 0 0 / 06%);
+    box-shadow: 0 2px 4rem 0 rgb(0 0 0 / 20%);
     border-radius: 1rem;
     overflow: hidden;
     .right {

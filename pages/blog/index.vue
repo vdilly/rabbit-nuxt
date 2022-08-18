@@ -35,3 +35,10 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+body.blog {
+  .bannerStack {
+    padding-bottom: 8rem;
+  }
+}
+</style>

@@ -8,7 +8,7 @@ export default {
       type: [String, Number],
     },
     value: {
-      type: String,
+      type: [String, Number],
     },
     max: {
       type: Number,

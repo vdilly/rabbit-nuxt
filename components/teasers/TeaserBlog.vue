@@ -29,7 +29,7 @@ export default {
 .teaser-blog {
   position: relative;
   background-color: $color__page-bg;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   overflow: hidden;
   box-shadow: $bshadow;
   height: 100%;
@@ -51,15 +51,16 @@ export default {
   }
   &__title {
     font-size: 2rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.1rem;
     line-height: 1.4;
     color: $color__title;
   }
   &__date {
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     font-size: 1.4rem;
     line-height: 1.4;
     font-weight: 700;
+    color: $color__core;
   }
   &__lead {
     font-size: 1.6rem;

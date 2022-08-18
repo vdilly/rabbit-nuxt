@@ -104,10 +104,11 @@ export default {
       opacity: 0;
       width: 100%;
       height: 3rem;
-      background-color: rgba($color__core, 0.1);
+      background-color: rgba($color__core, 0.2);
       pointer-events: none;
       transition: opacity 0.25s ease, transform 0.25s ease;
       border-radius: 4px;
+      z-index: -1;
     }
     &:hover:after,
     &.active:after {

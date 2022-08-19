@@ -60,7 +60,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      border: solid 2px $color__core;
+      border: solid 2px $color-1;
     }
     &-label {
       flex: 1;

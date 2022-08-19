@@ -3,7 +3,14 @@ footer.footer
   Container
     ul.menu
       li
+  ThemeBuilder
 </template>
+<script>
+import ThemeBuilder from "@/components/ThemeBuilder.vue";
+export default {
+  components: { ThemeBuilder },
+};
+</script>
 <style lang="scss">
 .footer {
   padding: 2rem 0;

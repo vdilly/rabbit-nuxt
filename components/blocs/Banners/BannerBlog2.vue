@@ -69,7 +69,7 @@ export default {
   }
 
   .categories {
-    color: $color__gradient-1;
+    color: $color-1-font;
     // opacity: 0.5;
     text-transform: uppercase;
     font-size: 1.4rem;
@@ -77,8 +77,8 @@ export default {
     margin-bottom: 1rem;
 
     span {
-      background-color: $color__core;
-      color: $color__gradient-1;
+      background-color: $color-1;
+      color: $color-1-font;
       padding: 0.3rem 0.5rem;
       border-radius: 0.5rem;
     }
@@ -86,13 +86,13 @@ export default {
   .h1 {
     font-size: 7rem;
     font-weight: 600;
-    color: $color__gradient-1;
+    color: $color-1-font;
   }
   .author {
     display: flex;
     align-items: center;
     margin-top: 2rem;
-    color: $color__gradient-1;
+    color: $color-1-font;
   }
   .avatar {
     border-radius: 50rem;
@@ -103,12 +103,12 @@ export default {
   .text {
     display: flex;
     flex-direction: column;
-    color: $color__gradient-1;
+    color: $color-1-font;
   }
   .name {
     letter-spacing: -0.02em;
     font-weight: 700;
-    color: $color__gradient-1;
+    color: $color-1-font;
     line-height: 1;
   }
   .date {

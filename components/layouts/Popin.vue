@@ -257,7 +257,7 @@ export default {
   // Body
   .popin__panel {
     // background-color: rgba(0, 0, 0, 0.7);
-    background-color: $color__core;
+    background-color: $color-1;
     border-radius: 1rem;
     padding: 4rem 4rem;
     height: auto;

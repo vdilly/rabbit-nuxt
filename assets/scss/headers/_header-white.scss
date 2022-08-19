@@ -1,14 +1,14 @@
 & {
   .burger-icon span {
-    background-color: white;
+    background-color: $color-1-font;
   }
 
   .label--main,
   .label--trigger {
-    color: white !important;
+    color: $color-1-font  !important;
   }
 
   .dropdown-arrow {
-    fill: white !important;
+    fill: $color-1-font  !important;
   }
 }

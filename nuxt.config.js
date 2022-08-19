@@ -81,7 +81,8 @@ export default {
   modules: [
     '@nuxtjs/style-resources',
     'cookie-universal-nuxt',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'vue-social-sharing/nuxt'
   ],
 
   axios: {

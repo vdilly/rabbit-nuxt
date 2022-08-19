@@ -104,7 +104,7 @@ export default {
       opacity: 0;
       width: 100%;
       height: 3rem;
-      background-color: rgba($color__core, 0.2);
+      background-color: $color-1;
       pointer-events: none;
       transition: opacity 0.25s ease, transform 0.25s ease;
       border-radius: 4px;
@@ -112,7 +112,7 @@ export default {
     }
     &:hover:after,
     &.active:after {
-      opacity: 1;
+      opacity: 0.2;
       transform: translate(-50%, -50%);
     }
     // Active
@@ -129,11 +129,11 @@ export default {
     transition: box-shadow 0.25s ease, background-color 0.25s ease;
 
     &:hover {
-      background-color: rgba($color__core, 0.07);
+      background-color: rgba($color__grey, 1);
     }
     &.active {
       box-shadow: inset 0.1rem 0.1rem 0.5rem rgb(0 0 0 / 10%);
-      background-color: rgba($color__core, 0.07);
+      background-color: rgba($color__grey, 1);
     }
   }
   // Label rwd
@@ -159,7 +159,7 @@ export default {
     // border-bottom-left-radius: 1rem;
     // border-bottom-right-radius: 1rem;
     border-radius: 7px;
-    border-top: solid 7px $color__core;
+    border-top: solid 7px $color-1;
     overflow: hidden;
     display: flex;
     flex-direction: column;

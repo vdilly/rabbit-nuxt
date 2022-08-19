@@ -122,7 +122,7 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: $color__core;
+  background-color: $color-1;
   transform: translate(-50%, -50%);
   border-radius: 1.5rem;
   padding: 4rem 4rem;

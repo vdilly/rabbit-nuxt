@@ -112,9 +112,10 @@ a img.aligncenter {
 }
 
 .rte {
+
   // WP QUOTE
   blockquote {
-    $color: $color__core;
+    $color: $color-1;
     border-left: 3px solid $color;
     // color: #1a1a1a;
     // font-family: Georgia, Times, "Times New Roman", serif;
@@ -125,6 +126,7 @@ a img.aligncenter {
     position: relative;
     transition: 0.2s border ease-in-out;
     z-index: 0;
+
     cite {
       display: block;
       font-size: 0.75em;
@@ -138,6 +140,7 @@ a img.aligncenter {
       border-left: none;
       margin: 1.5em 0;
       padding: 1.5em 1em;
+
       &:before {
         left: 50%;
         top: 0;
@@ -146,6 +149,7 @@ a img.aligncenter {
         margin-left: -1em;
         width: 2em;
       }
+
       &:after {
         font-size: 0.75em;
         left: 50%;

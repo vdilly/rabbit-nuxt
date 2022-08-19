@@ -73,6 +73,33 @@
   &--grey {
     background-color: $color__grey;
   }
+
+  &--1 {
+    background-color: $color-1;
+    color: $color-1-font;
+
+    h2 {
+      color: $color-1-font
+    }
+  }
+
+  &--2 {
+    background-color: $color-2;
+    color: $color-2-font;
+
+    h2 {
+      color: $color-2-font
+    }
+  }
+
+  &--gradient {
+    background: $gradient-1;
+    color: $color-1-font;
+
+    h2 {
+      color: $color-1-font
+    }
+  }
 }
 
 .pt0 {

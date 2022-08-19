@@ -97,7 +97,7 @@ export default {
 
 <style lang="scss">
 .optin {
-  background-color: $color__core;
+  background-color: $color-1;
   background: $gradient-1;
   padding: 6rem 0 8rem;
 

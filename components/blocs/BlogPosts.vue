@@ -185,6 +185,9 @@ export default {
       color: $color__text;
       font-size: 1.6rem;
       font-weight: 600;
+      &:hover {
+        opacity: 1 !important;
+      }
     }
     .form__group input:checked + label {
       background-color: transparent;

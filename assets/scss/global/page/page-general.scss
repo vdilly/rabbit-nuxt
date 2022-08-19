@@ -14,15 +14,17 @@ html {
     @include RWD(mobile) {
       font-size: #{math.div($fsim , 10)}rem;
     }
-    & > svg {
+
+    &>svg {
       display: none;
     }
   }
+
   #app {
     overflow: hidden;
   }
 
-  
+
   &.no-scroll body {
     height: 100%;
     overflow: hidden;
@@ -44,12 +46,12 @@ html {
 
 // Selection de texte
 ::selection {
-  background-color: rgba($color__core, 0.5);
+  background-color: rgba($color-1, 0.5);
   color: black;
 }
 
 ::-moz-selection {
-  background-color: rgba($color__core, 0.5);
+  background-color: rgba($color-1, 0.5);
   color: black;
 }
 
@@ -72,7 +74,7 @@ html {
 }
 
 
-.admin-console{
+.admin-console {
   transform: scale(.8);
   z-index: 999;
   position: fixed;

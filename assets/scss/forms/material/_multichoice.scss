@@ -22,8 +22,8 @@
       .form__label {
         padding: 0.5rem 1rem;
         border-radius: 4px;
-        border: solid 2px $color__core;
-        color: $color__core;
+        border: solid 2px $color-1;
+        color: $color-1;
         font-weight: 600;
         transition: 0.25s;
         font-size: 1.4rem;
@@ -39,7 +39,7 @@
       }
 
       input:checked+label {
-        background-color: $color__core;
+        background-color: $color-1;
         color: white;
       }
     }

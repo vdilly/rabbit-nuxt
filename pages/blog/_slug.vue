@@ -8,9 +8,26 @@ main(v-if="page")
   .region--content.section.pt0
     .container.container--article.main-container
       .main-rte.rte(v-html="page.content")
+    //- .share-rs.share-rs--large
+    //-   ShareNetwork.linkedin(
+    //-     network="linkedin",
+    //-     :url="seo.link[0].href",
+    //-     :title="seo.title"
+    //-   )
+    //-     svg.icon
+    //-       use(xlink:href="#linkedin")
+    //-     span Partager sur Linkedin
+    //-   ShareNetwork.twitter(
+    //-     network="twitter",
+    //-     :url="seo.link[0].href",
+    //-     :title="seo.title"
+    //-   )
+    //-     svg.icon
+    //-       use(xlink:href="#twitter")
+    //-     span Partager sur Twitter
 
   //- Post Content
-  .region--postContent.section.section--grey
+  .region--postContent.section.section--2
     Container
       CrossReading.crossreading(v-if="crossreading", :bloc="crossreading")
 </template>

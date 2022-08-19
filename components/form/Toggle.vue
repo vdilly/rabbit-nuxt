@@ -87,7 +87,7 @@ export default {
   opacity: 1;
   .ball {
     transform: translate(0.3em, -50%);
-    background-color: $color__core;
+    background-color: $color-1;
   }
 }
 </style>

@@ -64,7 +64,7 @@ export default {
     font-size: 1.6rem;
     font-family: $font__fancy;
     font-weight: 600;
-    color: $color__core;
+    color: $color-1;
     display: flex;
     align-items: center;
     span {
@@ -74,7 +74,7 @@ export default {
   .icon {
     width: 1.6rem;
     height: 1.2rem;
-    fill: $color__core;
+    fill: $color-1;
   }
 
   &:not([class^="h-"]):not([class*=" h-"]) {
@@ -88,13 +88,13 @@ export default {
 
 // Colors
 .btn.core {
-  background-color: $color__core;
-  border-color: $color__core;
+  background-color: $color-1;
+  border-color: $color-1;
   .btn__text {
-    color: white;
+    color: $color-1-font;
   }
   .icon {
-    fill: white;
+    fill: $color-1-font;
   }
 }
 .btn.bg {
@@ -153,10 +153,10 @@ export default {
   &:hover {
     background-color: transparent;
     .icon {
-      fill: $color__core;
+      fill: $color-1;
     }
     .btn__text {
-      color: $color__core;
+      color: $color-1;
     }
   }
 }
@@ -172,10 +172,10 @@ export default {
     background-color: white;
     border-color: white;
     .icon {
-      fill: $color__core;
+      fill: $color-1;
     }
     .btn__text {
-      color: $color__core;
+      color: $color-1;
     }
   }
 }
@@ -191,10 +191,10 @@ export default {
     background-color: transparent;
     // border-color: white;
     .icon {
-      fill: $color__core;
+      fill: $color-1;
     }
     .btn__text {
-      color: $color__core;
+      color: $color-1;
     }
   }
 }

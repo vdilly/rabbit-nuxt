@@ -13,7 +13,7 @@
     content: "";
     width: 0;
     height: 0;
-    border: 0.5em solid $color__core;
+    border: 0.5em solid $color-1;
     display: block;
     position: absolute;
     border-radius: 100%;

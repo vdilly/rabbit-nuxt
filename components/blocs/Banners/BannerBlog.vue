@@ -63,8 +63,8 @@ export default {
     margin-bottom: 1rem;
 
     span {
-      background-color: $color__core;
-      color: $color__core-font;
+      background-color: $color-1;
+      color: $color-1-font;
       padding: 0.3rem 0.5rem;
       border-radius: 0.5rem;
     }

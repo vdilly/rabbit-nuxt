@@ -59,7 +59,11 @@ export default {
     .right {
       width: 40rem;
       padding: 7rem 5rem;
-      background-color: #f1f3f4;
+      background-color: $color-2;
+      color: $color-2-font;
+      h3 {
+        color: $color-2-font;
+      }
     }
     .left {
       background-color: $color__page-bg;

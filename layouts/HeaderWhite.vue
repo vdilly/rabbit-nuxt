@@ -58,15 +58,12 @@ export default {
   .header .logo img {
     // filter: grayscale(100) brightness(1.5);
   }
-  .burger-icon span {
-    background-color: white;
-  }
   .main-menu .label--main,
   .main-menu .label--trigger {
-    color: $color__gradient-1;
+    color: $color-1-font;
   }
   .main-menu .dropdown .dropdown-arrow {
-    fill: $color__gradient-1;
+    fill: $color-1-font;
   }
 }
 </style>

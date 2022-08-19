@@ -63,7 +63,7 @@ export default {
     font-size: 1.4rem;
     line-height: 1.4;
     font-weight: 700;
-    color: $color__core;
+    color: $color-1;
   }
   &__lead {
     font-size: 1.6rem;
@@ -96,7 +96,7 @@ export default {
     transition: color 0.25s ease, background-color 0.25s ease;
     &:hover {
       background-color: darken($color__grey, 50);
-      color: $color__core-font;
+      color: $color-1-font;
     }
   }
 

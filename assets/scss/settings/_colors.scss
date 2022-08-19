@@ -17,13 +17,36 @@ $color__bg-500: #037482;
 
 $color__grey: #F3F3F3;
 
-$color__core: #3880DA;
-// $color__core: #36096D;
-// $color__core: #37d5d6;
-$color__core-font: white;
 
-$gradient-1 : linear-gradient(30deg, $color__core 0%, #37d5d6 100%);
-$color__gradient-1: white;
+// Theme blue
+:root {
+  --color-1: #861657;
+  --color-2: #FFa69e;
+  --color-1-font: #FFFFFF;
+  --color-2-font: #FFFFFF;
+}
+
+// $color-1: #3880DA;
+// $color-1-font: white;
+
+// $gradient-1 : linear-gradient(30deg, $color-1 0%, #37d5d6 100%);
+// $color-1-font: white;
+
+
+// // // Theme 3
+// $color-1: #0d324d;
+// $color-1-font: white;
+
+// $gradient-1 : linear-gradient(30deg, $color-1 0%, #7f5a83 100%);
+// $color-1-font: white;
+
+// Theme cerisier jap
+$color-1: var(--color-1);
+$color-1-font: var(--color-1-font);
+$color-2: var(--color-2);
+$color-2-font: var(--color-2-font);
+$gradient-1 : linear-gradient(30deg, $color-1 0%, $color-2 100%);
+
 
 $color__text: #7d7e85;
 $color__title: black;

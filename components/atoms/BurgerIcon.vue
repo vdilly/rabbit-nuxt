@@ -20,7 +20,7 @@
     width: 100%;
     height: 0.3rem;
     border-radius: 5rem;
-    background-color: $color__core;
+    background-color: $color-1;
     backface-visibility: hidden;
     perspective: 1000;
     transition: width 0.2s, transform 0.2s;

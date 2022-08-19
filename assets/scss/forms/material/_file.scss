@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px dotted $color__core;
+    border: 2px dotted $color-1;
     // background-color: $color__bg-300;
     width: 100%;
     border-radius: 4px;
@@ -40,7 +40,7 @@
 
     .text {
       font-weight: 600;
-      color: $color__core;
+      color: $color-1;
     }
 
     input {

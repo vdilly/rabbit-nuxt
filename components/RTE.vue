@@ -122,7 +122,7 @@ export default {
   font-family: $font__fancy;
   font-weight: 500;
   line-height: 1.2em;
-  color: $color__core;
+  color: $color-1;
   transition: color, 0.3s;
   text-decoration: none;
   position: relative;

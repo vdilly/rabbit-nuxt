@@ -72,10 +72,10 @@ body .layout-decale {
     position: relative;
     .h1,
     .description {
-      color: $color__gradient-1;
+      color: $color-1-font;
     }
     &:after {
-      background-color: white;
+      background-color: $color__page-bg;
       content: "";
       position: absolute;
       bottom: -0.1rem;
@@ -94,13 +94,21 @@ body .layout-decale {
     z-index: 2;
   }
   .form--blog-filters .filters__categories .form__field {
-    border-color: $color__gradient-1;
+    border-color: $color-1-font;
   }
   .form--blog-filters .filters__categories .form__group .form__label {
-    color: rgba(white, 0.4);
+    color: $color-1-font;
+    opacity: 0.4;
   }
   .form--blog-filters .filters__categories .form__group input:checked + label {
-    color: white;
+    color: $color-1-font;
+    opacity: 1;
+  }
+
+  // Contact
+  .template--contact .main-wrapper {
+    position: relative;
+    z-index: 4;
   }
 
   // Contenu

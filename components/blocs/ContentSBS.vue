@@ -6,11 +6,7 @@
     .text
       h2.h2(v-html="bloc.titre", v-if="bloc.titre")
       .description(v-html="bloc.description", v-if="bloc.description")
-      Btn.core(
-        v-if="bloc.bouton",
-        :href="bloc.bouton.url",
-        :target="bloc.bouton.target"
-      )
+      Btn.core(v-if="bloc.bouton", :link="bloc.bouton")
         span(v-html="bloc.bouton.title")
 </template>
 

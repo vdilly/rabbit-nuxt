@@ -5,13 +5,14 @@ main(v-if="page")
     Ariane(:ariane="ariane", slot="pre")
 
   //- Content
-  .region--content
+  .region--content.section.pt0
     .container.container--article.main-container
       .main-rte.rte(v-html="page.content")
 
   //- Post Content
-  .region--postContent(v-if="postContentBlocs")
-    BlocsAuto(:blocs="postContentBlocs")
+  .region--postContent.section.section--grey
+    Container
+      CrossReading.crossreading(v-if="crossreading", :bloc="crossreading")
 </template>
 <script>
 import postMixin from "@/mixins/post";
@@ -20,10 +21,20 @@ import BannerBlog from "@/components/blocs/Banners/BannerBlog.vue";
 import BannerBlog2 from "@/components/blocs/Banners/BannerBlog2.vue";
 import pageBuilderMixin from "@/mixins/page/pageBuilder";
 import Ariane from "@/components/navs/Ariane.vue";
+import CrossReading from "@/components/blocs/CrossReading.vue";
 export default {
   layout: "Decale",
   mixins: [pageMixin, postMixin, pageBuilderMixin],
+  components: { BannerBlog, BannerBlog2, Ariane, CrossReading },
   computed: {
+    crossreading() {
+      return {
+        titre: "Articles suivants",
+        posts_par_page: "3",
+        nombre_de_posts: "3",
+        exclude: this.page?.id,
+      };
+    },
     ariane() {
       return [
         {
@@ -46,7 +57,6 @@ export default {
       };
     },
   },
-  components: { BannerBlog, BannerBlog2, Ariane },
   async asyncData({ store, params, error }) {
     let page = store.getters["posts/getPostBySlug"](params.slug);
     if (!page) return error({ statusCode: 404, message: "Page introuvable" });

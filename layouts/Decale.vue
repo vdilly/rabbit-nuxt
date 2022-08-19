@@ -59,15 +59,8 @@ body .layout-decale {
   .navbar {
     background-color: transparent;
   }
-  .burger-icon span {
-    background-color: white;
-  }
-  .main-menu .label--main,
-  .main-menu .label--trigger {
-    color: $color__gradient-1;
-  }
-  .main-menu .dropdown .dropdown-arrow {
-    fill: $color__gradient-1;
+  .header {
+    @import "@/assets/scss/headers/_header-white";
   }
 
   // Banner Stack

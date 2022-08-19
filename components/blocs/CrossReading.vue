@@ -1,5 +1,5 @@
 <template lang="pug">
-.blogPosts(v-if="bloc")
+.crossreading(v-if="bloc")
   Container
     h2.h2(v-html="bloc.titre", v-if="bloc.titre")
     .description(v-html="bloc.description", v-if="bloc.description")
@@ -35,6 +35,9 @@
       @next="nextPage",
       @prev="prevPage"
     )
+    .align-center(style="margin-top: 4rem")
+      Btn.core(to="/blog")
+        span Voir tous les articles
 </template>
 
 <script>
@@ -44,7 +47,7 @@ import Pagination from "@/components/navs/Pagination.vue";
 import FormMultiChoice from "@/components/form/FormMultiChoice.vue";
 import FormSingleChoice from "@/components/form/FormSingleChoice.vue";
 export default {
-  props: ["bloc"], // titre, description, posts_par_page, nombre_de_posts, display_tags, display_cats, forceCats, forceTags
+  props: ["bloc"], // titre, description, posts_par_page, nombre_de_posts, display_tags, display_cats, forceCats, forceTags, exclude
   components: { TeaserBlog, Pagination, FormMultiChoice, FormSingleChoice },
   data() {
     return {
@@ -117,6 +120,14 @@ export default {
           return post.categories.find((category) => {
             return categories == category.id;
           });
+        });
+      }
+
+      // Exclude current post
+      let excludeId = this.bloc.exclude;
+      if (excludeId) {
+        filteredPosts = filteredPosts.filter((post) => {
+          return post.id != excludeId;
         });
       }
       return filteredPosts; // Retourne all posts
@@ -196,13 +207,13 @@ export default {
 }
 
 // Liste articles
-.blogPosts {
+.crossreading {
   .h2 {
     text-align: center;
     margin-bottom: 4rem;
   }
   .posts-list {
-    $gutter: 4rem;
+    $gutter: 2rem;
     display: flex;
     flex-wrap: wrap;
     margin-left: -#{$gutter};
@@ -218,6 +229,13 @@ export default {
       @include RWD(mobile) {
         width: 100%;
       }
+    }
+  }
+
+  .teaser-blog {
+    .teaser-blog__lead,
+    .teaser-blog__tags {
+      display: none;
     }
   }
 }

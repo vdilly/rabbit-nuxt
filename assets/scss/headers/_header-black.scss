@@ -1,0 +1,14 @@
+& {
+  .burger-icon span {
+    background-color: $color__title;
+  }
+
+  .label--main,
+  .label--trigger {
+    color: $color__title  !important;
+  }
+
+  .dropdown-arrow {
+    fill: $color__title  !important;
+  }
+}

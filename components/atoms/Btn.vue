@@ -1,7 +1,8 @@
 <template lang="pug">
 component.btn(
-  :is="link ? 'Link' : forceDiv ? 'div' : 'button'",
+  :is="link ? 'Link' : to ? 'NuxtLink' : forceDiv ? 'div' : 'button'",
   :link="link",
+  :to="to",
   @click="$emit('click')"
 )
   Loader
@@ -24,6 +25,9 @@ export default {
     },
     forceDiv: {
       default: false,
+    },
+    to: {
+      default: null,
     },
   },
   computed: {},

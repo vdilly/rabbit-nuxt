@@ -2,17 +2,26 @@
 .bannerBlog
   .img-cover(v-if="bloc")
     img(:src="bloc.image.full.src", :alt="bloc.image.alt", v-if="bloc.image")
-  Container
+  Container.container--article
+    slot(name="pre")
     .categories(v-if="bloc.categories")
       span(v-for="category in bloc.categories", v-html="category.name")
     h1.h1(v-html="bloc.titre", v-if="bloc.titre")
-    .description.rte(v-html="bloc.description", v-if="bloc.description")
-    Btn.core(v-if="bloc.bouton", :link="bloc.bouton")
-      span(v-html="bloc.bouton.title")
+    .author(v-if="author")
+      img.avatar(v-if="author.avatar", :src="author.avatar.logo.src")
+      .text
+        .name(v-html="author.nom_a_afficher", v-if="author.nom_a_afficher")
+        //- .role(v-html="author.role", v-if="author.role")
+        .date(v-html="bloc.date", v-if="bloc.date")
 </template>
 <script>
 export default {
   props: ["bloc"],
+  computed: {
+    author() {
+      return this.bloc?.author?.acf;
+    },
+  },
 };
 </script>
 
@@ -22,6 +31,7 @@ export default {
     position: relative;
     height: 80vw;
     max-height: 40rem;
+    background: $gradient-1;
     &:after {
       content: "";
       position: absolute;
@@ -61,7 +71,35 @@ export default {
   }
   .h1 {
     font-weight: 600;
-    padding-right: 4rem;
   }
+  .author {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  .avatar {
+    border-radius: 50rem;
+    height: 5rem;
+    width: 5rem;
+    margin-right: 1.5rem;
+  }
+  .text {
+    display: flex;
+    flex-direction: column;
+  }
+  .name {
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: $color__title;
+    line-height: 1;
+  }
+  .date {
+    font-size: 1.3rem;
+  }
+}
+
+// Ariane
+.bannerBlog .ariane {
+  opacity: 0.7;
 }
 </style>

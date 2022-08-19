@@ -2,7 +2,8 @@
 export const state = () => ({
   posts: [],
   tags: [],
-  categories: []
+  categories: [],
+  users: []
 })
 
 export const getters = {
@@ -20,6 +21,11 @@ export const getters = {
     return state.tags.find(tag => {
       return tag.id == id
     })
+  },
+  getUserById: (state) => (id) => {
+    return state.users.find(user => {
+      return user.id == id
+    })
   }
 }
 
@@ -36,6 +42,9 @@ export const mutations = {
   },
   setTags(state, tags) {
     state.tags = tags;
+  },
+  setUsers(state, users) {
+    state.users = users;
   }
 }
 
@@ -51,6 +60,9 @@ export const actions = {
       post.tags = post.tags.map(tagId => {
         return getters.getTagById(tagId)
       })
+
+      // Users
+      post.author = getters.getUserById(post.author);
 
       // console.log(post.categories)
       return post;
@@ -75,5 +87,13 @@ export const actions = {
       tag.posts = res;
     })
     commit('setTags', tags)
+  },
+  getUsers: async function ({ state, commit }) {
+    let users = await this._vm.$sourceWp.getEntries('/users')
+    await users.forEach(async (user) => {
+      let res = await this._vm.$sourceWp.getEntries('/posts?users=' + user.id)
+      user.posts = res;
+    })
+    commit('setUsers', users)
   }
 }

@@ -25,5 +25,13 @@
   &--small {
     max-width: 111rem;
   }
+  &--article {
+    max-width: 90rem;
+  }
+  &--article2 {
+    max-width: 80rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
 }
 </style>

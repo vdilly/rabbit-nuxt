@@ -14,6 +14,9 @@
     ul.teaser-blog__tags(v-if="post.tags")
       li.teaser-blog__tag(v-for="(tag, index) in post.tags", :key="index")
         NuxtLink.tag(v-html="tag.name", :to="`/blog/tag/${tag.id}`")
+  component.circle(:to="post.link", :is="post.link ? 'NuxtLink' : 'div'")
+  svg.icon.arrow
+    use(xlink:href="#arrow")
 </template>
 
 <script>
@@ -96,6 +99,7 @@ export default {
       color: $color__core-font;
     }
   }
+
   // hover
   & {
     transition: transform 0.25s ease;
@@ -117,14 +121,36 @@ export default {
       opacity: 0;
       pointer-events: none;
     }
+    .circle {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: $gradient-1;
+      border-radius: 50%;
+      height: 16rem;
+      width: 16rem;
+      transform: translate(50%, 50%) scale(0);
+      z-index: 4;
+      transition: transform 0.25s ease;
+    }
+    .arrow {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: white;
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 5;
+    }
+
     &:hover,
     &:focus {
       transform: translateY(-1rem);
       &:after {
         opacity: 0.2;
       }
-      .teaser-blog__title {
-        // text-decoration: underline;
+      .circle {
+        transform: translate(50%, 50%) scale(1);
       }
       .img-cover {
         img {

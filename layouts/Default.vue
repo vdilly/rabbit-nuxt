@@ -27,6 +27,9 @@ export default {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  main {
+    padding-top: 12rem;
+  }
   .nuxt-content {
     flex: 1;
   }

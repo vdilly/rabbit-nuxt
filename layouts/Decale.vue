@@ -76,13 +76,30 @@ body .layout-decale {
     padding-top: 20rem;
     padding-bottom: 35rem;
     margin-bottom: -25rem;
+    position: relative;
     .h1,
     .description {
       color: $color__gradient-1;
     }
+    &:after {
+      background-color: white;
+      content: "";
+      position: absolute;
+      bottom: -0.1rem;
+      right: 0;
+      width: 100%;
+      height: 7rem;
+      clip-path: polygon(0 100%, 100% 100%, 100% 0);
+      // transform: translateY(100%);
+      z-index: 1;
+    }
   }
 
   // Blogposts
+  .region--content {
+    position: relative;
+    z-index: 2;
+  }
   .form--blog-filters .filters__categories .form__field {
     border-color: $color__gradient-1;
   }

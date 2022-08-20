@@ -148,7 +148,7 @@ export default class WordPressSource {
         img: { format: "skip" },
       },
     });
-    const charLimit = 200;
+    const charLimit = 100;
     post.excerpt = excerpt.length > charLimit ? excerpt.substring(0, charLimit) + '[...]' : excerpt;
     post.link = "/blog/" + post.slug + "/";
     return post

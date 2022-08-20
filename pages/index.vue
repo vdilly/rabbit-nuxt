@@ -3,9 +3,6 @@ main(v-if="page")
   //- Banner
   .region--banner(v-if="bannerBlocs")
     BlocsAuto(:blocs="bannerBlocs")
-  .region--banner
-    BlocsAuto(v-if="bannerBlocs", :blocs="bannerBlocs")
-    BannerStack(v-else, :bloc="{ titre: page.title }")
 
   //- Pre content
   .region--preContent(v-if="postContentBlocs")
@@ -52,3 +49,18 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+body.index {
+  .navbar {
+    // background: $gradient-1;
+    background: transparent;
+  }
+  main {
+    padding-top: 0;
+  }
+  .header {
+    @import "@/assets/scss/headers/_header-white";
+  }
+}
+</style>

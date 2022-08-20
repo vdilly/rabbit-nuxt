@@ -40,5 +40,11 @@ body.blog {
   .bannerStack {
     padding-bottom: 8rem;
   }
+  .blogPosts {
+    padding: 0;
+    .section-content {
+      margin-top: 0;
+    }
+  }
 }
 </style>

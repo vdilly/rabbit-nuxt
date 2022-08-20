@@ -30,10 +30,10 @@
     //- Container.container--small
 </template>
 <script>
-import BannerStack from "../components/blocs/Banners/BannerStack.vue";
+import BannerStack from "@/components/blocs/Banners/BannerStack.vue";
 import pageBuilderMixin from "@/mixins/page/pageBuilder";
 import FormWP from "@/components/form/instances/FormWP.vue";
-import FormFieldsWP from "../components/form/FormFieldsWP.vue";
+import FormFieldsWP from "@/components/form/FormFieldsWP.vue";
 export default {
   props: ["page"],
   mixins: [pageBuilderMixin],

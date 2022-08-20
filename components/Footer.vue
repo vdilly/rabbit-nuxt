@@ -1,6 +1,8 @@
 <template lang="pug">
 footer.footer
+  Wave
   Container
+    h2.h2 Footer
     ul.menu
       li
   ThemeBuilder
@@ -13,7 +15,9 @@ export default {
 </script>
 <style lang="scss">
 .footer {
-  padding: 2rem 0;
+  padding: 5rem 0;
+  padding-top: 0;
+  background: $gradient-1;
 
   .menu {
     text-align: center;

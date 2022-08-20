@@ -97,6 +97,16 @@ export default {
     fill: $color-1-font;
   }
 }
+.btn.gradient {
+  background: $gradient-1;
+  border: none;
+  .btn__text {
+    color: $color-1-font;
+  }
+  .icon {
+    fill: $color-1-font;
+  }
+}
 .btn.bg {
   background-color: $color__bg-300;
   border-color: $color__bg-300;

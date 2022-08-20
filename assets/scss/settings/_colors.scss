@@ -18,27 +18,30 @@ $color__bg-500: #037482;
 $color__grey: #F3F3F3;
 
 
-// Theme blue
+// Theme Cerisier jap
 :root {
   --color-1: #861657;
   --color-2: #FFa69e;
   --color-1-font: #FFFFFF;
-  --color-2-font: #FFFFFF;
+  --color-2-font: #2f1c1c;
 }
 
-// $color-1: #3880DA;
-// $color-1-font: white;
+// Theme blue
+// :root {
+//   --color-1: #3880DA;
+//   --color-2: #37d5d6;
+//   --color-1-font: #FFFFFF;
+//   --color-2-font: #000000;
+// }
 
-// $gradient-1 : linear-gradient(30deg, $color-1 0%, #37d5d6 100%);
-// $color-1-font: white;
+// Theme 3
+// :root {
+//   --color-1: #0d324d;
+//   --color-2: #7f5a83;
+//   --color-1-font: #FFFFFF;
+//   --color-2-font: #ffffff;
+// }
 
-
-// // // Theme 3
-// $color-1: #0d324d;
-// $color-1-font: white;
-
-// $gradient-1 : linear-gradient(30deg, $color-1 0%, #7f5a83 100%);
-// $color-1-font: white;
 
 // Theme cerisier jap
 $color-1: var(--color-1);

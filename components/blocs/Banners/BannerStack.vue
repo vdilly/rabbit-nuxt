@@ -1,11 +1,11 @@
 <template lang="pug">
 .bannerStack.gradient.decalage(v-if="bloc")
+  img.img(:src="bloc.image.full.src", v-if="bloc.image")
   Container
     h1.h1(v-html="bloc.titre", v-if="bloc.titre")
     .description.rte(v-html="bloc.description", v-if="bloc.description")
     Btn.core(v-if="bloc.bouton", :link="bloc.bouton")
       span(v-html="bloc.bouton.title")
-  img.img(:src="bloc.image.full.src", v-if="bloc.image")
 </template>
 <script>
 export default {
@@ -30,6 +30,8 @@ export default {
   }
   .img {
     margin-top: 4rem;
+    max-height: 50rem;
+    border-radius: 1rem;
   }
 }
 

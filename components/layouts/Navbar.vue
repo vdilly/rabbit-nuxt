@@ -19,7 +19,7 @@ export default {};
 
 // Position
 $navbar-position: fixed; // Si on passe en absolute, mettre false aux autres options
-$navbar-height: 12rem; // Appliquer le padding sur le body si position != static
+$navbar-height: 10rem; // Appliquer le padding sur le body si position != static
 $navbar-height-m: 8rem;
 $navbar-height-scrolled: 9rem;
 $navbar-apply-ptop: false; // applique un padding top sur le main

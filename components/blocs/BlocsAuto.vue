@@ -6,14 +6,26 @@
     component(:is="getBlocName(bloc)", :bloc="bloc")
 </template>
 <script>
+import LogoList from "@/components/blocs/LogoList.vue";
 import BannerFull from "@/components/blocs/Banners/BannerFull.vue";
 import BannerStack from "@/components/blocs/Banners/BannerStack.vue";
+import BannerSBS from "@/components/blocs/Banners/BannerSBS.vue";
+import BannerDecale from "@/components/blocs/Banners/BannerDecale.vue";
 import BlogPosts from "@/components/blocs/BlogPosts.vue";
 import ContentSBS from "@/components/blocs/ContentSBS.vue";
 import Optin from "@/components/blocs/Optin.vue";
 export default {
   props: ["blocs", "displayName"],
-  components: { BannerFull, BannerStack, BlogPosts, ContentSBS, Optin },
+  components: {
+    BannerFull,
+    BannerStack,
+    BannerDecale,
+    BannerSBS,
+    BlogPosts,
+    ContentSBS,
+    Optin,
+    LogoList,
+  },
   methods: {
     getBlocName(bloc) {
       if (bloc.acf_fc_layout == "Banner") {

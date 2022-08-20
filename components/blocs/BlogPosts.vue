@@ -1,40 +1,49 @@
 <template lang="pug">
-.blogPosts(v-if="bloc")
+.blogPosts.section.section-big(v-if="bloc")
   Container
-    h2.h2(v-html="bloc.titre", v-if="bloc.titre")
-    .description(v-html="bloc.description", v-if="bloc.description")
-    .filters.form--blog-filters(v-if="bloc.display_cats || bloc.display_tags")
-      .filters__categories(v-if="bloc.display_cats")
-        FormSingleChoice(
-          name="categories",
-          :tags="categories",
-          labelPropName="name",
-          valuePropName="id",
-          v-model="pickedCategories",
-          :inputValue="pickedCategories",
-          @input="changeCategory"
-        )
-          //- h2.h3(slot="label") Catégories
-      .filters__tags(v-if="bloc.display_tags")
-        FormMultiChoice(
-          name="tags",
-          :tags="tags",
-          labelPropName="name",
-          valuePropName="id",
-          v-model="pickedTags"
-        )
-          h2.h3(slot="label") Tags
-    ul.posts-list(v-if="currentPage")
-      li.item(v-for="post in currentPage.posts")
-        TeaserBlog(:post="post")
-    .rte(v-else) Aucun résultat
-    Pagination(
-      v-if="totalPages > 1",
-      :currentPage="currentIndex",
-      :totalPages="totalPages",
-      @next="nextPage",
-      @prev="prevPage"
+    h2.h2.section-title(v-html="bloc.titre", v-if="bloc.titre")
+    .description.section-description(
+      v-html="bloc.description",
+      v-if="bloc.description"
     )
+    .section-content
+      .filters.form--blog-filters(
+        v-if="bloc.display_cats || bloc.display_tags"
+      )
+        .filters__categories(v-if="bloc.display_cats")
+          FormSingleChoice(
+            name="categories",
+            :tags="categories",
+            labelPropName="name",
+            valuePropName="id",
+            v-model="pickedCategories",
+            :inputValue="pickedCategories",
+            @input="changeCategory"
+          )
+            //- h2.h3(slot="label") Catégories
+        .filters__tags(v-if="bloc.display_tags")
+          FormMultiChoice(
+            name="tags",
+            :tags="tags",
+            labelPropName="name",
+            valuePropName="id",
+            v-model="pickedTags"
+          )
+            h2.h3(slot="label") Tags
+      ul.posts-list(v-if="currentPage")
+        li.item(v-for="post in currentPage.posts")
+          TeaserBlog(:post="post")
+      .rte(v-else) Aucun résultat
+      Pagination(
+        v-if="totalPages > 1",
+        :currentPage="currentIndex",
+        :totalPages="totalPages",
+        @next="nextPage",
+        @prev="prevPage"
+      )
+    .align-center(style="margin-top: 4rem", v-if="bloc.bouton")
+      Btn.core(:link="bloc.bouton")
+        span(v-html="bloc.bouton.title")
 </template>
 
 <script>
@@ -200,10 +209,6 @@ export default {
 
 // Liste articles
 .blogPosts {
-  .h2 {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
   .posts-list {
     $gutter: 4rem;
     display: flex;

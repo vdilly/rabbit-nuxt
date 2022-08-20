@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       reduced: true,
-      visible: true,
+      visible: false,
       color1: null,
       color1font: null,
       color2font: null,

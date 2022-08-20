@@ -27,7 +27,7 @@ main(v-if="page")
     //-     span Partager sur Twitter
 
   //- Post Content
-  .region--postContent.section.section--2
+  .region--postContent.section.section--3
     Container
       CrossReading.crossreading(v-if="crossreading", :bloc="crossreading")
 </template>

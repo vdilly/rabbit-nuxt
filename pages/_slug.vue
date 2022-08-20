@@ -10,7 +10,9 @@ import TemplatePage from "@/templates/TemplatePage.vue";
 import TemplateContact from "@/templates/TemplateContact.vue";
 export default {
   layout(ctx) {
-    return ctx.params.slug == "contact" ? "Decale" : "Default";
+    return ctx.params.slug == "contact" || ctx.params.slug == "about"
+      ? "Decale"
+      : "Default";
   },
   mixins: [pageMixin],
   components: { BannerStack, TemplatePage, TemplateContact },

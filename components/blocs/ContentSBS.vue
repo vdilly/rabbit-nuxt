@@ -25,6 +25,7 @@ export default {
 .contentSBS {
   .container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
   }
   .description {
@@ -41,7 +42,7 @@ export default {
     img {
       width: 100%;
       height: auto;
-      border-radius: 0.5rem;
+      border-radius: $bradius;
     }
   }
 }

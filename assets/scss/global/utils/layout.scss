@@ -123,6 +123,15 @@
     }
   }
 
+  &--3 {
+    background-color: $color-3;
+    color: $color-3-font;
+
+    .section-title {
+      color: $color-3-font
+    }
+  }
+
   &--gradient {
     background: $gradient-1;
     color: $color-1-font;

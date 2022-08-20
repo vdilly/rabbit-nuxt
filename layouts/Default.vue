@@ -29,8 +29,6 @@ export default {
   flex-direction: column;
   main {
     padding-top: 12rem;
-  }
-  .nuxt-content {
     flex: 1;
   }
   footer {

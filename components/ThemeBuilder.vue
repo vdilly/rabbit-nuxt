@@ -12,13 +12,29 @@
     .form--material(style="margin-top: 2rem")
       .form__info Refresh la page pour reset les couleurs
       .wrapper
-        FormGroup(label="Color 1")
+        FormGroup(label="Color page")
+          FormInput(v-model="colorPage")
+        Verte(v-model="colorPage", model="hex", menuPosition="top")
+      .wrapper
+        FormGroup(label="Color text")
+          FormInput(v-model="colorText")
+        Verte(v-model="colorText", model="hex", menuPosition="top")
+      .wrapper
+        FormGroup(label="Color title")
+          FormInput(v-model="colorTitle")
+        Verte(v-model="colorTitle", model="hex", menuPosition="top")
+      .wrapper
+        FormGroup(label="Color1 : ppale")
           FormInput(v-model="color1")
         Verte(v-model="color1", model="hex", menuPosition="top")
       .wrapper
-        FormGroup(label="Color 2")
+        FormGroup(label="Color 2 : gradient sombre")
           FormInput(v-model="color2")
         Verte(v-model="color2", model="hex", menuPosition="top")
+      .wrapper
+        FormGroup(label="Color 3 : gradient light")
+          FormInput(v-model="color3")
+        Verte(v-model="color3", model="hex", menuPosition="top")
       .wrapper
         FormGroup(label="Color 1 font")
           FormInput(v-model="color1font")
@@ -27,6 +43,10 @@
         FormGroup(label="Color 2 font")
           FormInput(v-model="color2font")
         Verte(v-model="color2font", model="hex", menuPosition="top")
+      .wrapper
+        FormGroup(label="Color 3 font")
+          FormInput(v-model="color3font")
+        Verte(v-model="color3font", model="hex", menuPosition="top")
 </template>
 <script>
 import Verte from "verte";
@@ -38,9 +58,14 @@ export default {
       reduced: true,
       visible: false,
       color1: null,
+      colorPage: null,
+      colorText: null,
+      colorTitle: null,
       color1font: null,
       color2font: null,
+      color3font: null,
       color2: null,
+      color3: null,
       root: null,
     };
   },
@@ -57,13 +82,30 @@ export default {
     getValues() {
       if (!window) return null;
       let styles = getComputedStyle(this.root);
+      this.colorPage = styles.getPropertyValue("--color-page").trim();
+      this.colorText = styles.getPropertyValue("--color-text").trim();
+      this.colorTitle = styles.getPropertyValue("--color-title").trim();
       this.color1 = styles.getPropertyValue("--color-1").trim();
       this.color1font = styles.getPropertyValue("--color-1-font").trim();
       this.color2 = styles.getPropertyValue("--color-2").trim();
       this.color2font = styles.getPropertyValue("--color-2-font").trim();
+      this.color3 = styles.getPropertyValue("--color-3").trim();
+      this.color3font = styles.getPropertyValue("--color-3-font").trim();
     },
   },
   watch: {
+    colorPage: function (value, old) {
+      if (!window) return;
+      this.setValue("page", value);
+    },
+    colorText: function (value, old) {
+      if (!window) return;
+      this.setValue("text", value);
+    },
+    colorTitle: function (value, old) {
+      if (!window) return;
+      this.setValue("title", value);
+    },
     color1: function (value, old) {
       if (!window) return;
       this.setValue(1, value);
@@ -72,6 +114,10 @@ export default {
       if (!window) return;
       this.setValue(2, value);
     },
+    color3: function (value, old) {
+      if (!window) return;
+      this.setValue(3, value);
+    },
     color1font: function (value, old) {
       if (!window) return;
       this.setValue("1-font", value);
@@ -79,6 +125,10 @@ export default {
     color2font: function (value, old) {
       if (!window) return;
       this.setValue("2-font", value);
+    },
+    color3font: function (value, old) {
+      if (!window) return;
+      this.setValue("3-font", value);
     },
   },
   mounted() {
@@ -128,7 +178,7 @@ export default {
   .inner {
     height: auto;
     width: 50rem;
-    border-radius: 1rem;
+    border-radius: $bradius;
     background-color: white;
     padding: 6rem 5rem;
     position: relative;
@@ -193,6 +243,7 @@ export default {
     }
 
     .inner {
+      width: 30rem;
       box-shadow: $bshadow;
       height: auto;
       padding: 2rem;

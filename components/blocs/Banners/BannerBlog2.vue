@@ -65,7 +65,7 @@ export default {
     }
   }
   .featured-img {
-    border-radius: 1rem;
+    border-radius: $bradius;
   }
 
   .categories {
@@ -80,7 +80,7 @@ export default {
       background-color: $color-1;
       color: $color-1-font;
       padding: 0.3rem 0.5rem;
-      border-radius: 0.5rem;
+      border-radius: $bradius;
     }
   }
   .h1 {
@@ -140,7 +140,7 @@ export default {
   }
   .main-container {
     padding: 4rem 5rem;
-    border-radius: 1rem;
+    border-radius: $bradius;
     background-color: $color__page-bg;
   }
 }

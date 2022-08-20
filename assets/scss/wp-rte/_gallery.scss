@@ -35,7 +35,7 @@
 
     &__overflow {
       overflow: hidden;
-      border-radius: 1rem;
+      border-radius: $bradius;
     }
 
     &__navigation {
@@ -86,7 +86,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 1rem;
+    border-radius: $bradius;
     position: relative;
 
     @include RWD(mobile) {
@@ -98,7 +98,7 @@
       iframe {
         height: 100%;
         width: 100%;
-        border-radius: 1rem;
+        border-radius: $bradius;
         position: absolute;
         top: 50%;
         left: 50%;

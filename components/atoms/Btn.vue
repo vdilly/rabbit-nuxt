@@ -42,7 +42,7 @@ export default {
   padding: 1.5rem 3rem;
   border: solid 2px;
   text-decoration: none !important;
-  border-radius: 10rem;
+  border-radius: $bradius-btn;
   position: relative;
   .loader {
     display: none;

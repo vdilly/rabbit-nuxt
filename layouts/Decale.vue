@@ -27,7 +27,7 @@ export default {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  .nuxt-content {
+  main {
     flex: 1;
   }
   footer {
@@ -64,7 +64,8 @@ body .layout-decale {
   }
 
   // Banner Stack
-  .bannerStack.gradient {
+  .bannerStack.gradient,
+  .bannerSBS {
     background: $gradient-1;
     padding-top: 20rem;
     padding-bottom: 35rem;
@@ -92,6 +93,11 @@ body .layout-decale {
   .region--content {
     position: relative;
     z-index: 2;
+    .blocs .container {
+      background-color: $color__page-bg;
+      border-top-right-radius: $bradius;
+      border-top-left-radius: $bradius;
+    }
   }
   .form--blog-filters .filters__categories .form__field {
     border-color: $color-1-font;

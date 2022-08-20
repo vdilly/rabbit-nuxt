@@ -1,6 +1,65 @@
+// Theme cerisier
+:root {
+  --color-page: #ffffff;
+  --color-text: #7d7e85;
+  --color-title: #000000;
+  --color-1: #861657;
+  --color-2: #861657;
+  --color-3: #FFa69e;
+
+  --color-1-font: #FFFFFF;
+  --color-2-font: #FFFFFF;
+  --color-3-font: #2f1c1c;
+}
+
+// Theme CNL
+// :root {
+//   --color-page: #28156E;
+//   --color-text: #ffffff;
+//   --color-title: #ffffff;
+//   --color-1: #E33338;
+//   --color-2: #28156E;
+//   --color-3: #6351B1;
+
+//   --color-1-font: #FFFFFF;
+//   --color-2-font: #FFFFFF;
+//   --color-3-font: #FFFFFF;
+// }
+
+// // Theme NLT
+// :root {
+//   --color-page: #ffffff;
+//   --color-text: #7d7e85;
+//   --color-title: #000000;
+//   --color-1: #EEA635;
+//   --color-2: #2B2B2B;
+//   --color-3: #646F7C;
+
+//   --color-1-font: #FFFFFF;
+//   --color-2-font: #FFFFFF;
+//   --color-3-font: #2f1c1c;
+// }
+
+// Theme blue
+// :root {
+//   --color-1: #3880DA;
+//   --color-2: #37d5d6;
+//   --color-1-font: #FFFFFF;
+//   --color-2-font: #000000;
+// }
+
+// Theme 3
+// :root {
+//   --color-1: #0d324d;
+//   --color-2: #7f5a83;
+//   --color-1-font: #FFFFFF;
+//   --color-2-font: #ffffff;
+// }
+
 html {
   background-color: $color__page-bg;
   font-size: 62.5%;
+
 
   body {
     overflow-x: hidden;

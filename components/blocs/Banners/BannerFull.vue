@@ -13,22 +13,23 @@
         .description.rte(v-html="bloc.description", v-if="bloc.description")
         Btn.core(v-if="bloc.bouton", :link="bloc.bouton")
           span(v-html="bloc.bouton.title")
-    //- button.scrollDown
-    //-   svg(viewBox="0 0 200 200", xmlns="http://www.w3.org/2000/svg")
-    //-     defs
-    //-       linearGradient#grad1(x1="0%", y1="0%", x2="100%", y2="100%")
-    //-         stop(offset="0%", style="stop-color: #ffa69e; stop-opacity: 1")
-    //-         stop(offset="100%", style="stop-color: #861657; stop-opacity: 1")
-    //-     path(
-    //-       fill="url(#grad1)",
-    //-       d="M42.2,-46.8C53.2,-31.1,59.8,-15.6,61.7,1.9C63.6,19.4,60.8,38.7,49.8,55.3C38.7,71.9,19.4,85.7,-1,86.7C-21.4,87.8,-42.8,76,-56.6,59.4C-70.4,42.8,-76.7,21.4,-76,0.7C-75.4,-20.1,-67.8,-40.2,-54,-55.9C-40.2,-71.6,-20.1,-82.9,-2.3,-80.6C15.6,-78.3,31.1,-62.5,42.2,-46.8Z",
-    //-       transform="translate(100 100)"
-    //-     )
+    button.scrollDown(@click="scrollContent")
+      .inner
+        span Scroll
+        svg.icon
+          use(xlink:href="#arrow")
+  Wave2.wave-gradient(fill="url(#grad1)")
   Wave2
 </template>
 <script>
+import smoothScroll from "@/utils/smoothScroll";
 export default {
   props: ["bloc"],
+  methods: {
+    scrollContent() {
+      smoothScroll(".region--content", 80);
+    },
+  },
 };
 </script>
 
@@ -58,12 +59,12 @@ export default {
       z-index: 2;
       background: linear-gradient(
         to bottom,
-        rgba(black, 0.7) 0%,
-        rgba(black, 0.5) 60%,
-        rgba(black, 0.8) 100%
+        rgba(black, 0.6) 0%,
+        rgba(black, 0.3) 60%,
+        rgba(black, 1) 100%
       );
       // background: $gradient-1;
-      opacity: 0.5;
+      opacity: 0.6;
     }
   }
   .banner-img {
@@ -80,7 +81,7 @@ export default {
   }
   .text {
     padding: 6rem 5rem 5rem;
-    border-radius: 1rem;
+    border-radius: $bradius;
     background: $gradient-1;
     width: 54rem;
   }
@@ -100,25 +101,44 @@ export default {
   }
 
   // ScrollDown
-  // .scrollDown {
-  //   position: absolute;
-  //   bottom: 0rem;
-  //   left: 50%;
-  //   z-index: 12;
-  //   transform: translateX(-50%) translateY(50%);
-  //   svg {
-  //     height: 8rem;
-  //     width: 8rem;
-  //   }
-  // }
+  .scrollDown {
+    position: absolute;
+    bottom: calc(10rem + 1vw);
+    right: 10%;
+    z-index: 12;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-family: $font__fancy;
+    opacity: 0.9;
+    animation: bounce infinite 3s;
+    .inner {
+      display: flex;
+      align-items: center;
+      transform-origin: center;
+      transform: rotate(90deg);
+    }
+    .icon {
+      fill: white;
+      width: 2rem;
+      height: 2rem;
+      margin-left: 1rem;
+    }
+  }
   // Wave bot
   .wave {
-    width: 192rem;
+    min-width: 192rem;
+    width: 100vw;
     position: absolute;
     bottom: 0;
     left: 50%;
     z-index: 10;
-    transform: translateX(-50%) translateY(40%) translateY(3rem);
+    transform: translateX(-50%) translateY(40%) translateY(3rem) rotate(1deg);
+  }
+  .wave-gradient {
+    bottom: 0rem;
+    transform: translateX(-50%) translateY(40%) translateY(3rem) rotate(-0.5deg);
   }
 }
 </style>

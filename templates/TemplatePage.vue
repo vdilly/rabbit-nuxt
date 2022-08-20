@@ -1,8 +1,6 @@
 <template lang="pug">
 .template.template--page(v-if="page")
   //- Banner
-  .region--banner(v-if="bannerBlocs")
-    BlocsAuto(:blocs="bannerBlocs")
   .region--banner
     BlocsAuto(v-if="bannerBlocs", :blocs="bannerBlocs")
     BannerStack(v-else, :bloc="{ titre: page.title }")

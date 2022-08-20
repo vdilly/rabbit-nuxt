@@ -31,8 +31,8 @@ export default {
 // https://codepen.io/pwkip/pen/oGMZjb link inside link
 .teaser-blog {
   position: relative;
-  background-color: $color__page-bg;
-  border-radius: 1rem;
+  background-color: white;
+  border-radius: $bradius;
   overflow: hidden;
   box-shadow: $bshadow;
   height: 100%;
@@ -88,7 +88,7 @@ export default {
   }
   .tag {
     background-color: $color__grey;
-    border-radius: 0.5rem;
+    border-radius: $bradius;
     padding: 0.3rem 1rem;
     font-size: 1.2rem;
     line-height: 1.2;

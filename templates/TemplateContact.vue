@@ -54,16 +54,16 @@ export default {
   .main-wrapper {
     display: flex;
     box-shadow: 0 2px 4rem 0 rgb(0 0 0 / 20%);
-    border-radius: 1rem;
+    border-radius: $bradius;
     overflow: hidden;
     .right {
       width: 40rem;
       padding: 7rem 5rem;
-      background-color: $color-2;
-      color: $color-2-font;
-      h3 {
-        color: $color-2-font;
-      }
+      background-color: $color__grey;
+      // color: $color__text;
+      // h3 {
+      //   color: $color__text;
+      // }
     }
     .left {
       background-color: $color__page-bg;

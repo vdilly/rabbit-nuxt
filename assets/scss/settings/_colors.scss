@@ -19,28 +19,6 @@ $color__grey: #F3F3F3;
 
 
 // Theme Cerisier jap
-:root {
-  --color-1: #861657;
-  --color-2: #FFa69e;
-  --color-1-font: #FFFFFF;
-  --color-2-font: #2f1c1c;
-}
-
-// Theme blue
-// :root {
-//   --color-1: #3880DA;
-//   --color-2: #37d5d6;
-//   --color-1-font: #FFFFFF;
-//   --color-2-font: #000000;
-// }
-
-// Theme 3
-// :root {
-//   --color-1: #0d324d;
-//   --color-2: #7f5a83;
-//   --color-1-font: #FFFFFF;
-//   --color-2-font: #ffffff;
-// }
 
 
 // Theme cerisier jap
@@ -48,14 +26,17 @@ $color-1: var(--color-1);
 $color-1-font: var(--color-1-font);
 $color-2: var(--color-2);
 $color-2-font: var(--color-2-font);
-$gradient-1 : linear-gradient(30deg, $color-1 0%, $color-2 100%);
+$color-3: var(--color-3);
+$color-3-font: var(--color-3-font);
+
+$gradient-1 : linear-gradient(30deg, $color-2 0%, $color-3 100%);
 
 
-$color__text: #7d7e85;
-$color__title: black;
+$color__text: var(--color-text);
+$color__title: var(--color-title);
 $color__success: #95c11e;
 $color__error: #F30B2D;
 
 $color__overlay: rgba(0, 0, 0, 0.7);
 
-$color__page-bg: white;
+$color__page-bg: var(--color-page);

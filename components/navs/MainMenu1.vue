@@ -156,8 +156,8 @@ export default {
   .dropdown__sub {
     width: 15rem;
     box-shadow: 0 0 2rem rgb(0 0 0 / 10%);
-    // border-bottom-left-radius: 1rem;
-    // border-bottom-right-radius: 1rem;
+    // border-bottom-left-radius: $bradius;
+    // border-bottom-right-radius: $bradius;
     border-radius: 7px;
     border-top: solid 7px $color-1;
     overflow: hidden;

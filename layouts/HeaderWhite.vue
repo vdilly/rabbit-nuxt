@@ -26,8 +26,7 @@ export default {
 .layout-headerWhite {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  .nuxt-content {
+  main {
     flex: 1;
   }
   footer {

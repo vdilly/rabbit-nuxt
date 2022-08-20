@@ -23,15 +23,13 @@ export default {
 
 <style lang="scss">
 .bannerSBS {
-  height: 80vw;
-  max-height: 60rem;
+  height: auto;
   display: flex;
   align-items: center;
   .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: translateY(2rem);
   }
   .text {
     width: 54rem;
@@ -53,7 +51,7 @@ export default {
     flex-shrink: 0;
     max-width: 100%;
     height: auto;
-    border-radius: 1rem;
+    border-radius: $bradius;
     overflow: hidden;
     display: flex;
   }

@@ -38,7 +38,7 @@ export default {
     width: 54rem;
     background: $gradient-1;
     padding: 6rem 5rem;
-    border-radius: 1rem;
+    border-radius: $bradius;
     position: relative;
     z-index: 2;
     transform: translateX(6rem) translateY(8rem);
@@ -64,7 +64,7 @@ export default {
     flex-shrink: 0;
     max-width: 80rem;
     // width: 60rem;
-    border-radius: 1rem;
+    border-radius: $bradius;
     overflow: hidden;
     display: flex;
   }

@@ -47,11 +47,9 @@ export default {
 </script>
 <style lang="scss">
 .template.template--contact {
-  .bannerStack {
-    padding-bottom: 8rem;
-    padding-top: 4rem;
-  }
   .main-wrapper {
+    position: relative;
+    z-index: 4;
     display: flex;
     box-shadow: 0 2px 4rem 0 rgb(0 0 0 / 20%);
     border-radius: $bradius;

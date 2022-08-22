@@ -15,7 +15,7 @@ import pageMixin from "@/mixins/page/page";
 import BannerStack from "@/components/blocs/Banners/BannerStack.vue";
 import BlogPosts from "@/components/blocs/BlogPosts.vue";
 export default {
-  layout: "Decale",
+  layout: "Default",
   mixins: [pageMixin],
   computed: {
     blogPostDatas() {

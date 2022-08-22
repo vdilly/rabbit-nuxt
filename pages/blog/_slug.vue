@@ -27,7 +27,7 @@ main(v-if="page")
     //-     span Partager sur Twitter
 
   //- Post Content
-  .region--postContent.section.section--3
+  .region--postContent.section.section--grey
     Container
       CrossReading.crossreading(v-if="crossreading", :bloc="crossreading")
 </template>
@@ -40,7 +40,7 @@ import pageBuilderMixin from "@/mixins/page/pageBuilder";
 import Ariane from "@/components/navs/Ariane.vue";
 import CrossReading from "@/components/blocs/CrossReading.vue";
 export default {
-  layout: "Decale",
+  layout: "Default",
   mixins: [pageMixin, postMixin, pageBuilderMixin],
   components: { BannerBlog, BannerBlog2, Ariane, CrossReading },
   computed: {
@@ -84,5 +84,6 @@ export default {
 
 <style lang="scss">
 body.blog-slug {
+  @include layoutImmersion($decale: true);
 }
 </style>

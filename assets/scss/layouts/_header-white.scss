@@ -1,4 +1,4 @@
-& {
+@mixin headerWhite() {
   .burger-icon span {
     background-color: $color-1-font;
   }
@@ -11,4 +11,5 @@
   .dropdown-arrow {
     fill: $color-1-font;
   }
+
 }

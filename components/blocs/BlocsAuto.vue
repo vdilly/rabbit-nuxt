@@ -1,6 +1,6 @@
 <template lang="pug">
 .blocs
-  .bloc(v-for="(bloc, index) in blocs")
+  .bloc(v-for="(bloc, index) in blocs", :class="getBlocName(bloc)")
     Container.bloc-name(v-if="displayName")
       h2.h2(v-html="index + ' - ' + getBlocName(bloc) + '.vue'")
     component(:is="getBlocName(bloc)", :bloc="bloc")
@@ -45,6 +45,10 @@ export default {
     padding: 4rem;
     border: solid 1px black;
     margin-bottom: 8rem;
+    margin-top: 8rem;
+  }
+
+  .ContentSBS + .ContentSBS {
     margin-top: 8rem;
   }
 }

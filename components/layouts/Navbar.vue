@@ -31,7 +31,7 @@ $navbar-bshadow: none;
 $navbar-scrolled-bshadow: 0 2px 20px 0 rgb(0 0 0 / 15%); // none - $bshadow
 
 .navbar {
-  background-color: $color__page-bg;
+  background-color: transparent;
   z-index: $z-header;
   position: $navbar-position;
   width: 100%;

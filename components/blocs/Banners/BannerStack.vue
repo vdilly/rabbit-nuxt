@@ -1,5 +1,5 @@
 <template lang="pug">
-.bannerStack.gradient.decalage(v-if="bloc")
+.bannerStack(v-if="bloc")
   img.img(:src="bloc.image.full.src", v-if="bloc.image")
   Container
     h1.h1(v-html="bloc.titre", v-if="bloc.titre")

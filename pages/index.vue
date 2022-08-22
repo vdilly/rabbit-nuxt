@@ -52,15 +52,15 @@ export default {
 
 <style lang="scss">
 body.index {
+  .header {
+    @include headerWhite();
+  }
   .navbar {
     // background: $gradient-1;
     background: transparent;
   }
   main {
     padding-top: 0;
-  }
-  .header {
-    @import "@/assets/scss/headers/_header-white";
   }
 }
 </style>

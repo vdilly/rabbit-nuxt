@@ -18,8 +18,9 @@
         span Scroll
         svg.icon
           use(xlink:href="#arrow")
-  Wave2.wave-gradient(fill="url(#grad1)")
-  Wave2
+  template(v-if="theme.cutType == 'wave'")
+    Wave2.wave-gradient(fill="url(#grad1)")
+    Wave2
 </template>
 <script>
 import smoothScroll from "@/utils/smoothScroll";

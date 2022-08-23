@@ -1,6 +1,6 @@
 <template lang="pug">
 footer.footer
-  Wave
+  Wave(v-if="theme.wavy")
   Container
     h2.h2 Footer
     ul.menu

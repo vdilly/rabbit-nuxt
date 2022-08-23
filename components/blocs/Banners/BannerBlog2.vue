@@ -13,12 +13,16 @@
       .categories(v-if="bloc.categories")
         span(v-for="category in bloc.categories", v-html="category.name")
       h1.h1(v-html="bloc.titre", v-if="bloc.titre")
+      ul.tags(v-if="bloc.tags")
+        li.item(v-for="(tag, index) in bloc.tags", :key="index")
+          NuxtLink.tag(v-html="tag.name", :to="`/blog/tag/${tag.id}`")
       .author(v-if="author")
         img.avatar(v-if="author.avatar", :src="author.avatar.logo.src")
         .text
           .name(v-html="author.nom_a_afficher", v-if="author.nom_a_afficher")
           //- .role(v-html="author.role", v-if="author.role")
           .date(v-html="bloc.date", v-if="bloc.date")
+  Wave2(v-if="theme.cutType == 'wave'")
 </template>
 <script>
 export default {
@@ -33,27 +37,10 @@ export default {
 
 <style lang="scss">
 .bannerBlog2 {
-  padding-top: 18rem;
-  padding-bottom: 20rem;
   position: relative;
-  background: $gradient-1;
-  &:after {
-    background-color: white;
-    content: "";
-    position: absolute;
-    bottom: -0.1rem;
-    right: 0;
-    width: 100%;
-    height: 7rem;
-    clip-path: polygon(0 100%, 100% 100%, 100% 0);
-    // transform: translateY(100%);
-    z-index: 1;
-  }
   .container {
     position: relative;
     z-index: 3;
-    // margin-bottom: 4rem;
-    // background-color: $color__page-bg;
     display: flex;
     align-items: center;
     .left {
@@ -84,15 +71,16 @@ export default {
     }
   }
   .h1 {
+    line-height: 1.1;
     font-size: 7rem;
     font-weight: 600;
-    color: $color-1-font;
+    // color: $color-1-font;
   }
   .author {
     display: flex;
     align-items: center;
     margin-top: 2rem;
-    color: $color-1-font;
+    // color: $color-1-font;
   }
   .avatar {
     border-radius: 50rem;
@@ -103,17 +91,50 @@ export default {
   .text {
     display: flex;
     flex-direction: column;
-    color: $color-1-font;
+    // color: $color-1-font;
   }
   .name {
     letter-spacing: -0.02em;
     font-weight: 700;
-    color: $color-1-font;
+    // color: $color-1-font;
     line-height: 1;
   }
   .date {
     font-size: 1.3rem;
     opacity: 0.8;
+  }
+}
+
+// Tags
+
+.tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: $m1;
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
+  margin-top: 2rem;
+  margin-left: -1rem;
+  .item {
+    pointer-events: all;
+    position: relative;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+  }
+  .tag {
+    background-color: $color__grey;
+    border-radius: $bradius;
+    padding: 0.3rem 1rem;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: color 0.25s ease, background-color 0.25s ease;
+    &:hover {
+      background-color: darken($color__grey, 50);
+      color: $color-1-font;
+    }
   }
 }
 

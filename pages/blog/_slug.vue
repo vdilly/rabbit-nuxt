@@ -68,6 +68,7 @@ export default {
       return {
         titre: this.page?.title,
         categories: this.page?.categories,
+        tags: this.page?.tags,
         image: this.thumbnail,
         author: this.page?.author,
         date: this.page?.date,

@@ -8,6 +8,7 @@
       .description(v-html="bloc.description", v-if="bloc.description")
       Btn.gradient(v-if="bloc.bouton", :link="bloc.bouton")
         span(v-html="bloc.bouton.title")
+  Wave2(v-if="theme.cutType == 'wave'")
 </template>
 
 <script>

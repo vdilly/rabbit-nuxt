@@ -55,6 +55,9 @@ Vue.component("FormInfo", FormInfo);
 Vue.mixin({
   data() {
     return {
+      theme: {
+        cutType: "wave"
+      },
       trads: {
         "pending": "En attente",
         "refused": "Refusée",

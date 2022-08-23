@@ -32,7 +32,7 @@ export default {
     flex: 1;
   }
   footer {
-    margin-top: 5rem;
+    // margin-top: 5rem;
   }
 }
 .nuxt-content.page {

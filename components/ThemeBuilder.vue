@@ -47,6 +47,16 @@
         FormGroup(label="Color 3 font")
           FormInput(v-model="color3font")
         Verte(v-model="color3font", model="hex", menuPosition="top")
+      h3 Variables
+      .wrapper
+        FormGroup(label="Cut Type (wave, cut)")
+          FormInput(v-model="cutType")
+      .wrapper
+        FormGroup(label="Bradius")
+          FormInput(v-model="bradius")
+      .wrapper
+        FormGroup(label="Bradius Bt")
+          FormInput(v-model="bradiusBtn")
 </template>
 <script>
 import Verte from "verte";
@@ -56,7 +66,7 @@ export default {
   data() {
     return {
       reduced: true,
-      visible: false,
+      visible: true,
       color1: null,
       colorPage: null,
       colorText: null,
@@ -67,6 +77,9 @@ export default {
       color2: null,
       color3: null,
       root: null,
+      bradius: null,
+      bradiusBtn: null,
+      cutType: null,
     };
   },
   methods: {
@@ -76,8 +89,9 @@ export default {
     display() {
       this.visible = true;
     },
-    setValue(index, hex) {
-      this.root.style.setProperty("--color-" + index, hex);
+    setValue(property, value) {
+      console.log(property, value);
+      this.root.style.setProperty(property, value);
     },
     getValues() {
       if (!window) return null;
@@ -91,44 +105,61 @@ export default {
       this.color2font = styles.getPropertyValue("--color-2-font").trim();
       this.color3 = styles.getPropertyValue("--color-3").trim();
       this.color3font = styles.getPropertyValue("--color-3-font").trim();
+      this.bradiusBtn = styles.getPropertyValue("--bradius-btn").trim();
+      this.bradius = styles.getPropertyValue("--bradius").trim();
+      this.cutType = this.theme.cutType;
     },
   },
   watch: {
     colorPage: function (value, old) {
       if (!window) return;
-      this.setValue("page", value);
+      this.setValue("--color-page", value);
     },
     colorText: function (value, old) {
       if (!window) return;
-      this.setValue("text", value);
+      this.setValue("--color-text", value);
     },
     colorTitle: function (value, old) {
       if (!window) return;
-      this.setValue("title", value);
+      this.setValue("--color-title", value);
     },
     color1: function (value, old) {
       if (!window) return;
-      this.setValue(1, value);
+      this.setValue("--color-1", value);
     },
     color2: function (value, old) {
       if (!window) return;
-      this.setValue(2, value);
+      this.setValue("--color-2", value);
     },
     color3: function (value, old) {
       if (!window) return;
-      this.setValue(3, value);
+      this.setValue("--color-3", value);
     },
     color1font: function (value, old) {
       if (!window) return;
-      this.setValue("1-font", value);
+      this.setValue("--color-1-font", value);
     },
     color2font: function (value, old) {
       if (!window) return;
-      this.setValue("2-font", value);
+      this.setValue("--color-2-font", value);
     },
     color3font: function (value, old) {
       if (!window) return;
-      this.setValue("3-font", value);
+      this.setValue("--color-3-font", value);
+    },
+    cutType: function (value, old) {
+      if (!window) return;
+      document.querySelector("body").classList.remove(old);
+      document.querySelector("body").classList.add(value);
+    },
+    bradius: function (value, old) {
+      console.log(value);
+      if (!window) return;
+      this.setValue("--bradius", value);
+    },
+    bradiusBtn: function (value, old) {
+      if (!window) return;
+      this.setValue("--bradius-btn", value);
     },
   },
   mounted() {

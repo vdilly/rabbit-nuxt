@@ -144,38 +144,36 @@ export default {
 }
 
 // Theme cut
-.bannerFull {
-  @if $cutType == cut {
-    .container {
-      margin-bottom: 23rem;
-    }
-    .scrollDown {
-      bottom: calc(14rem + 1vw);
-    }
-    &:after {
-      background-color: $color__page-bg;
-      content: "";
-      position: absolute;
-      bottom: -0.1rem;
-      right: 0;
-      width: 100%;
-      height: 7rem;
-      clip-path: polygon(0 100%, 100% 100%, 100% 0);
-      // transform: translateY(100%);
-      z-index: 5;
-    }
-    &:before {
-      background-color: $color-1;
-      content: "";
-      position: absolute;
-      bottom: -0.1rem;
-      right: -0.1rem;
-      width: 100%;
-      height: 7rem;
-      clip-path: polygon(0 100%, 100% 100%, 100% 0);
-      transform: rotate(-1deg);
-      z-index: 4;
-    }
+body.cut .bannerFull {
+  .container {
+    margin-bottom: 23rem;
+  }
+  .scrollDown {
+    bottom: calc(14rem + 1vw);
+  }
+  &:after {
+    background-color: $color__page-bg;
+    content: "";
+    position: absolute;
+    bottom: -0.1rem;
+    right: 0;
+    width: 100%;
+    height: 7rem;
+    clip-path: polygon(0 100%, 100% 100%, 100% 0);
+    // transform: translateY(100%);
+    z-index: 5;
+  }
+  &:before {
+    background-color: $color-1;
+    content: "";
+    position: absolute;
+    bottom: -0.1rem;
+    right: -0.1rem;
+    width: 100%;
+    height: 7rem;
+    clip-path: polygon(0 100%, 100% 100%, 100% 0);
+    transform: rotate(-1deg);
+    z-index: 4;
   }
 }
 </style>

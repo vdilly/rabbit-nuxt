@@ -4,7 +4,7 @@ const pageMixin = {
   head() {
     return {
       bodyAttrs: {
-        class: [this.window.windowScrolled ? 'js-scrolled ' + this.window.scrollDirection : '', this.$route.name ? this.$route.name.toLowerCase() : "", this.theme.hasWave ? 'wavy' : ""]
+        class: [this.window.windowScrolled ? 'js-scrolled ' + this.window.scrollDirection : '', this.$route.name ? this.$route.name.toLowerCase() : "", this.theme.cutType]
       }
     }
   },

@@ -53,7 +53,7 @@ $navbar-scrolled-bshadow: 0 2px 20px 0 rgb(0 0 0 / 15%); // none - $bshadow
 body.js-scrolled .navbar {
   box-shadow: $navbar-scrolled-bshadow;
   height: $navbar-height-scrolled;
-  background-color: white !important;
+  background-color: $color__page-bg !important;
   @import "@/assets/scss/headers/_header-black";
 }
 @if $navbar-disappear-onscroll {

@@ -54,6 +54,15 @@ export default {
 body.index {
   .header {
     @include headerWhite();
+
+    // Force white car bannerfull
+    .label--main,
+    .label--trigger {
+      color: white;
+    }
+    .dropdown-arrow {
+      fill: white;
+    }
   }
   .navbar {
     // background: $gradient-1;

@@ -121,6 +121,16 @@ export default {
     fill: white;
   }
 }
+.btn.color-1-font {
+  background-color: $color-1-font;
+  border-color: $color-1-font;
+  .btn__text {
+    color: $color-1-font;
+  }
+  .icon {
+    fill: $color-1-font;
+  }
+}
 
 // Disabled
 .btn[disabled] {

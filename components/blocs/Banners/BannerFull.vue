@@ -89,10 +89,10 @@ export default {
   .h1 {
     // font-weight: 500;
     font-size: 7rem;
-    color: white;
+    color: $color-1-font;
   }
   .description {
-    color: white;
+    color: $color-1-font;
     font-size: 2rem;
     font-weight: 600;
     margin-top: 1rem;
@@ -140,6 +140,42 @@ export default {
   .wave-gradient {
     bottom: 0rem;
     transform: translateX(-50%) translateY(40%) translateY(3rem) rotate(-0.5deg);
+  }
+}
+
+// Theme cut
+.bannerFull {
+  @if $cutType == cut {
+    .container {
+      margin-bottom: 23rem;
+    }
+    .scrollDown {
+      bottom: calc(14rem + 1vw);
+    }
+    &:after {
+      background-color: $color__page-bg;
+      content: "";
+      position: absolute;
+      bottom: -0.1rem;
+      right: 0;
+      width: 100%;
+      height: 7rem;
+      clip-path: polygon(0 100%, 100% 100%, 100% 0);
+      // transform: translateY(100%);
+      z-index: 5;
+    }
+    &:before {
+      background-color: $color-1;
+      content: "";
+      position: absolute;
+      bottom: -0.1rem;
+      right: -0.1rem;
+      width: 100%;
+      height: 7rem;
+      clip-path: polygon(0 100%, 100% 100%, 100% 0);
+      transform: rotate(-1deg);
+      z-index: 4;
+    }
   }
 }
 </style>

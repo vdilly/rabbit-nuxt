@@ -59,7 +59,7 @@ $transition-m: 0.5s ease;
 $transition-l: 0.8s ease;
 $bshadow: 0 0 5rem rgba(0, 0, 0, 0.2);
 
-$bradius: 1rem;
-$bradius-btn: 20rem;
+$bradius: var(--bradius);
+$bradius-btn: var(--bradius-btn);
 
 $cutType: cut; // cut, wave, none

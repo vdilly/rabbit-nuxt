@@ -56,7 +56,7 @@ Vue.mixin({
   data() {
     return {
       theme: {
-        cutType: "wave"
+        cutType: "cut"
       },
       trads: {
         "pending": "En attente",

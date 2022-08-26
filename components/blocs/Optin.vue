@@ -35,7 +35,10 @@
         //- Actions
         .form__actions.align-center
           slot(name="cancel")
-          Btn.white.ghost.form__send(@click="validate = true", type="submit")
+          Btn.color-1-font.ghost.form__send(
+            @click="validate = true",
+            type="submit"
+          )
             span(v-html="bloc && bloc.bouton ? bloc.bouton : 'Envoyer'")
       template(v-if="formState == 'success'")
         .success(
@@ -110,7 +113,7 @@ export default {
   .titre {
     text-align: center;
     margin-bottom: 6rem;
-    color: white;
+    color: $color-1-font;
   }
 }
 
@@ -125,7 +128,7 @@ export default {
     margin-left: 2rem;
   }
   .form__field {
-    background-color: white;
+    background-color: $color-1-font;
     border-color: transparent;
     border-radius: 20rem;
     padding: 1.5rem 3rem;
@@ -140,7 +143,7 @@ export default {
   }
   .success {
     background-color: transparent;
-    color: white;
+    color: $color-1-font;
     font-size: 1.4rem;
     padding-bottom: 0;
   }

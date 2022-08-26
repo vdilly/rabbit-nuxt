@@ -1,31 +1,31 @@
 <template lang="pug">
-  div.dropdown(@mouseenter="openSubmenu($event)", @mouseleave="closeSubmenu($event)")
-    div.dropdown__trigger
-      slot(name="trigger")
-    transition(name="slideIn")
-      div.dropdown__sub(v-show="submenuOpen")
-        slot
+.dropdown(@mouseenter="openSubmenu($event)", @mouseleave="closeSubmenu($event)")
+  .dropdown__trigger
+    slot(name="trigger")
+  transition(name="slideIn")
+    .dropdown__sub(v-show="submenuOpen")
+      slot
 </template>
 
 <script>
 export default {
   data() {
     return {
-      submenuOpen: false
+      submenuOpen: false,
     };
   },
   methods: {
-    openSubmenu: function(e, index) {
+    openSubmenu: function (e, index) {
       e.stopPropagation();
       this.$emit("open");
       this.submenuOpen = true;
     },
-    closeSubmenu: function(e) {
+    closeSubmenu: function (e) {
       e.stopPropagation();
       this.$emit("close");
       this.submenuOpen = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -42,7 +42,7 @@ export default {
     transform: translate(-50%, 100%);
     z-index: 3;
     box-shadow: $bshadow;
-    background-color: white;
+    background-color: $color__page-bg;
 
     & > * {
       white-space: nowrap;

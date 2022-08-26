@@ -73,8 +73,12 @@
   .section-title {
     font-size: 5rem;
     line-height: 1.2;
-    color: $color-1;
+    color: $color__title;
     text-align: center;
+
+    &--small {
+      font-size: 3.5rem;
+    }
   }
 
   .section-description {

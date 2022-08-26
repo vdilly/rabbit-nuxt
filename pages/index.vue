@@ -62,5 +62,10 @@ body.index {
   main {
     padding-top: 0;
   }
+
+  // Sections
+  .section.blogPosts {
+    background-color: $color__grey;
+  }
 }
 </style>

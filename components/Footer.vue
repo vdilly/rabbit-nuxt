@@ -1,10 +1,9 @@
 <template lang="pug">
 footer.footer
-  Wave(v-if="theme.wavy")
+  Wave(v-if="theme.cutType == 'wave'")
   Container
     h2.h2 Footer
     ul.menu
-      li
   ThemeBuilder
 </template>
 <script>

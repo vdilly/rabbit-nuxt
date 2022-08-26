@@ -1,8 +1,10 @@
 <template lang="pug">
-.contentSBS(:class="inverted ? 'inverted' : null")
+.contentSBS(:class="inverted ? 'inverted' : null", v-if="bloc")
   Container.container--small
     .image(v-if="bloc.image")
       img(:src="bloc.image.mobile.src")
+    svg.icon(v-if="bloc.icone")
+      use(:xlink:href="`#${bloc.icone}`")
     .text
       h2.h2(v-html="bloc.titre", v-if="bloc.titre")
       .description(v-html="bloc.description", v-if="bloc.description")
@@ -15,7 +17,7 @@ export default {
   props: ["bloc"],
   computed: {
     inverted() {
-      return this.bloc.alignement_image == "right";
+      return this.bloc?.alignement_image == "right";
     },
   },
 };
@@ -58,6 +60,31 @@ export default {
   }
   .image {
     margin-left: 5rem;
+  }
+}
+
+// Mode column
+.contentSBS.column {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .icon {
+    height: 4rem;
+    width: 4rem;
+    fill: $color-1;
+  }
+  .h2 {
+    font-size: 2rem;
+    margin-top: 2rem;
+    font-weight: 600;
+    // color: $color__title-light;
+    color: $color-1;
+  }
+  .description {
+    margin-top: 1rem;
+    line-height: 1.2;
   }
 }
 </style>

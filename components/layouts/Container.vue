@@ -33,5 +33,12 @@
     padding-left: 5rem;
     padding-right: 5rem;
   }
+  &--xs {
+    width: 64rem;
+    @include RWD(desktop) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 </style>

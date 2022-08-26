@@ -26,5 +26,6 @@ export default {
 body.showcase-blocs {
   transform-origin: center 0;
   transform: scale(0.6);
+  @include layoutImmersion();
 }
 </style>

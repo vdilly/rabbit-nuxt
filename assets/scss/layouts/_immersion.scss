@@ -15,26 +15,36 @@
 
   // Banners
   .bannerStack,
-  .bannerSBS, 
+  .bannerSBS,
   .bannerBlog2 {
     background: $gradient-1;
     padding-bottom: 12rem;
     position: relative;
 
     .h1,
-    .description, .author, .text, .name {
+    .description,
+    .author,
+    .text,
+    .name,
+    .ariane__item {
       color: $color-1-font;
     }
 
-    @if $cutType == wave {
-      .wave{
+    .ariane .icon {
+      fill: $color-1-font;
+    }
+
+    @if $cutType ==wave {
+      .wave {
         min-width: 192rem;
         width: 100vw;
         left: 0;
         position: absolute;
         bottom: -20rem;
       }
-    }@else if $cutType == cut {
+    }
+
+    @else if $cutType ==cut {
       &:after {
         background-color: $color__page-bg;
         content: "";
@@ -51,7 +61,7 @@
     }
   }
 
-  .bannerBlog2{
+  .bannerBlog2 {
     padding-top: 18rem;
     padding-bottom: 20rem;
   }
@@ -73,17 +83,19 @@
   }
 
   @if($decale) {
-    .bannerBlog2{
-      @if $cutType == wave {
+    .bannerBlog2 {
+      @if $cutType ==wave {
         padding-bottom: 30rem;
         margin-bottom: -20rem;
       }
     }
+
     .bannerStack,
     .bannerSBS {
       padding-bottom: 40rem;
       margin-bottom: -30rem;
-      @if $cutType == wave {
+
+      @if $cutType ==wave {
         padding-bottom: 45rem;
         margin-bottom: -35rem;
       }

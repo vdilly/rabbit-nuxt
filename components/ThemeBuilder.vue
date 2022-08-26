@@ -90,7 +90,6 @@ export default {
       this.visible = true;
     },
     setValue(property, value) {
-      console.log(property, value);
       this.root.style.setProperty(property, value);
     },
     getValues() {
@@ -149,8 +148,7 @@ export default {
     },
     cutType: function (value, old) {
       if (!window) return;
-      document.querySelector("body").classList.remove(old);
-      document.querySelector("body").classList.add(value);
+      this.$store.commit("theme/setCutType", value);
     },
     bradius: function (value, old) {
       console.log(value);

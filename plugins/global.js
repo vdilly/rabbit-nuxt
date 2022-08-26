@@ -55,9 +55,6 @@ Vue.component("FormInfo", FormInfo);
 Vue.mixin({
   data() {
     return {
-      theme: {
-        cutType: "cut"
-      },
       trads: {
         "pending": "En attente",
         "refused": "Refusée",
@@ -73,6 +70,6 @@ Vue.mixin({
   computed: {
     ...mapState("window", ["window"]),
     ...mapState("device", ["device"]),
-    // ...mapState("siteLoad", ["siteLoaded", "siteLoad"]),
+    ...mapState("theme", ["theme"]),
   },
 });

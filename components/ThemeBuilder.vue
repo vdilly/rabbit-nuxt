@@ -12,6 +12,14 @@
     .form--material(style="margin-top: 2rem")
       .form__info Refresh la page pour reset les couleurs
       .wrapper
+        FormGroup(label="Theme")
+          FormSelect(v-model="pickedTheme")
+            option(
+              v-for="(theme, index) in themes",
+              v-html="theme.name",
+              :value="index"
+            )
+      .wrapper
         FormGroup(label="Color page")
           FormInput(v-model="colorPage")
         Verte(v-model="colorPage", model="hex", menuPosition="top")
@@ -61,8 +69,10 @@
 <script>
 import Verte from "verte";
 import "verte/dist/verte.css";
+import FormGroup from "./form/FormGroup.vue";
+import FormSelect from "./form/FormSelect.vue";
 export default {
-  components: { Verte },
+  components: { Verte, FormGroup, FormSelect },
   data() {
     return {
       reduced: true,
@@ -80,6 +90,99 @@ export default {
       bradius: null,
       bradiusBtn: null,
       cutType: null,
+      pickedTheme: null,
+      themes: [
+        {
+          name: "cerisier",
+          colorPage: "#ffffff",
+          colorText: "#7d7e85",
+          colorTitle: "#000000",
+          color1: "#861657",
+          color2: "#861657",
+          color3: "#FFa69e",
+          color1Font: "#FFFFFF",
+          color2Font: "#FFFFFF",
+          color3Font: "#2f1c1c",
+          bradius: "1rem",
+          bradiusBtn: "20rem",
+          cutType: "wave",
+        },
+        {
+          name: "metal",
+          colorPage: "#ffffff",
+          colorText: "#7d7e85",
+          colorTitle: "#000000",
+          color1: "#ffb517",
+          color2: "#2a373b",
+          color3: "#99a7b7",
+          color1Font: "#FFFFFF",
+          color2Font: "#FFFFFF",
+          color3Font: "#2f1c1c",
+          bradius: ".5rem",
+          bradiusBtn: ".5rem",
+          cutType: "cut",
+        },
+        {
+          name: "small business",
+          colorPage: "#ffffff",
+          colorText: "#7d7e85",
+          colorTitle: "#000000",
+          color1: "#5196e9",
+          color2: "#5196e9",
+          color3: "#37d5d6",
+          color1Font: "#FFFFFF",
+          color2Font: "#FFFFFF",
+          color3Font: "#2f1c1c",
+          bradius: "1rem",
+          bradiusBtn: "20rem",
+          cutType: "wave",
+        },
+        {
+          name: "Big Log",
+          colorPage: "#ffffff",
+          colorText: "#7d7e85",
+          colorTitle: "#000000",
+          color1: "#772F1A",
+          color2: "#772F1A",
+          color3: "#F2A65A",
+          color1Font: "#FFFFFF",
+          color2Font: "#FFFFFF",
+          color3Font: "#2f1c1c",
+          bradius: "2rem",
+          bradiusBtn: "20rem",
+          cutType: "wave",
+        },
+        {
+          name: "Leaf",
+          colorPage: "#ffffff",
+          colorText: "#7d7e85",
+          colorTitle: "#000000",
+          color1: "#6dad2e",
+          color2: "#6dad2e",
+          color3: "#e0f127",
+          color1Font: "#FFFFFF",
+          color2Font: "#FFFFFF",
+          color3Font: "#2f1c1c",
+          bradius: "1rem",
+          bradiusBtn: "20rem",
+          cutType: "wave",
+        },
+        {
+          name: "cloudy",
+          colorPage: "#ffffff",
+          colorText: "#7d7e85",
+          colorTitle: "#3a3b40",
+          color1: "#6563dd",
+          color2: "#9795EF",
+          color3: "#F9C5D1",
+          color1Font: "#FFFFFF",
+          color2Font: "#FFFFFF",
+          color3Font: "#2f1c1c",
+          bradius: "1rem",
+          bradiusBtn: "20rem",
+          cutType: "wave",
+        },
+      ],
     };
   },
   methods: {
@@ -159,6 +262,24 @@ export default {
       if (!window) return;
       this.setValue("--bradius-btn", value);
     },
+    pickedTheme: function (value, old) {
+      if (value == null) return;
+      let theme = this.themes[value];
+      if (!theme || !theme.name) return null;
+      this.setValue("--color-page", theme.colorPage);
+      this.setValue("--color-text", theme.colorText);
+      this.setValue("--color-title", theme.colorTitle);
+      this.setValue("--color-1", theme.color1);
+      this.setValue("--color-2", theme.color2);
+      this.setValue("--color-3", theme.color3);
+      this.setValue("--color-1-font", theme.color1Font);
+      this.setValue("--color-2-font", theme.color2Font);
+      this.setValue("--color-3-font", theme.color3Font);
+      this.setValue("--bradius", theme.bradius);
+      this.setValue("--bradius-btn", theme.bradiusBtn);
+      this.$store.commit("theme/setCutType", theme.cutType);
+      this.getValues();
+    },
   },
   mounted() {
     // Get values
@@ -215,6 +336,10 @@ export default {
 
   .wrapper {
     position: relative;
+    margin-bottom: 0.5rem;
+    .form__group {
+      margin-bottom: 0 !important;
+    }
     .verte {
       position: absolute;
       top: 1.5rem;
@@ -266,18 +391,21 @@ export default {
     }
     .form__field {
       height: 4rem;
+      padding-top: 1.3rem;
+      padding-bottom: 0.5rem;
     }
-    .form__group {
-      margin-bottom: 0.5rem;
+    .actions {
+      top: 1rem;
+      right: 1rem;
     }
 
     .inner {
       width: 30rem;
       box-shadow: $bshadow;
       height: auto;
-      padding: 2rem;
+      padding: 4rem 2rem;
       padding-left: 5rem;
-      padding-bottom: 0;
+      padding-bottom: 1rem;
     }
   }
 }

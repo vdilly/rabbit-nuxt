@@ -76,7 +76,7 @@ export default {
   data() {
     return {
       reduced: true,
-      visible: true,
+      visible: false,
       color1: null,
       colorPage: null,
       colorText: null,

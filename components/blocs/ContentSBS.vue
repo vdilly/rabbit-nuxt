@@ -1,15 +1,16 @@
 <template lang="pug">
 .contentSBS(:class="inverted ? 'inverted' : null", v-if="bloc")
   Container.container--small
-    .image(v-if="bloc.image")
-      img(:src="bloc.image.mobile.src")
-    svg.icon(v-if="bloc.icone")
-      use(:xlink:href="`#${bloc.icone}`")
-    .text
-      h2.h2(v-html="bloc.titre", v-if="bloc.titre")
-      .description(v-html="bloc.description", v-if="bloc.description")
-      Btn.core(v-if="bloc.bouton", :link="bloc.bouton")
-        span(v-html="bloc.bouton.title")
+    .content
+      .image(v-if="bloc.image")
+        img(:src="bloc.image.mobile.src")
+      svg.icon(v-if="bloc.icone")
+        use(:xlink:href="`#${bloc.icone}`")
+      .text
+        h2.h2(v-html="bloc.titre", v-if="bloc.titre")
+        .description(v-html="bloc.description", v-if="bloc.description")
+        Btn.core(v-if="bloc.bouton", :link="bloc.bouton")
+          span(v-html="bloc.bouton.title")
 </template>
 
 <script>
@@ -26,6 +27,8 @@ export default {
 <style lang="scss">
 .contentSBS {
   .container {
+  }
+  .content {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -55,7 +58,7 @@ export default {
   }
 }
 .contentSBS.inverted {
-  .container {
+  .content {
     flex-direction: row-reverse;
   }
   .image {
@@ -65,7 +68,7 @@ export default {
 
 // Mode column
 .contentSBS.column {
-  .container {
+  .content {
     flex-direction: column;
     align-items: center;
     text-align: center;

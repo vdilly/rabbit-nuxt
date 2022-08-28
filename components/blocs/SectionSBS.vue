@@ -1,8 +1,8 @@
 <template lang="pug">
 .sectionSBS.section.section-big
-  Container.container--small
+  Container.container--xs
     h2.h2.section-title(v-html="bloc.titre", v-if="bloc.titre")
-    .section-description.description(
+    .section-description.description.hr-top(
       v-html="bloc.description",
       v-if="bloc.description"
     )
@@ -13,7 +13,7 @@
       :key="index",
       :class="index % 2 == 0 ? '' : 'inverted'"
     )
-  Container.container--small
+  Container.container--small.align-center
     Btn.core(v-if="bloc.bouton", :link="bloc.bouton")
       span(v-html="bloc.bouton.title")
 </template>
@@ -35,26 +35,43 @@ export default {
 
 <style lang="scss">
 .sectionSBS {
+  .section-title {
+  }
+  .section-description {
+    margin-top: 6rem;
+    &:before {
+      top: -1.5rem;
+    }
+  }
   .section-content {
-    // margin-top: -;
+    // margin-top: 10rem !important;
   }
   .contentSBS {
     margin-top: 8rem;
-    .container {
+    .content {
       justify-content: center;
     }
     .h2 {
       font-size: 2.5rem;
+      color: $color-1;
     }
     .description {
-      margin-top: 2rem;
+      margin-top: 4rem;
     }
     .text {
-      width: 45rem;
+      width: 40rem;
     }
     .image {
       width: 30rem;
+      margin-right: 8rem;
     }
+    &.inverted .image {
+      margin-right: 0;
+      margin-left: 8rem;
+    }
+  }
+  .container.align-center {
+    margin-top: 8rem;
   }
 }
 </style>

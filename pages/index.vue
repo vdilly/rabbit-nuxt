@@ -76,5 +76,28 @@ body.index {
   .section.blogPosts {
     background-color: $color__grey;
   }
+
+  // Sectionn SBS
+  // .sectionSBS {
+  //   background: $gradient-1;
+  //   color: rgba(white, 0.8);
+  //   .section-title {
+  //     color: $color-1;
+  //   }
+  //   .contentSBS {
+  //     margin: 4rem !important;
+  //     // .content {
+  //     //   border-radius: $bradius;
+  //     //   padding: 8rem 4rem;
+  //     //   background: $color-3;
+  //     // }
+  //     // .image {
+  //     //   margin-right: 4rem;
+  //     // }
+  //     // &.ivenrted .image {
+  //     //   margin-left: 4rem;
+  //     // }
+  //   }
+  // }
 }
 </style>

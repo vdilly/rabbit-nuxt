@@ -17,6 +17,7 @@ import ContentSBS from "@/components/blocs/ContentSBS.vue";
 import SectionSBS from "@/components/blocs/SectionSBS.vue";
 import Optin from "@/components/blocs/Optin.vue";
 import ArgumentList from "@/components/blocs/ArgumentList.vue";
+import Trombi from "@/components/blocs/Trombi.vue";
 export default {
   props: ["blocs", "displayName"],
   components: {
@@ -31,6 +32,7 @@ export default {
     LogoList,
     LogoSlider,
     ArgumentList,
+    Trombi,
   },
   methods: {
     getBlocName(bloc) {

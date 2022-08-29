@@ -1,7 +1,7 @@
 <template lang="pug">
 .argumentList.section
   Container.container--xs
-    h2.section-title.section-title--small(
+    h2.section-title.section-title--small.hr-bot(
       v-html="bloc.titre",
       v-if="bloc.titre"
     )

@@ -75,7 +75,7 @@ export default {
   components: { Verte, FormGroup, FormSelect },
   data() {
     return {
-      reduced: true,
+      reduced: false,
       visible: false,
       color1: null,
       colorPage: null,
@@ -316,14 +316,21 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  height: 100%;
-  width: 100%;
   z-index: 9999;
-  background-color: rgba(black, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background-color: transparent;
+  height: auto;
+  width: auto;
+  top: unset;
+  left: unset;
+  transform-origin: bottom right;
+  // transform: scale(0.8);
+  transform: none;
+  bottom: 2rem;
+  right: 2rem;
 
   .inner {
     height: auto;
@@ -371,41 +378,33 @@ export default {
   }
 
   // Réduit
-  &.reduced {
-    background-color: transparent;
+  .h3 {
+    font-size: 1.6rem;
+  }
+  .form__info {
+    display: none;
+  }
+  .form__field {
+    height: 4rem !important;
+    padding-top: 1.3rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  .actions {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .inner {
+    width: 30rem;
+    box-shadow: $bshadow;
     height: auto;
-    width: auto;
-    top: unset;
-    left: unset;
-    transform-origin: bottom right;
-    // transform: scale(0.8);
-    transform: none;
-    bottom: 2rem;
-    right: 2rem;
-
-    .h3 {
-      font-size: 1.6rem;
-    }
-    .form__info {
+    padding: 4rem 2rem;
+    padding-left: 5rem;
+    padding-bottom: 1rem;
+  }
+  &.reduced {
+    .form--material {
       display: none;
-    }
-    .form__field {
-      height: 4rem;
-      padding-top: 1.3rem;
-      padding-bottom: 0.5rem;
-    }
-    .actions {
-      top: 1rem;
-      right: 1rem;
-    }
-
-    .inner {
-      width: 30rem;
-      box-shadow: $bshadow;
-      height: auto;
-      padding: 4rem 2rem;
-      padding-left: 5rem;
-      padding-bottom: 1rem;
     }
   }
 }

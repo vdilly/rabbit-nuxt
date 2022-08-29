@@ -14,13 +14,13 @@ main(v-if="page")
     .container.main-rte.rte(v-else, v-html="page.content")
 
     //- Spé hp en dur
-    .container.rte
-      h2 Pages
-      .page(v-for="(page, index) in pages") 
-        a(v-html="page.title", :href="'/' + page.slug")
-      h2 Posts
-      .page(v-for="(post, index) in posts") 
-        a(v-html="post.title", :href="'/blog/' + post.slug")
+    //- .container.rte
+    //-   h2 Pages
+    //-   .page(v-for="(page, index) in pages") 
+    //-     a(v-html="page.title", :href="'/' + page.slug")
+    //-   h2 Posts
+    //-   .page(v-for="(post, index) in posts") 
+    //-     a(v-html="post.title", :href="'/blog/' + post.slug")
 
   //- Post Content
   .region--postContent(v-if="postContentBlocs")
@@ -77,27 +77,8 @@ body.index {
     background-color: $color__grey;
   }
 
-  // Sectionn SBS
-  // .sectionSBS {
-  //   background: $gradient-1;
-  //   color: rgba(white, 0.8);
-  //   .section-title {
-  //     color: $color-1;
-  //   }
-  //   .contentSBS {
-  //     margin: 4rem !important;
-  //     // .content {
-  //     //   border-radius: $bradius;
-  //     //   padding: 8rem 4rem;
-  //     //   background: $color-3;
-  //     // }
-  //     // .image {
-  //     //   margin-right: 4rem;
-  //     // }
-  //     // &.ivenrted .image {
-  //     //   margin-left: 4rem;
-  //     // }
-  //   }
-  // }
+  footer {
+    margin-top: 0;
+  }
 }
 </style>

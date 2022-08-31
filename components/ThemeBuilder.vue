@@ -254,7 +254,6 @@ export default {
       this.$store.commit("theme/setCutType", value);
     },
     bradius: function (value, old) {
-      console.log(value);
       if (!window) return;
       this.setValue("--bradius", value);
     },
@@ -339,6 +338,9 @@ export default {
     background-color: white;
     padding: 6rem 5rem;
     position: relative;
+    .h3 {
+      color: black;
+    }
   }
 
   .wrapper {

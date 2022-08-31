@@ -76,9 +76,28 @@ body.index {
   .section.blogPosts {
     background-color: $color__grey;
   }
-
   footer {
-    margin-top: 0;
+    margin-top: 0rem;
   }
 }
+// Wave
+body.index.wave {
+  footer {
+    margin-top: -7rem;
+    .wave path {
+      fill: $color__grey;
+    }
+  }
+}
+// Cut
+// body.index.cut {
+//   .region--content .blocs .bloc:last-child > * {
+//     padding-bottom: 12rem;
+//   }
+//   footer {
+//     .wave path {
+//       fill: $color__grey;
+//     }
+//   }
+// }
 </style>

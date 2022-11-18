@@ -7,10 +7,10 @@
       v-if="bloc.description"
     )
   .section-content
-    ContentSBS(
-      :bloc="bloc",
-      v-for="(bloc, index) in bloc.blocs_sbs",
+    AllBlocs(
       :key="index",
+      v-for="(bloc, index) in bloc.blocs_sbs",
+      :bloc="bloc",
       :class="index % 2 == 0 ? '' : 'inverted'"
     )
   Container.container--small.align-center

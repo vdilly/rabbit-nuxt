@@ -2,7 +2,7 @@
 main(v-if="page")
   //- Region Banner
   .region--banner(v-if="bannerBlocs")
-    BlocsAuto(:blocs="bannerBlocs")
+    BlocsAuto(:blocs="bannerBlocs" :displayName="true")
 
   //- Content
   .region--content

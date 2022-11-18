@@ -6,9 +6,7 @@
     AllBlocs(:bloc="bloc")
 </template>
 <script>
-import AllBlocs from './AllBlocs.vue'
 export default {
-  components: { AllBlocs },
   props: ["blocs", "displayName"],
   methods: {
     getBlocName(bloc) {

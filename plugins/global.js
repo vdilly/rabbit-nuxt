@@ -3,6 +3,7 @@ import { mapState } from "vuex";
 
 
 // Components
+import AllBlocs from "~/components/blocs/AllBlocs.vue";
 import Container from "~/components/layouts/Container.vue";
 import Dropdown from "~/components/layouts/Dropdown.vue";
 import Drawer from "~/components/layouts/Drawer.vue";
@@ -26,6 +27,7 @@ import FormFieldset from "~/components/form/FormFieldset.vue";
 import FormInfo from "~/components/form/FormInfo.vue";
 import Link from "~/components/atoms/Link.vue";
 
+Vue.component("AllBlocs", AllBlocs);
 Vue.component("Container", Container);
 Vue.component("Dropdown", Dropdown);
 Vue.component("Drawer", Drawer);

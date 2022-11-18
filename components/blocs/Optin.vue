@@ -39,7 +39,9 @@
             @click="validate = true",
             type="submit"
           )
-            span(v-html="bloc && bloc.bouton ? bloc.bouton : 'Envoyer'")
+            span(
+              v-html="bloc && bloc.texte_bouton ? bloc.texte_bouton : 'Envoyer'"
+            )
       template(v-if="formState == 'success'")
         .success(
           v-html="formSuccessMessage",

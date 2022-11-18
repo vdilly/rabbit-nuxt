@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss">
 .bannerDecale {
+  overflow: hidden;
   height: 80vw;
   max-height: 70rem;
   display: flex;

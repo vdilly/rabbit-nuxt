@@ -27,6 +27,7 @@ export default {
   height: auto;
   display: flex;
   align-items: center;
+  overflow: hidden;
   .container {
     display: flex;
     align-items: center;

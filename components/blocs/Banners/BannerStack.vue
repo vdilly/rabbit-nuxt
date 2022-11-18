@@ -16,6 +16,7 @@ export default {
 
 <style lang="scss">
 .bannerStack {
+  overflow: hidden;
   text-align: center;
   padding-top: 6rem;
   padding-bottom: 12rem;

@@ -11,7 +11,7 @@
   Container
     .main-wrapper
       //- Partie form
-      FormWP.left.form--material(:form="form")
+      FormAuto.left.form--material(:form="form")
 
       //- Partie contenu side
       .content-wrapper.right
@@ -32,12 +32,11 @@
 <script>
 import BannerStack from "@/components/blocs/Banners/BannerStack.vue";
 import pageBuilderMixin from "@/mixins/page/pageBuilder";
-import FormWP from "@/components/form/instances/FormWP.vue";
-import FormFieldsWP from "@/components/form/FormFieldsWP.vue";
+import FormAuto from "@/components/form/instances/FormAuto.vue";
 export default {
   props: ["page"],
   mixins: [pageBuilderMixin],
-  components: { BannerStack, FormWP, FormFieldsWP },
+  components: { BannerStack, FormAuto },
   computed: {
     form() {
       return this.page?.acf;

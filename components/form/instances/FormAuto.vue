@@ -1,5 +1,5 @@
 <template lang="pug">
-form.formWp(
+form.formAuto(
   :class="[formState, showValidation ? 'validate' : null]",
   @submit.prevent="submit"
 ) 
@@ -22,12 +22,12 @@ form.formWp(
           :required="field.requis",
           :key="index"
         )
-          FormFieldsWP(
+          AllFields(
             v-for="(subfield, index) in field.fields",
             :field="subfield",
             :key="index"
           )
-        FormFieldsWP(v-else, :field="field", :key="index")
+        AllFields(v-else, :field="field", :key="index")
 
     //- Actions
     .form__actions.align-center
@@ -57,9 +57,10 @@ form.formWp(
 import Loader from "@/components/atoms/Loader.vue";
 import formMixin from "@/mixins/form";
 import "@/assets/scss/forms/material.scss";
+import AllFields from "@/components/form/AllFields.vue";
 export default {
   props: ["form"],
-  components: { Loader },
+  components: { Loader, AllFields },
   mixins: [formMixin],
   data() {
     return {

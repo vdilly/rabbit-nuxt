@@ -110,7 +110,7 @@ export default {
     FormInput,
     FormCheckbox,
     FormRadio,
-    FormFieldsWp: () => import("~/components/form/FormFieldsWP.vue"),
+    AllFields: () => import("~/components/form/AllFields.vue"),
     FormFile,
     FormSingleChoice,
   },

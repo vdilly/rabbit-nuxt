@@ -9,6 +9,7 @@ exports.handler = async (event, context, callback) => {
   console.log(body);
   const formData = body.form;
   const formFiles = body.files;
+  const mailSubject = body.subject || "Nouvelle soumission";
   console.log(formData, formFiles);
   return {
     statusCode: 200,

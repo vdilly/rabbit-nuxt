@@ -82,7 +82,7 @@ export default {
         this.formError([err]);
       }
 
-      data.subject = "Nouvelle soumissions sur le " + this.form.form_title;
+      data.subject = "Nouvelle soumission sur le " + this.form.form_title;
       // console.log(data);
       data = JSON.stringify(data);
       try {

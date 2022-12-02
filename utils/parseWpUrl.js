@@ -1,6 +1,8 @@
 export default function (string, debug = false) {
   const urls = [
     process.env.WP_URL,
+    process.env.WP_RABBIT1_URL,
+    process.env.WP_LOCAL_URL,
     process.env.IMAGE_URL,
   ];
 

@@ -14,12 +14,12 @@
 [build.environment]
   GRIDSOME_BROWSER_ENV = "prod"
   ENV = "prod"
-  WP_API_URL = "http://rabbit.local/wp-json"
-  SITE_URL = "http://rabbit.netlify.app"
-  WP_URL = "http://rabbit.local"
-  IMAGE_URL = "https://vdillyprod.tech/rabbit/admin"
+  WP_API_URL = "https://vdillyprod.tech/rabbit2/wp-json"
+  SITE_URL = "http://rabbit2.netlify.app"
+  WP_URL = "https://vdillyprod.tech/rabbit2"
+  IMAGE_URL = "https://vdillyprod.tech/rabbit2"
 [context.branch-deploy.environment]
-  GRIDSOME_SITE_URL = "https://rabbit.netlify.app"
+  GRIDSOME_SITE_URL = "https://develop--rabbit2.netlify.app"
 
 # Redirects and headers are GLOBAL for all builds – they do not get scoped to
 # contexts no matter where you define them in the file.

@@ -1,5 +1,5 @@
 <template lang="pug">
-footer.footer
+footer.footer(v-if="footer")
   Wave(v-if="theme.cutType == 'wave'", slot="wave")
   Optin(:bloc="footer.optin_footer")
   .footer-content
@@ -58,7 +58,7 @@ export default {
   components: { ThemeBuilder, Optin },
   computed: {
     footer() {
-      return this.globalDatas.acf;
+      return this.globalDatas?.acf;
     },
     ...mapState("globalDatas", ["globalDatas"]),
   },

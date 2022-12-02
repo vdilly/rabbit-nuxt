@@ -2,8 +2,8 @@
 const { mapKeys, isPlainObject, trimEnd, trimStart } = require('lodash')
 const axiosRetry = require('axios-retry');
 const pMap = require('p-map')
-import parseWpUrl from '@/utils/parseWpUrl';
-import { formatDate } from "@/utils/date";
+import parseWpUrl from '../utils/parseWpUrl';
+import { formatDate } from "../utils/date";
 const { htmlToText } = require('html-to-text');
 
 

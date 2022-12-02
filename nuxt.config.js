@@ -65,7 +65,6 @@ export default {
     { src: '~plugins/ui-feedback/ui-feedback.js', mode: 'client' },
     // { src: '~plugins/confirm-dialog/confirm-dialog', mode: 'client' },
     { src: '~plugins/v-intersect', mode: 'client' },
-    { src: '~plugins/axios-cache' },
     // { src: '@/plugins/aos.js', mode: 'client' },
   ],
   // serverMiddleware: ['~/api/index.js'],
@@ -75,6 +74,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '~modules/source-wp',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

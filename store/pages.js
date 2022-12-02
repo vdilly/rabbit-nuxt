@@ -22,9 +22,9 @@ export const mutations = {
   }
 }
 
-export const actions = {
-  getPages: async function ({ state, commit }) {
-    let pages = await this._vm.$sourceWp.getEntries('/pages')
-    commit('setPages', pages)
-  }
-}
+// export const actions = {
+//   getPages: async function ({ state, commit }) {
+//     let pages = await this._vm.$sourceWp.getEntries('/pages')
+//     commit('setPages', pages)
+//   }
+// }

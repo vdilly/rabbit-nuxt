@@ -94,7 +94,7 @@ export default {
         // );
         const res = await this.$axios({
           url: "/generic-form",
-          baseURL: "/.netlify/netlify_functions",
+          baseURL: "/.netlify/functions",
           data: data,
         });
         console.log(res);

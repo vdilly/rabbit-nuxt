@@ -15,7 +15,7 @@
   GRIDSOME_BROWSER_ENV = "prod"
   ENV = "prod"
   WP_API_URL = "https://vdillyprod.tech/rabbit2/wp-json"
-  SITE_URL = "http://rabbit2.netlify.app"
+  SITE_URL = "https://rabbit2.netlify.app"
   WP_URL = "https://vdillyprod.tech/rabbit2"
   IMAGE_URL = "https://vdillyprod.tech/rabbit2"
 [context.branch-deploy.environment]

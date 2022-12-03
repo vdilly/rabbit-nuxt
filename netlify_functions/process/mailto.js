@@ -16,22 +16,21 @@ apiKey.apiKey = 'xkeysib-628139cade1a3a56cf8fb696427a7de146ef77ec586d91621023b3c
 var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 // var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
-
-try {
-  await apiInstannce.sendTransacEmail({
-    sender: { email: "contact@rabbit.com", name: "Rabbit Contact form" },
-    to: ['vdilly.prod@gmail.com'],
-    subject: 'Nouvelle soumission sur le formulaire de contact',
-    htmlContent: `
-        <h1>Cules Coding</h1>
-        <a href="https://cules-coding.vercel.app/">Visit</a>
-    `,
-  })
-} catch (err) {
-  console.log(err)
+module.exports = async function ({ to, from, subject, HTML, attachments }) {
+  // console.log(to, from, subject, HTML, attachments)
+  try {
+    let config = {
+      sender: from,
+      to: to,
+      subject: subject,
+      htmlContent: HTML,
+    }
+    if (attachments) {
+      config.attachment = attachments;
+    }
+    const res = await apiInstance.sendTransacEmail(config)
+  } catch (err) {
+    console.log(err.response.body)
+    throw new Error(err)
+  }
 }
-apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function (error) {
-  console.error(error);
-});

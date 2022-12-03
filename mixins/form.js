@@ -1,5 +1,6 @@
 import { getCommonFieldsErrors } from "@/utils/utils"
 import validator from "validator";
+import smoothScroll from "@/utils/smoothScroll";
 
 export default {
   data() {
@@ -70,6 +71,9 @@ export default {
     formError(errors) {
       this.formState = 'error'
       this.formErrors = errors;
+      setTimeout(() => {
+        smoothScroll('form .errors', 100)
+      }, 200);
     },
     formSuccess(msg) {
       this.formState = 'success'

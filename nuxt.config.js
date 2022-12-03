@@ -5,7 +5,7 @@ export default {
     wpUrl: process.env.WP_URL,
     siteUrl: process.env.SITE_URL,
     isProd: process.env.NODE_ENV == "production",
-    siteName: "Rabbit"
+    siteName: process.env.SITE_NAME
   },
   vue: {
     config: {
@@ -16,7 +16,7 @@ export default {
   target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Rabbit',
+    title: process.env.SITE_NAME,
     htmlAttrs: {
       lang: 'fr'
     },

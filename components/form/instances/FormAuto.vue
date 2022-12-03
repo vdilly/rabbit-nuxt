@@ -83,29 +83,29 @@ export default {
       }
 
       data.subject = "Nouvelle soumission sur le " + this.form.form_title;
-      // console.log(data);
-      data = JSON.stringify(data);
-      try {
-        // await this.$axios.$post(
-        //   "/.netlify/netlify_functions/generic-form",
-        //   data,
-        //   this.formSuccess,
-        //   this.formError
-        // );
-        const res = await this.$axios({
-          url: "/generic-form",
-          baseURL: "/.netlify/functions",
-          data: data,
-        });
-        console.log(res);
-      } catch (err) {
-        this.formError([err]);
+
+      if (window) {
+        try {
+          let res = await fetch("/.netlify/functions/generic-form", {
+            method: "POST",
+            body: JSON.stringify(data),
+          });
+          if (
+            res.ok ||
+            res.status == 200 ||
+            res.status == 201 ||
+            res.status == 202
+          ) {
+            this.formSuccess();
+          } else {
+            return res.text().then((text) => {
+              this.formError([text]);
+            });
+          }
+        } catch (err) {
+          this.formError([err]);
+        }
       }
-      // setTimeout(() => {
-      //   this.formError(["C pas bon"]);
-      // }, 1000);
-      // this.formSuccess();
-      // this.$emit("submit");
     },
   },
 };

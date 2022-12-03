@@ -20,6 +20,9 @@
   WP_RABBIT1_URL = "https://vdillyprod.tech/rabbit/admin"
   WP_LOCAL_URL = "http://rabbit.local"
   IMAGE_URL = "https://vdillyprod.tech/rabbit2"
+  ADMIN_EMAIL = "vdilly.prod@gmail.com"
+  CONTACT_SENDER = "vdilly.prod@gmail.com"
+  SITE_NAME = "Rabbit 2"
 [context.branch-deploy.environment]
   GRIDSOME_SITE_URL = "https://develop--rabbit2.netlify.app"
 

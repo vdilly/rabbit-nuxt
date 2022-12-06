@@ -81,6 +81,7 @@ export default {
     transform: translateX(-50%);
     min-width: 192rem;
     z-index: 1;
+    width: 100%
     // display: none;
   }
   .optin {

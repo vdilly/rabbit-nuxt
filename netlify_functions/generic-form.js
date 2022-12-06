@@ -13,7 +13,7 @@ exports.handler = async (event, context, callback) => {
     let attachments = getFiles(body.files);
     let subject = body.subject || "Nouvelle soumission";
     let to = process.env.ADMIN_EMAIL;
-    let from = { email: process.env.CONTACT_SENDER, name: `Formulaire ${process.env.SITE_NAME}` }
+    let from = { Email: process.env.CONTACT_SENDER, Name: `Formulaire ${process.env.SITE_NAME}` }
     const res = await sendMail({ to, from, subject, HTML, attachments });
   } catch (err) {
     // console.warn(err)

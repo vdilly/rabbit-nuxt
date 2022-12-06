@@ -98,9 +98,9 @@ export default {
           ) {
             this.formSuccess();
           } else {
-            return res.text().then((text) => {
-              this.formError([text]);
-            });
+            this.formError([
+              "Une erreur technique est survenue, merci de réessayer ultérieurement.",
+            ]);
           }
         } catch (err) {
           this.formError([err]);

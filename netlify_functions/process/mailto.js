@@ -1,36 +1,43 @@
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+const mailjet = require("node-mailjet").connect(
+  process.env.MAILJET_PUBLIC_KEY,
+  process.env.MAILJET_PRIVATE_KEY
+);
 
-// Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = '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';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKey.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: partner-key
-// var partnerKey = defaultClient.authentications['partner-key'];
-// partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 // var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
 module.exports = async function ({ to, from, subject, HTML, attachments }) {
   // console.log(to, from, subject, HTML, attachments)
   try {
-    let config = {
-      sender: from,
-      to: to,
-      subject: subject,
-      htmlContent: HTML,
+    const request = mailjet
+      .post("send", { 'version': 'v3.1' })
+      .request({
+        "Messages": [
+          {
+            "From": from,
+            "To": [
+              {
+                "Email": to
+              }
+            ],
+            "Subject": subject,
+            "HTMLPart": HTML,
+            // "CustomID": "AppGettingStartedTest",
+            "Attachments": attachments
+          }
+        ]
+      })
+    const res = await request
+    console.log('>> Mail envoyé')
+  } catch (error) {
+    console.log(error.statusCode);
+    console.log(error.message);
+    return {
+      statusCode: 403,
+      body: "Erreur d'envoi du mail"
     }
-    if (attachments) {
-      config.attachment = attachments;
-    }
-    const res = await apiInstance.sendTransacEmail(config)
-  } catch (err) {
-    console.log(err.response.body)
-    throw new Error(err)
+  }
+  return {
+    statusCode: 200,
+    body: "Success"
   }
 }

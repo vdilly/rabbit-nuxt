@@ -32,6 +32,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 4;
   }
   .text {
     width: 54rem;

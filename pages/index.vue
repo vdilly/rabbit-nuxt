@@ -52,6 +52,7 @@ export default {
 
 <style lang="scss">
 body.index {
+  @include layoutImmersion($decale: false);
   .header {
     @include headerWhite();
 

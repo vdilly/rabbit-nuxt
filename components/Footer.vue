@@ -48,14 +48,14 @@ footer.footer(v-if="footer")
   .footer-bottom
     Container
       .rte(v-html="footer.footer_bottom", v-if="footer.footer_bottom")
-  ThemeBuilder
+  Development
 </template>
 <script>
+import Development from "@/components/development/Development.vue";
 import { mapState } from "vuex";
-import ThemeBuilder from "@/components/ThemeBuilder.vue";
 import Optin from "./blocs/Optin.vue";
 export default {
-  components: { ThemeBuilder, Optin },
+  components: { Optin, Development },
   computed: {
     footer() {
       return this.globalDatas?.acf;
@@ -81,7 +81,7 @@ export default {
     transform: translateX(-50%);
     min-width: 192rem;
     z-index: 1;
-    width: 100%
+    width: 100%;
     // display: none;
   }
   .optin {

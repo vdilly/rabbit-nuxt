@@ -69,8 +69,8 @@
 <script>
 import Verte from "verte";
 import "verte/dist/verte.css";
-import FormGroup from "./form/FormGroup.vue";
-import FormSelect from "./form/FormSelect.vue";
+import FormGroup from "@/components/form/FormGroup.vue";
+import FormSelect from "@/components/form/FormSelect.vue";
 export default {
   components: { Verte, FormGroup, FormSelect },
   data() {

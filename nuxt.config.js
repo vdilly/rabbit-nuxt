@@ -1,10 +1,14 @@
+// Utilisé pour check le flag de la commande, on contourne le fait que .env fonctionne pas ici
+const args = require('minimist')(process.argv.slice(2))
+
 export default {
   // Environment variables (https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-env)
   env: {
     apiUrl: process.env.WP_API_URL,
     wpUrl: process.env.WP_URL,
     siteUrl: process.env.SITE_URL,
-    isProd: process.env.NODE_ENV == "production",
+    isProd: process.env.NODE_ENV == "prod",
+    forceSSR: args.dev, // Si true on force le reload des data à chaque f5
     siteName: process.env.SITE_NAME
   },
   vue: {
@@ -73,9 +77,9 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    '~modules/source-wp',
-  ],
+  // .env ne marche pas ici, on check la commande
+  buildModules: args.dev ? [] : ['~modules/source-wp'],
+
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

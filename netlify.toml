@@ -12,7 +12,6 @@
   functions = "/netlify_functions"
 
 [build.environment]
-  GRIDSOME_BROWSER_ENV = "prod"
   ENV = "prod"
   WP_API_URL = "https://vdillyprod.tech/rabbit2/wp-json"
   SITE_URL = "https://rabbit2.netlify.app"

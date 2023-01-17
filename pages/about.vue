@@ -29,7 +29,8 @@ export default {
   async asyncData({ store, params, error }) {
     let page = store.getters["pages/getPageBySlug"]("about");
     if (!page) return error({ statusCode: 404, message: "Page introuvable" });
-    return { page };
+    let unboundPage = JSON.parse(JSON.stringify(page));
+    return { page: unboundPage };
   },
 };
 </script>

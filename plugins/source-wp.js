@@ -165,7 +165,7 @@ export default class WordPressSource {
   }
   formatSeo(entry) {
     let options = this.options
-    if (!entry.acf) return entry // Pas une page
+    if (!entry.acf || !entry.type) return entry // Pas une page
     if ('seo_sitename' in entry.acf) return entry // Global datas
 
     if (!options.globalDatas) {
@@ -177,110 +177,112 @@ export default class WordPressSource {
     let seoLocation = entry.acf; // Gérer le cas global data ou page (nested sous acf)
     let seoKeys = seoLocation ? Object.keys(seoLocation).filter(key => key.startsWith("seo_")) : null;
 
-    // Y'a des keys seo ? on formate
-    if (seoKeys && seoKeys.length > 0) {
-      // Build l'objet seo final
-      let seo = {
-        title: '',
-        link: [],
-        meta: []
-      };
-      //  title
-      let title = seoLocation.seo_meta_title || entry.title || null;
-
-      // URL
-      let url = entry.link || null; // Link is already parseWp ici
-
-      //  description : seo || excerpt || made up excerpt
-      let description = seoLocation.seo_meta_description || entry.excerpt || entry.content ? htmlToText(entry.content, {
-        wordwrap: null,
-        tags: {
-          a: { format: "skip" },
-          img: { format: "skip" }
-        },
-      }).substring(0, 600) + "..." : null;
-
-      // Image : spe page || global data image
-      let image = seoLocation.seo_image || global_image || null;
-
-      // Type
-      let type = entry.type == 'post' ? 'article' : 'website';
-
-      // Safety belt
-      function seoError(type) {
-        options.quietErrors.push(`SEO error : ${type} not found on entry ${entry.id} with title : ${entry.title}`)
-      }
-      if (!title) seoError('title')
-      if (!url) seoError('url')
-      if (!description) seoError('description')
-      if (!image) seoError('image')
-
-      // Build SEO
-      seo.title = title + ' - ' + sitename;
-      seo.link.push({ rel: "canonical", href: url })
-      seo.meta.push(
-        { hid: "description", name: "description", content: description },
-        {
-          hid: "robots",
-          name: "robots",
-          content:
-            "follow,index,max-snippet:-1,max-video-preview:-1,max-image-preview:large",
-        },
-
-        // OG
-        {
-          hid: "og_type",
-          name: "og:type",
-          content: type,
-        },
-        {
-          hid: "og_title",
-          name: "og:title",
-          content: title,
-        },
-        {
-          hid: "og_description",
-          name: "og:description",
-          content: description,
-        },
-        {
-          hid: "og_url",
-          name: "og:url",
-          content: url,
-        },
-        {
-          hid: "og_image",
-          name: "og:image",
-          content: image,
-        },
-
-        // Twitter
-        {
-          hid: "twitter_title",
-          name: "twitter:title",
-          content: title,
-        },
-        {
-          hid: "twitter_description",
-          name: "twitter:description",
-          content: description,
-        },
-        {
-          hid: "twitter_image",
-          name: "twitter:image",
-          content: image,
-        },
-      )
-
-      // Data structured
-
-      // Assigne l'objet SEO à l'entry
-      entry.seo = seo;
-      // Remove les anciennes keys
-      seoKeys.forEach(key => {
-        delete seoLocation[key];
-      });
+    // Si y'a pas de key malgré les précédentes validation c'est chelou
+    if (!seoKeys || seoKeys.length == 0) {
+      seoError('seo_[keys]')
+      return entry;
     }
+    // Build l'objet seo final
+    let seo = {
+      title: '',
+      link: [],
+      meta: []
+    };
+    //  title
+    let title = seoLocation.seo_meta_title || entry.title || null;
+
+    // URL
+    let url = entry.link || null; // Link is already parseWp ici
+
+    //  description : seo || excerpt || made up excerpt
+    let description = seoLocation.seo_meta_description || entry.excerpt || entry.content ? htmlToText(entry.content, {
+      wordwrap: null,
+      tags: {
+        a: { format: "skip" },
+        img: { format: "skip" }
+      },
+    }).substring(0, 600) + "..." : null;
+
+    // Image : spe page || global data image
+    let image = seoLocation.seo_image?.mobile?.src || global_image?.mobile?.src || null;
+
+    // Type
+    let type = entry.type == 'post' ? 'article' : 'website';
+
+    // Safety belt
+    function seoError(type) {
+      options.quietErrors.push(`SEO error : ${type} not found on entry ${entry.id} with title : ${entry.title || entry.name}`)
+    }
+    if (!title) seoError('title')
+    if (!url) seoError('url')
+    if (!description) seoError('description')
+    if (!image) seoError('image')
+
+    // Build SEO
+    seo.title = title + ' - ' + sitename;
+    seo.link.push({ rel: "canonical", href: url })
+    seo.meta.push(
+      { hid: "description", name: "description", content: description },
+      {
+        hid: "robots",
+        name: "robots",
+        content:
+          "follow,index,max-snippet:-1,max-video-preview:-1,max-image-preview:large",
+      },
+
+      // OG
+      {
+        hid: "og_type",
+        name: "og:type",
+        content: type,
+      },
+      {
+        hid: "og_title",
+        name: "og:title",
+        content: title,
+      },
+      {
+        hid: "og_description",
+        name: "og:description",
+        content: description,
+      },
+      {
+        hid: "og_url",
+        name: "og:url",
+        content: url,
+      },
+      {
+        hid: "og_image",
+        name: "og:image",
+        content: image,
+      },
+
+      // Twitter
+      {
+        hid: "twitter_title",
+        name: "twitter:title",
+        content: title,
+      },
+      {
+        hid: "twitter_description",
+        name: "twitter:description",
+        content: description,
+      },
+      {
+        hid: "twitter_image",
+        name: "twitter:image",
+        content: image,
+      },
+    )
+
+    // Data structured
+
+    // Assigne l'objet SEO à l'entry
+    entry.seo = seo;
+    // Remove les anciennes keys
+    seoKeys.forEach(key => {
+      delete seoLocation[key];
+    });
     return entry;
 
   }

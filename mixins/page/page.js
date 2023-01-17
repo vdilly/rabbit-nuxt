@@ -5,7 +5,8 @@ const pageMixin = {
     return {
       bodyAttrs: {
         class: [this.window.windowScrolled ? 'js-scrolled ' + this.window.scrollDirection : '', this.$route.name ? this.$route.name.toLowerCase() : "", this.theme.cutType]
-      }
+      },
+      ...this.page.seo
     }
   },
   async mounted() {

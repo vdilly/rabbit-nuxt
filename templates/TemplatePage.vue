@@ -20,7 +20,7 @@
 </template>
 <script>
 import BannerStack from "../components/blocs/Banners/BannerStack.vue";
-import pageBuilderMixin from "@/mixins/page/pageBuilder";
+import pageBuilderMixin from "@/mixins/pageBuilder";
 export default {
   props: ["page"],
   mixins: [pageBuilderMixin],

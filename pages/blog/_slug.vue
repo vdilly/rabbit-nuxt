@@ -36,7 +36,7 @@ import postMixin from "@/mixins/post";
 import pageMixin from "@/mixins/page/page";
 import BannerBlog from "@/components/blocs/Banners/BannerBlog.vue";
 import BannerBlog2 from "@/components/blocs/Banners/BannerBlog2.vue";
-import pageBuilderMixin from "@/mixins/page/pageBuilder";
+import pageBuilderMixin from "@/mixins/pageBuilder";
 import Ariane from "@/components/navs/Ariane.vue";
 import CrossReading from "@/components/blocs/CrossReading.vue";
 export default {

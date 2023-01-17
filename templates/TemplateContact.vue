@@ -31,7 +31,7 @@
 </template>
 <script>
 import BannerStack from "@/components/blocs/Banners/BannerStack.vue";
-import pageBuilderMixin from "@/mixins/page/pageBuilder";
+import pageBuilderMixin from "@/mixins/pageBuilder";
 import FormAuto from "@/components/form/instances/FormAuto.vue";
 export default {
   props: ["page"],

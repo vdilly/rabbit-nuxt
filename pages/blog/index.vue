@@ -19,7 +19,7 @@ main(v-if="page")
 </template>
 <script>
 import pageMixin from "@/mixins/page/page";
-import pageBuilderMixin from "@/mixins/page/pageBuilder";
+import pageBuilderMixin from "@/mixins/pageBuilder";
 export default {
   layout: "Default",
   mixins: [pageMixin, pageBuilderMixin],

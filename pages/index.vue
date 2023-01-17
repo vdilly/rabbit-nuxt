@@ -32,7 +32,7 @@ import { mapState } from "vuex";
 import BlocsAuto from "@/components/blocs/BlocsAuto.vue";
 import pageMixin from "@/mixins/page/page";
 import BannerStack from "../components/blocs/Banners/BannerStack.vue";
-import pageBuilderMixin from "@/mixins/page/pageBuilder";
+import pageBuilderMixin from "@/mixins/pageBuilder";
 export default {
   layout: "Default",
   name: "HomePage",

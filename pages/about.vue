@@ -21,7 +21,7 @@ main
 <script>
 import pageMixin from "@/mixins/page/page";
 import BannerStack from "@/components/blocs/Banners/BannerStack.vue";
-import pageBuilderMixin from "@/mixins/page/pageBuilder";
+import pageBuilderMixin from "@/mixins/pageBuilder";
 export default {
   layout: "Default",
   mixins: [pageMixin, pageBuilderMixin],

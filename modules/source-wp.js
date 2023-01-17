@@ -61,7 +61,7 @@ export default async function () {
       })
 
       // Users
-      post.author = data.posts.find(el => {
+      post.author = data.users.find(el => {
         return el.author == post.author
       })
       return post;

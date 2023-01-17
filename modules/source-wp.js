@@ -17,6 +17,9 @@ export default async function () {
 
   try {
     console.log('---- FETCH WP DATAS ----')
+    // Globaldata
+    data.globalDatas = await source.getGlobalDatas();
+
     // Pages
     data.pages = await source.getEntries('/pages');
 
@@ -73,11 +76,14 @@ export default async function () {
       id: -1
     })
 
-    // Globaldata
-    data.globalDatas = await source.getGlobalDatas();
+    // Log quiet errors
+    source.logQuietErrors()
 
 
-  } catch (e) {
+
+  }
+  catch (e) {
+    console.log(e);
     throw new Error(e)
   }
   if (process.env.forceSSR) {

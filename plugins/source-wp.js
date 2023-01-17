@@ -13,7 +13,9 @@ export default class WordPressSource {
       perPage: 100,
       concurrent: 10,
       route: '/wp/v2',
-      routeOptions: '/acf/v3'
+      routeOptions: '/acf/v3',
+      globalDatas: null,
+      quietErrors: []
     }
     this.options = {
       ...defaultOptions,
@@ -49,7 +51,9 @@ export default class WordPressSource {
   }
   getGlobalDatas = async (path) => {
     let datas = await this.fetch({ url: '/options/option', baseURL: process.env.WP_API_URL + this.options.routeOptions })
-    return this.formatWpEntity(datas.data);
+    let globalDatas = this.formatWpEntity(datas.data);
+    this.options.globalDatas = globalDatas;
+    return globalDatas;
   }
   fetchPaged = async (path) => {
     const { perPage, concurrent } = this.options
@@ -120,11 +124,14 @@ export default class WordPressSource {
     if (!entry) return null;
     let page = JSON.parse(JSON.stringify(entry));
 
+
+
     // Unused datas
-    ['_links', 'blocks', 'guid', 'link', 'comment_status', 'ping_status', 'post_status', 'status', 'to_ping', 'pinged', 'modified_gmt', 'post_modified_gmt', 'post_content_filtered', 'post_mime_type', 'comment_count', 'filter', 'post_password', 'post_date_gmt', 'date_gmt', 'modified_gmt'].forEach(el => {
+    ['_links', 'blocks', 'guid', 'comment_status', 'ping_status', 'post_status', 'status', 'to_ping', 'pinged', 'modified_gmt', 'post_modified_gmt', 'post_content_filtered', 'post_mime_type', 'comment_count', 'filter', 'post_password', 'post_date_gmt', 'date_gmt', 'modified_gmt'].forEach(el => {
       if (!el) return;
       delete page[el];
     })
+
 
 
     page = this.normalizeFields(page);
@@ -134,6 +141,9 @@ export default class WordPressSource {
       page = this.formatWpPost(page)
     }
 
+
+    // SEO
+    page = this.formatSeo(page)
 
     return page;
   }
@@ -153,13 +163,142 @@ export default class WordPressSource {
     post.link = "/blog/" + post.slug + "/";
     return post
   }
+  formatSeo(entry) {
+    let options = this.options
+    if (!entry.acf) return entry // Pas une page
+    if ('seo_sitename' in entry.acf) return entry // Global datas
+
+    if (!options.globalDatas) {
+      throw new Error('Global datas not init')
+    }
+    let global_image = options.globalDatas.acf.seo_default_image;
+    let sitename = options.globalDatas.acf.seo_sitename;
+
+    let seoLocation = entry.acf; // Gérer le cas global data ou page (nested sous acf)
+    let seoKeys = seoLocation ? Object.keys(seoLocation).filter(key => key.startsWith("seo_")) : null;
+
+    // Y'a des keys seo ? on formate
+    if (seoKeys && seoKeys.length > 0) {
+      // Build l'objet seo final
+      let seo = {
+        title: '',
+        link: [],
+        meta: []
+      };
+      //  title
+      let title = seoLocation.seo_meta_title || entry.title || null;
+
+      // URL
+      let url = entry.link || null; // Link is already parseWp ici
+
+      //  description : seo || excerpt || made up excerpt
+      let description = seoLocation.seo_meta_description || entry.excerpt || entry.content ? htmlToText(entry.content, {
+        wordwrap: null,
+        tags: {
+          a: { format: "skip" },
+          img: { format: "skip" }
+        },
+      }).substring(0, 600) + "..." : null;
+
+      // Image : spe page || global data image
+      let image = seoLocation.seo_image || global_image || null;
+
+      // Type
+      let type = entry.type == 'post' ? 'article' : 'website';
+
+      // Safety belt
+      function seoError(type) {
+        options.quietErrors.push(`SEO error : ${type} not found on entry ${entry.id} with title : ${entry.title}`)
+      }
+      if (!title) seoError('title')
+      if (!url) seoError('url')
+      if (!description) seoError('description')
+      if (!image) seoError('image')
+
+      // Build SEO
+      seo.title = title + ' - ' + sitename;
+      seo.link.push({ rel: "canonical", href: url })
+      seo.meta.push(
+        { hid: "description", name: "description", content: description },
+        {
+          hid: "robots",
+          name: "robots",
+          content:
+            "follow,index,max-snippet:-1,max-video-preview:-1,max-image-preview:large",
+        },
+
+        // OG
+        {
+          hid: "og_type",
+          name: "og:type",
+          content: type,
+        },
+        {
+          hid: "og_title",
+          name: "og:title",
+          content: title,
+        },
+        {
+          hid: "og_description",
+          name: "og:description",
+          content: description,
+        },
+        {
+          hid: "og_url",
+          name: "og:url",
+          content: url,
+        },
+        {
+          hid: "og_image",
+          name: "og:image",
+          content: image,
+        },
+
+        // Twitter
+        {
+          hid: "twitter_title",
+          name: "twitter:title",
+          content: title,
+        },
+        {
+          hid: "twitter_description",
+          name: "twitter:description",
+          content: description,
+        },
+        {
+          hid: "twitter_image",
+          name: "twitter:image",
+          content: image,
+        },
+      )
+
+      // Data structured
+
+      // Assigne l'objet SEO à l'entry
+      entry.seo = seo;
+      // Remove les anciennes keys
+      seoKeys.forEach(key => {
+        delete seoLocation[key];
+      });
+    }
+    return entry;
+
+  }
   normalizeFields = (entry) => {
     const res = {}
 
     for (const key in entry) {
       if (key.startsWith('_')) continue // skip links and embeds etc
       const newKey = key.replace('post_', '')
-      res[newKey] = this.normalizeFieldValue(entry[key])
+
+      // Exception
+      if (newKey == 'link') {
+        res[newKey] = parseWpUrl(entry[key])
+        // Cas général
+      } else {
+        res[newKey] = this.normalizeFieldValue(entry[key])
+
+      }
     }
 
     return res
@@ -204,6 +343,14 @@ export default class WordPressSource {
     }
 
     return value
+  }
+  logQuietErrors() {
+    if (this.options.quietErrors.length) {
+      console.log("%c SEO Errors:", "font-size: large; color: red; font-weight: bold; ");
+      console.table(this.options.quietErrors);
+    } else {
+      console.log("%c SEO Clear", "font-size: large; color: green; font-weight: bold; ");
+    }
   }
 }
 

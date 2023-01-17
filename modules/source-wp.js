@@ -81,7 +81,6 @@ export default async function () {
     throw new Error(e)
   }
   if (process.env.forceSSR) {
-    console.log(data)
     return data;
   } else {
     // attention à pas confondre, on parle de SSR ici, mais c'est en fait passer les datas static à la fonction de SSR, donc c'est le static mode

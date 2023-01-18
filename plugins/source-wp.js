@@ -293,6 +293,7 @@ export default class WordPressSource {
    */
   formatSeo(entry) {
     if (entry.acf && 'seo_sitename' in entry.acf) return entry // Global datas
+    if (entry.acf && entry.acf.nom_a_afficher && entry.acf.avatar) return entry // User
     let options = this.options
 
     let { title, url, image, description, type } = this.getSeoData(entry);

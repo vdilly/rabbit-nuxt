@@ -163,63 +163,73 @@ export default class WordPressSource {
     post.link = "/blog/" + post.slug + "/";
     return post
   }
-  formatSeo(entry) {
+  /**
+   * // Get seo title, image, url, type, description en fonction du type d'entry
+   * @param {*} entry 
+   * @returns {title, url, description, image, type}
+   */
+  getSeoData(entry) {
     let options = this.options
-    if (!entry.acf || !entry.type) return entry // Pas une page
-    if ('seo_sitename' in entry.acf) return entry // Global datas
-
+    // Get global seo datas first
     if (!options.globalDatas) {
       throw new Error('Global datas not init')
     }
     let global_image = options.globalDatas.acf.seo_default_image;
     let sitename = options.globalDatas.acf.seo_sitename;
+    let title, url, description, image, type = 'website';
 
-    let seoLocation = entry.acf; // Gérer le cas global data ou page (nested sous acf)
-    let seoKeys = seoLocation ? Object.keys(seoLocation).filter(key => key.startsWith("seo_")) : null;
+    // Dispatch en fonction du type d'entry
+    // CPT
+    if ('type' in entry) {
+      // Titre URL
+      title = entry.acf.seo_meta_title || entry.title || null;
+      url = entry.link || null; // Link is already parseWp ici
 
-    // Si y'a pas de key malgré les précédentes validation c'est chelou
-    if (!seoKeys || seoKeys.length == 0) {
-      seoError('seo_[keys]')
-      return entry;
+      //  description : seo || excerpt || made up excerpt
+      description = entry.acf.seo_meta_description || entry.excerpt || entry.content ? htmlToText(entry.content, {
+        wordwrap: null,
+        tags: {
+          a: { format: "skip" },
+          img: { format: "skip" }
+        },
+      }).substring(0, 600) + "..." : null;
+
+      // Type
+      type = entry.type == 'post' ? 'article' : type;
+
+      // Image : spe page || global seo data image
+      image = entry.acf.seo_image?.mobile?.src || global_image?.mobile?.src || null;
+
+      // Taxonomy
+    } else if ("taxonomy" in entry) { // Pas de diff entre category et post_tag so far, pour l'instant on assume que c'est le blog
+      // Titre URL
+      title = entry.name + ' - Blog' || null;
+      url = entry.link || null; // Link is already parseWp ici
+
+      //  description : description || Articles liés au tag/catégorie [Title]
+      let taxonomy_type = entry.taxonomy == 'post_tag' ? 'au tag' : entry.taxonomy == 'category' ? 'à la catégorie' : null
+      description = entry.description || taxonomy_type && title ? `Articles liés ${taxonomy_type} ${title}` : null;
+
+      // Image : default blog thumbnail || global seo data image
+      image = options?.globalDatas?.default_thumbnail?.mobile.src || global_image?.mobile?.src || null;
     }
+
+    if (title) title = title;
+    return { title, url, description, image, type }
+  }
+  /**
+   * Build l'objet head final passé à Nuxt. Aucun formatage d'infos, juste de la structure
+   * @param {*} param0 
+   */
+  buildSeoHeadObject({ title, description, url, type, image }) {
+
     // Build l'objet seo final
     let seo = {
       title: '',
       link: [],
       meta: []
     };
-    //  title
-    let title = seoLocation.seo_meta_title || entry.title || null;
-
-    // URL
-    let url = entry.link || null; // Link is already parseWp ici
-
-    //  description : seo || excerpt || made up excerpt
-    let description = seoLocation.seo_meta_description || entry.excerpt || entry.content ? htmlToText(entry.content, {
-      wordwrap: null,
-      tags: {
-        a: { format: "skip" },
-        img: { format: "skip" }
-      },
-    }).substring(0, 600) + "..." : null;
-
-    // Image : spe page || global data image
-    let image = seoLocation.seo_image?.mobile?.src || global_image?.mobile?.src || null;
-
-    // Type
-    let type = entry.type == 'post' ? 'article' : 'website';
-
-    // Safety belt
-    function seoError(type) {
-      options.quietErrors.push(`SEO error : ${type} not found on entry ${entry.id} with title : ${entry.title || entry.name}`)
-    }
-    if (!title) seoError('title')
-    if (!url) seoError('url')
-    if (!description) seoError('description')
-    if (!image) seoError('image')
-
-    // Build SEO
-    seo.title = title + ' - ' + sitename;
+    seo.title = title;
     seo.link.push({ rel: "canonical", href: url })
     seo.meta.push(
       { hid: "description", name: "description", content: description },
@@ -274,17 +284,47 @@ export default class WordPressSource {
         content: image,
       },
     )
+    return seo
+  }
+  /**
+   * Formatage auto d'un objet seo valide pour le head de nuxt à partir d'une entry WP (CPT ou taxonomy)
+   * @param {*} entry 
+   * @returns entry
+   */
+  formatSeo(entry) {
+    if (entry.acf && 'seo_sitename' in entry.acf) return entry // Global datas
+    let options = this.options
 
-    // Data structured
+    let { title, url, image, description, type } = this.getSeoData(entry);
+
+    // Safety belt
+    function seoError(type) {
+      options.quietErrors.push(`SEO error : ${type} not found on entry ${entry.id} with title : ${entry.title || entry.name}`)
+    }
+    if (!title) seoError('title')
+    if (!url) seoError('url')
+    if (!description) seoError('description')
+    if (!image) seoError('image')
+
+    let seo = this.buildSeoHeadObject({ title, url, image, description, type })
 
     // Assigne l'objet SEO à l'entry
     entry.seo = seo;
-    // Remove les anciennes keys
-    seoKeys.forEach(key => {
-      delete seoLocation[key];
-    });
+    // Remove les anciennes keys seo si c'est un CPT (les tax n'ont pas de SEO)
+    let seoKeys = entry.acf ? Object.keys(entry.acf).filter(key => key.startsWith("seo_")) : null;
+    if (seoKeys && seoKeys.length > 0) {
+      seoKeys.forEach(key => {
+        delete entry.acf[key];
+      });
+    }
     return entry;
 
+
+    // Si y'a pas de key malgré les précédentes validation c'est chelou
+    // if (!seoKeys || seoKeys.length == 0) {
+    //   seoError('seo_[keys]')
+    //   return entry;
+    // }
   }
   normalizeFields = (entry) => {
     const res = {}

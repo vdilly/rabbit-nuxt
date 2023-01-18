@@ -2,11 +2,15 @@ import Vue from "vue";
 
 const pageMixin = {
   head() {
+    let seo = {}
+    if (this.page) {
+      seo = this.page.seo
+    }
     return {
       bodyAttrs: {
         class: [this.window.windowScrolled ? 'js-scrolled ' + this.window.scrollDirection : '', this.$route.name ? this.$route.name.toLowerCase() : "", this.theme.cutType]
       },
-      ...this.page.seo
+      ...seo
     }
   },
   async mounted() {

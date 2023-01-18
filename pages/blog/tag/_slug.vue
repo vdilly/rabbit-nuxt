@@ -1,14 +1,14 @@
 <template lang="pug">
-main(v-if="tag")
+main(v-if="page")
   //- Banner
   .region--banner
     BannerStack(
-      :bloc="{ titre: 'Articles liés au tag :', description: tag.name }"
+      :bloc="{ titre: 'Articles liés au tag :', description: page.name }"
     )
 
   //- //- Content
   .region--content
-    BlogPosts(:bloc="blogPostDatas", v-if="tag")
+    BlogPosts(:bloc="blogPostDatas")
 </template>
 <script>
 import pageMixin from "@/mixins/page/page";
@@ -22,16 +22,16 @@ export default {
       return {
         posts_par_page: "12",
         nombre_de_posts: "-1",
-        forcedTags: [this.tag.id],
+        forcedTags: [this.page.id],
       };
     },
   },
   async asyncData({ store, error, params }) {
     // let page = store.getters["pages/getPageBySlug"]("blog");
     // if (!page) return error({ statusCode: 404, message: "Page introuvable" });
-    let tag = await store.getters["posts/getTagBySlug"](params.slug);
-    if (!tag) return error({ statusCode: 404, message: "Tag introuvable" });
-    return { tag };
+    let page = await store.getters["posts/getTagBySlug"](params.slug);
+    if (!page) return error({ statusCode: 404, message: "Tag introuvable" });
+    return { page };
   },
   mounted() {
     // Au change de page on rescroll top

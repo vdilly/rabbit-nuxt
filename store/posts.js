@@ -17,6 +17,11 @@ export const getters = {
       return category.id == id
     })
   },
+  getCategoryBySlug: (state) => (slug) => {
+    return state.categories.find(category => {
+      return category.slug == slug
+    })
+  },
   getTagById: (state) => (id) => {
     return state.tags.find(tag => {
       return tag.id == id

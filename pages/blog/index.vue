@@ -38,6 +38,7 @@ export default {
 </script>
 <style lang="scss">
 body.blog,
+body.blog-category-slug,
 body.blog-tag-slug {
   @include layoutImmersion($decale: true);
   .bannerStack {

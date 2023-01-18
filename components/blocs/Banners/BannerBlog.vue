@@ -5,7 +5,12 @@
   Container.container--article
     slot(name="pre")
     .categories(v-if="bloc.categories")
-      span(v-for="category in bloc.categories", v-html="category.name")
+      NuxtLink(
+        v-for="category in bloc.categories",
+        v-html="category.name",
+        :to="category.link",
+        :key="category.slug"
+      )
     h1.h1(v-html="bloc.titre", v-if="bloc.titre")
     .author(v-if="author")
       img.avatar(v-if="author.avatar", :src="author.avatar.logo.src")

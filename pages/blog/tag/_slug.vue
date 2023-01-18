@@ -3,7 +3,7 @@ main(v-if="page")
   //- Banner
   .region--banner
     BannerStack(
-      :bloc="{ titre: 'Articles liés au tag :', description: page.name }"
+      :bloc="{ description: 'Articles liés au tag', titre: page.name }"
     )
 
   //- //- Content

@@ -164,7 +164,7 @@ export default class WordPressSource {
     return post
   }
   /**
-   * // Get seo title, image, url, type, description en fonction du type d'entry
+   * // Get seo title, image, url, type, description en fonction du type d'entry et build des fallbacks si absent
    * @param {*} entry 
    * @returns {title, url, description, image, type}
    */
@@ -221,7 +221,7 @@ export default class WordPressSource {
    * Build l'objet head final passé à Nuxt. Aucun formatage d'infos, juste de la structure
    * @param {*} param0 
    */
-  buildSeoHeadObject({ title, description, url, type, image }) {
+  buildSeoHeadObject({ title, description, url, type, image, dataStructured }) {
 
     // Build l'objet seo final
     let seo = {

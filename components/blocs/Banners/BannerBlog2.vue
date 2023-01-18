@@ -11,7 +11,12 @@
       )
     .right
       .categories(v-if="bloc.categories")
-        span(v-for="category in bloc.categories", v-html="category.name")
+        NuxtLink.item(
+          v-for="category in bloc.categories",
+          v-html="category.name",
+          :to="category.link",
+          :key="category.slug"
+        )
       h1.h1(v-html="bloc.titre", v-if="bloc.titre")
       ul.tags(v-if="bloc.tags")
         li.item(v-for="(tag, index) in bloc.tags", :key="index")
@@ -63,11 +68,14 @@ export default {
     font-weight: 700;
     margin-bottom: 1rem;
 
-    span {
+    .item {
+      display: inline-flex;
       background-color: $color-1;
       color: $color-1-font;
-      padding: 0.3rem 0.5rem;
+      padding: 0.5rem 1rem;
       border-radius: $bradius;
+      text-decoration: none;
+      line-height: 0.8;
     }
   }
   .h1 {

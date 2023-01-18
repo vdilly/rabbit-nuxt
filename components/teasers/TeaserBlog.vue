@@ -13,7 +13,7 @@
       .teaser-blog__lead(v-html="post.excerpt", v-if="post.excerpt")
     ul.teaser-blog__tags(v-if="post.tags")
       li.teaser-blog__tag(v-for="(tag, index) in post.tags", :key="index")
-        NuxtLink.tag(v-html="tag.name", :to="`/blog/tag/${tag.id}`")
+        NuxtLink.tag(v-html="tag.name", :to="tag.link")
   component.circle(:to="post.link", :is="post.link ? 'NuxtLink' : 'div'")
   svg.icon.arrow
     use(xlink:href="#arrow")

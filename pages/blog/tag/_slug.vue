@@ -29,7 +29,7 @@ export default {
   async asyncData({ store, error, params }) {
     // let page = store.getters["pages/getPageBySlug"]("blog");
     // if (!page) return error({ statusCode: 404, message: "Page introuvable" });
-    let tag = await store.getters["posts/getTagById"](params.id);
+    let tag = await store.getters["posts/getTagBySlug"](params.slug);
     if (!tag) return error({ statusCode: 404, message: "Tag introuvable" });
     return { tag };
   },

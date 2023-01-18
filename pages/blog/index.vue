@@ -38,7 +38,7 @@ export default {
 </script>
 <style lang="scss">
 body.blog,
-body.blog-tag-id {
+body.blog-tag-slug {
   @include layoutImmersion($decale: true);
   .bannerStack {
     // padding-bottom: 8rem;

@@ -22,6 +22,11 @@ export const getters = {
       return tag.id == id
     })
   },
+  getTagBySlug: (state) => (slug) => {
+    return state.tags.find(tag => {
+      return tag.slug == slug
+    })
+  },
   getUserById: (state) => (id) => {
     return state.users.find(user => {
       return user.id == id

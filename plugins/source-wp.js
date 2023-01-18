@@ -197,8 +197,8 @@ export default class WordPressSource {
       // Type
       type = entry.type == 'post' ? 'article' : type;
 
-      // Image : spe page || global seo data image
-      image = entry.acf.seo_image?.mobile?.src || global_image?.mobile?.src || null;
+      // Image : spe page || image mis en avant si article || global seo data image
+      image = entry.acf.seo_image?.mobile?.src || entry.acf?.featured_image?.mobile.src || global_image?.mobile?.src || null;
 
       // Taxonomy
     } else if ("taxonomy" in entry) { // Pas de diff entre category et post_tag so far, pour l'instant on assume que c'est le blog

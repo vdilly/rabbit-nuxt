@@ -18,6 +18,9 @@ const pageMixin = {
     // // Loadsite + Callback lazyImg
     // // Dom change (trigger dom scripts quand un élément [domchange] du dom écoute un changement dans ses childs (ajax))
     // domChange(domScripts);
+
+    // Emiter pour devtool
+    this.$nuxt.$emit('update-seoVisualizer', this.page.seo || null)
   },
 }
 

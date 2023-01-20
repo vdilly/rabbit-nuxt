@@ -517,8 +517,8 @@ export default {
   data() {
     return {
       seo: {},
-      reduced: false,
-      visible: true,
+      reduced: true,
+      visible: false,
       showLog: false,
     };
   },

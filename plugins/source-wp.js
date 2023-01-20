@@ -172,13 +172,7 @@ export default class WordPressSource {
     let options = this.options
     // Get global seo datas first
     if (!options.globalDatas) {
-      let r = "";
-      r = Object.keys(entry.acf)
-      //   .each(el => {
-      //   r += ' ' + el;
-      // })
-
-      throw new Error(r)
+      throw new Error('Global datas not init')
     }
     let global_image = options.globalDatas.acf.seo_default_image;
     let sitename = options.globalDatas.acf.seo_sitename;
@@ -300,6 +294,7 @@ export default class WordPressSource {
    * @returns entry
    */
   formatSeo(entry) {
+    throw new Error(entry.acf?.seo_sitename);
     if (entry.acf && 'seo_sitename' in entry.acf) return entry // Global datas
     if (entry.acf && entry.acf.nom_a_afficher && entry.acf.avatar) return entry // User
     let options = this.options

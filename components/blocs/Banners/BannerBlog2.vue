@@ -20,7 +20,7 @@
       h1.h1(v-html="bloc.titre", v-if="bloc.titre")
       ul.tags(v-if="bloc.tags")
         li.item(v-for="(tag, index) in bloc.tags", :key="index")
-          NuxtLink.tag(v-html="tag.name", :to="`/blog/tag/${tag.id}`")
+          NuxtLink.tag(v-html="tag.name", :to="`/blog/tag/${tag.slug}`")
       .author(v-if="author")
         img.avatar(v-if="author.avatar", :src="author.avatar.logo.src")
         .text

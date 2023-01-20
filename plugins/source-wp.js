@@ -172,8 +172,8 @@ export default class WordPressSource {
     let options = this.options
     // Get global seo datas first
     if (!options.globalDatas) {
-      console.log(entry.id, entry.title, entry.name)
-      throw new Error(entry)
+      let r = entry.id + ' ' + entry.title + ' ' + entry.name;
+      throw new Error(r)
     }
     let global_image = options.globalDatas.acf.seo_default_image;
     let sitename = options.globalDatas.acf.seo_sitename;

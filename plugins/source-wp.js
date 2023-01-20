@@ -173,7 +173,7 @@ export default class WordPressSource {
     // Get global seo datas first
     if (!options.globalDatas) {
       console.log(entry)
-      throw new Error('Global datas not init')
+      // throw new Error('Global datas not init')
     }
     let global_image = options.globalDatas.acf.seo_default_image;
     let sitename = options.globalDatas.acf.seo_sitename;

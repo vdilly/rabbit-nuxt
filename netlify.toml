@@ -13,6 +13,7 @@
 
 [build.environment]
   ENV = "prod"
+  DEV_TOOLS = "false"
   WP_API_URL = "https://vdillyprod.tech/rabbit2/wp-json"
   SITE_URL = "https://rabbit2.netlify.app"
   WP_URL = "https://vdillyprod.tech/rabbit2"
@@ -25,6 +26,8 @@
   MAILJET_PUBLIC_KEY = "d84fcb3a0324b7f27d1152925066cddb"
   MAILJET_PRIVATE_KEY = "e1c9eb764fb022b9c6b0ff7da9d44c01"
 [context.branch-deploy.environment]
+  DEV_TOOLS = "true"
+[context.develop.environment]
   GRIDSOME_SITE_URL = "https://develop--rabbit2.netlify.app"
 
 # Redirects and headers are GLOBAL for all builds – they do not get scoped to

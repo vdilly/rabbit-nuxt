@@ -48,19 +48,36 @@ footer.footer(v-if="footer")
   .footer-bottom
     Container
       .rte(v-html="footer.footer_bottom", v-if="footer.footer_bottom")
-  Development
+      pre(v-html="devTools")
+  component(v-if="devTools", :is="Development")
 </template>
 <script>
-import Development from "@/components/development/Development.vue";
 import { mapState } from "vuex";
 import Optin from "./blocs/Optin.vue";
 export default {
-  components: { Optin, Development },
+  components: { Optin },
+  data() {
+    return {
+      Development: null,
+    };
+  },
   computed: {
+    devTools() {
+      return process.env.devTools;
+    },
     footer() {
       return this.globalDatas?.acf;
     },
     ...mapState("globalDatas", ["globalDatas"]),
+  },
+  async mounted() {
+    console.log(this.devTools);
+    if (this.devTools) {
+      const component = await import(
+        "@/components/development/Development.vue"
+      );
+      this.Development = component.default;
+    }
   },
 };
 </script>

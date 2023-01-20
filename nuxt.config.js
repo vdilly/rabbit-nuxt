@@ -8,6 +8,7 @@ export default {
     wpUrl: process.env.WP_URL,
     siteUrl: process.env.SITE_URL,
     isProd: process.env.NODE_ENV == "prod",
+    devTools: process.env.DEV_TOOLS == 'true',
     forceSSR: args.dev, // Si true on force le reload des data à chaque f5
     siteName: process.env.SITE_NAME
   },

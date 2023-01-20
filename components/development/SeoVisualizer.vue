@@ -1,6 +1,6 @@
 <template lang="pug">
 .seoVisualizer(v-show="visible", :class="reduced ? 'reduced' : null")
-  .inner
+  .inner(v-if="seo && seo.title")
     .actions
       button(@click="toggleReduce")
         svg.icon
@@ -118,6 +118,8 @@
             br
             br
             pre(v-html="seo", style="text-align: left")
+  .inner(v-else)
+    h3.h3 Erreur, pas de données SEO
 </template>
 <style lang="scss">
 .seoVisualizer {

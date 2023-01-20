@@ -173,9 +173,7 @@ export default class WordPressSource {
     // Get global seo datas first
     if (!options.globalDatas) {
       let r = "";
-      Object.keys(entry).each(el => {
-        r += ' ' + el;
-      })
+      r = Object.keys(entry)
 
       throw new Error(r)
     }

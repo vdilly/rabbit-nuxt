@@ -1,19 +1,26 @@
 <template lang="pug">
 .seoVisualizer(v-show="visible", :class="reduced ? 'reduced' : null")
   .inner
-    button.close(@click="visible = !visible")
-      svg.icon
-        use(xlink:href="#close")
-
+    .actions
+      button(@click="toggleReduce")
+        svg.icon
+          use(xlink:href="#chevron")
+      button.close(@click="visible = !visible")
+        svg.icon
+          use(xlink:href="#close")
+    .wrap(style="padding-top: 7rem; padding-bottom: 0")
+      .inner-wrap
+        .seotitle SEO Visualizer
     .wrap.google
       .inner-wrap
         h2.h2
           span Google
+        p.result Environ 43 300 résultats (0,36 secondes)
         .card.google
           .url(v-html="canonical")
           .title(v-html="title")
           .description(v-html="description?.substring(0, 160)")
-        .card.google
+        .card.google(style="opacity: 0.5")
           .url https://autre-resultat.fr
           .title Autre résultat de recherche
           .description C'est un autre bloc de résultat de recherche juste pour avoir du contexte. Il n'a rien à voir avec notre site c'est vraiment juste pour visualiser.
@@ -24,13 +31,16 @@
             use(xlink:href="#twitter")
           span Twitter
         template(v-for="i in 2")
-          template(v-if="i % 2 != 0")
-            h3 Summary short (par défaut)
-            p Ratio de l'image : 1x1 149x149 mini
-          template(v-else)
-            h3 Summary_large_image
-            p Ratio de l'image : 52.41% 504x264
-          .card.twitter(:class="i % 2 != 0 ? 'small' : null")
+          //- template(v-if="i % 2 != 0")
+          //-   h3 Summary short (par défaut)
+          //-   p Ratio de l'image : 1x1 149x149 mini
+          //- template(v-else)
+          //-   h3 Summary_large_image
+          //-   p Ratio de l'image : 52.41% 504x264
+          .card.twitter(
+            :class="i % 2 != 0 ? 'small' : null",
+            style="margin-top: 20px"
+          )
             .left
               .avatar.img-cover
                 img(
@@ -55,6 +65,7 @@
           svg.icon
             use(xlink:href="#linkedin")
           span Linkedin
+        //- p Ratio de l'image : 52.5% 590x310
         .card.linkedin
           .head
             .head-top
@@ -73,15 +84,47 @@
             .bottom
               .title(v-html="title")
               .url(v-html="getDomain(canonical) + ' • Lecture de 1 min'")
-    pre(v-html="seo")
+    .wrap.fb
+      .inner-wrap
+        h2.h2 
+          svg.icon
+            use(xlink:href="#fb")
+          span Facebook
+        //- p Ratio de l'image : 52.5% 590x310
+        .card.fb
+          .head
+            .head-top
+              .avatar.img-cover
+                img(
+                  src="https://vdillyprod.tech/rabbit2/wp-content/uploads/rabbit.jpg"
+                )
+              .author
+                .author-name John Rabbit
+                .time 14 min •
+            .head-bot
+              .post Je partage cette page du site !
+          .body
+            .image(:style="`background-image: url(${image})`")
+            .bottom
+              .url(v-html="getDomain(canonical)")
+              .title(v-html="title")
+    .wrap
+      .inner-wrap
+        .align-center
+          Btn.core.small.no-arrow(@click="showLog = !showLog") 
+            span Voir le log SEO
+          template(v-if="showLog")
+            br
+            br
+            br
+            pre(v-html="seo", style="text-align: left")
 </template>
 <style lang="scss">
 .seoVisualizer {
   content: "";
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 2rem;
+  right: 2rem;
   width: 80rem;
   height: 80%;
   z-index: 99; // En dessous du header
@@ -91,32 +134,37 @@
   justify-content: center;
   border-radius: 1rem;
   box-shadow: 0 0 300px rgba(0, 0, 0, 0.9);
+  // padding-top: 7rem;
 
   .inner {
     width: 100%;
-    height: 90%;
+    height: 100%;
     overflow: auto;
     // color: white;
     font-size: 1.2rem;
     line-height: 1.2;
     font-family: Arial, sans-serif;
   }
-  .close {
-    background-color: black;
-    border-radius: 50%;
-    height: 6rem;
-    width: 6rem;
-    position: relative;
+  .actions {
     position: absolute;
     top: 2rem;
     right: 2rem;
+    display: flex;
+    button {
+      margin-left: 1rem;
+      background-color: $color__title-light;
+      border-radius: 50%;
+      height: 3rem;
+      width: 3rem;
+      position: relative;
+    }
     .icon {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 50%;
       height: 50%;
+      width: 50%;
     }
   }
   .h2 {
@@ -147,6 +195,15 @@
   }
 
   // Google
+  .wrap.google {
+    .result {
+      border-top: solid 1px rgba(0, 0, 0, 0.1);
+      padding-top: 5px;
+      margin-bottom: 2rem;
+      color: rgb(112, 117, 122);
+      font-size: 1.4rem;
+    }
+  }
   .card.google {
     font-family: arial, sans-serif;
     font-weight: 400;
@@ -337,7 +394,7 @@
     }
     .post {
       line-height: 1.38em;
-      padding-top: 7px;
+      padding-top: 10px;
       color: #0f1419;
     }
     .body {
@@ -366,12 +423,93 @@
     }
   }
 
+  // FB
+  .wrap.fb {
+    background-color: #f0f2f5;
+    .h2 .icon {
+      fill: #1b74e4;
+    }
+  }
+  .card.fb {
+    background-color: white;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    font-size: 1.4rem;
+    .head {
+      padding: 1.2rem 1.6rem;
+    }
+    .head-top {
+      display: flex;
+    }
+    .avatar {
+      border-radius: 50%;
+      width: 5rem;
+      height: 5rem;
+      margin-right: 1rem;
+    }
+    .author {
+    }
+    .author-name {
+      color: black;
+      opacity: 0.9;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .author-id {
+      color: black;
+      opacity: 0.6;
+      font-size: 1.2rem;
+    }
+    .time {
+      color: black;
+      opacity: 0.6;
+      font-size: 1.2rem;
+    }
+    .post {
+      line-height: 1.38em;
+      padding-top: 10px;
+      color: #0f1419;
+    }
+    .body {
+      background-color: #f0f2f5;
+    }
+    .bottom {
+      padding: 12px;
+      .title {
+        color: black;
+        opacity: 0.9;
+        font-weight: 600;
+        font-size: 1.7rem;
+        line-height: 2.2rem;
+        margin-top: 5px;
+      }
+      .url {
+        color: rgb(101, 103, 107);
+        font-size: 1.3rem;
+        text-transform: uppercase;
+      }
+    }
+    .image {
+      width: 100%;
+      padding-top: 52.2%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
   pre {
     font-family: sans-serif;
     word-wrap: break-word;
     overflow: hidden;
     // letter-spacing: -0.05em;
   }
+}
+.seoVisualizer.reduced {
+  transform-origin: bottom right;
+  transform: scale(0.8);
 }
 </style>
 <script>
@@ -381,6 +519,7 @@ export default {
       seo: {},
       reduced: false,
       visible: true,
+      showLog: false,
     };
   },
   computed: {

@@ -48,7 +48,6 @@ footer.footer(v-if="footer")
   .footer-bottom
     Container
       .rte(v-html="footer.footer_bottom", v-if="footer.footer_bottom")
-      pre(v-html="devTools")
   component(v-if="devTools", :is="Development")
 </template>
 <script>

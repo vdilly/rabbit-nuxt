@@ -564,7 +564,6 @@ export default {
   methods: {
     getDomain(url) {
       if (!url) return url;
-      console.log(url);
       let p = new URL(url);
       if (!p) return url;
       let domain = p.hostname;
@@ -578,10 +577,8 @@ export default {
     },
   },
   created() {
-    console.log("receiver created");
     const vm = this;
     this.$nuxt.$on("update-seoVisualizer", (seo) => {
-      console.log("receive call");
       vm.seo = seo;
     });
   },

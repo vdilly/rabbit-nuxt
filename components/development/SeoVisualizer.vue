@@ -564,7 +564,9 @@ export default {
   methods: {
     getDomain(url) {
       if (!url) return url;
+      console.log(url);
       let p = new URL(url);
+      if (!p) return url;
       let domain = p.hostname;
       return domain;
     },

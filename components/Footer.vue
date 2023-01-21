@@ -71,7 +71,6 @@ export default {
     ...mapState("globalDatas", ["globalDatas"]),
   },
   async mounted() {
-    console.log(this.devTools);
     if (this.devTools) {
       const component = await import(
         "@/components/development/Development.vue"

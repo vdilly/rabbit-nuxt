@@ -13,6 +13,11 @@ const pageMixin = {
       ...seo
     }
   },
+  computed: {
+    devTools() {
+      return process.env.devTools;
+    },
+  },
   async mounted() {
     // // Scripts à lancer quand le dom change ou est ready
     // // Loadsite + Callback lazyImg
@@ -22,8 +27,10 @@ const pageMixin = {
     // Emiter pour devtool
     console.log(this.devTools)
     if (this.devTools) {
-      console.log('emmit')
-      this.$nuxt.$emit('update-seoVisualizer', this.page.seo || null)
+      setTimeout(() => {
+        console.log('emmit')
+        this.$nuxt.$emit('update-seoVisualizer', this.page.seo || null)
+      }, 500)
     }
   },
 }

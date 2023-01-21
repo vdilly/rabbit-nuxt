@@ -580,6 +580,7 @@ export default {
   created() {
     const vm = this;
     this.$nuxt.$on("update-seoVisualizer", (seo) => {
+      consoleµ.log("receive call");
       vm.seo = seo;
     });
   },

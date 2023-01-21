@@ -20,7 +20,9 @@ const pageMixin = {
     // domChange(domScripts);
 
     // Emiter pour devtool
+    console.log(this.devTools)
     if (this.devTools) {
+      console.log('emmit')
       this.$nuxt.$emit('update-seoVisualizer', this.page.seo || null)
     }
   },

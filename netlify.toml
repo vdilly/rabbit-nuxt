@@ -16,10 +16,12 @@
   DEV_TOOLS = "true"
   WP_API_URL = "https://vdillyprod.tech/rabbit2/wp-json"
   SITE_URL = "https://rabbit2.netlify.app"
+
   WP_URL = "https://vdillyprod.tech/rabbit2"
   WP_RABBIT1_URL = "https://vdillyprod.tech/rabbit/admin"
   WP_LOCAL_URL = "http://rabbit.local"
   IMAGE_URL = "https://vdillyprod.tech/rabbit2"
+
   ADMIN_EMAIL = "vdilly.prod@gmail.com"
   CONTACT_SENDER = "vdilly.prod@gmail.com"
   SITE_NAME = "Rabbit 2"
@@ -28,7 +30,7 @@
 [context.branch-deploy.environment]
   DEV_TOOLS = "true"
 [context.develop.environment]
-  GRIDSOME_SITE_URL = "https://develop--rabbit2.netlify.app"
+  SITE_URL = "https://develop--rabbit2.netlify.app"
 
 # Redirects and headers are GLOBAL for all builds – they do not get scoped to
 # contexts no matter where you define them in the file.

@@ -217,7 +217,7 @@ export default class WordPressSource {
 
     if (title) title = title;
     // Url prepend base site
-    url = url.indexOf('http') == -1 ? process.env.siteUrl + url : url;
+    url = url.indexOf('http') == -1 ? process.env.SITE_URL + url : url;
     return { title, url, description, image, type }
   }
   /**

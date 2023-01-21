@@ -13,7 +13,7 @@
 
 [build.environment]
   ENV = "prod"
-  DEV_TOOLS = "false"
+  DEV_TOOLS = "true"
   WP_API_URL = "https://vdillyprod.tech/rabbit2/wp-json"
   SITE_URL = "https://rabbit2.netlify.app"
   WP_URL = "https://vdillyprod.tech/rabbit2"

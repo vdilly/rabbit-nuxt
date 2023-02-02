@@ -3,7 +3,7 @@ var defaultClient = SibApiV3Sdk.ApiClient.instance;
 
 // Configure API key authorization: api-key
 var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = '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';
+apiKey.apiKey = '';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 

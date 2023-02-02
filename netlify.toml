@@ -16,6 +16,7 @@
   DEV_TOOLS = "true"
   WP_API_URL = "https://vdillyprod.tech/rabbit2/wp-json"
   SITE_URL = "https://rabbit2.netlify.app"
+  SITE_NAME = "Rabbit 2"
 
   WP_URL = "https://vdillyprod.tech/rabbit2"
   WP_RABBIT1_URL = "https://vdillyprod.tech/rabbit/admin"
@@ -24,7 +25,6 @@
 
   ADMIN_EMAIL = "vdilly.prod@gmail.com"
   CONTACT_SENDER = "vdilly.prod@gmail.com"
-  SITE_NAME = "Rabbit 2"
   MAILJET_PUBLIC_KEY = "d84fcb3a0324b7f27d1152925066cddb"
   MAILJET_PRIVATE_KEY = "e1c9eb764fb022b9c6b0ff7da9d44c01"
 [context.branch-deploy.environment]

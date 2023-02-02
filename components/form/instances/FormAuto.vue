@@ -82,7 +82,7 @@ export default {
         this.formError([err]);
       }
 
-      data.subject = "Nouvelle soumission sur le " + this.form.form_title;
+      data.subject = "Nouvelle soumission sur " + this.form.form_title;
 
       if (window) {
         try {

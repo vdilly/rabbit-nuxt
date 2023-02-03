@@ -51,8 +51,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    "@/assets/scss/global.scss",
-    'aos/dist/aos.css'
+    "@/assets/scss/global.scss"
   ],
   // Global var SCSS
   styleResources: {
@@ -70,7 +69,6 @@ export default {
     { src: '~plugins/ui-feedback/ui-feedback.js', mode: 'client' },
     // { src: '~plugins/confirm-dialog/confirm-dialog', mode: 'client' },
     { src: '~plugins/v-intersect', mode: 'client' },
-    // { src: '@/plugins/aos.js', mode: 'client' },
   ],
   // serverMiddleware: ['~/api/index.js'],
 

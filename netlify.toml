@@ -47,3 +47,13 @@
 #
 #  # Redirect based on browser language, geolocation, and/or identity role.
 #  conditions = {Language = ["en"], Country = ["US"]}
+
+
+[[plugins]]
+package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+  exclude = [
+    # By Glob pattern
+    '/test'
+  ]

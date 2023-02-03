@@ -87,8 +87,16 @@ export default {
     '@nuxtjs/style-resources',
     'cookie-universal-nuxt',
     '@nuxtjs/axios',
-    'vue-social-sharing/nuxt'
+    'vue-social-sharing/nuxt',
+    '@nuxtjs/robots'
   ],
+  robots: {
+    UserAgent: '*',
+    Disallow: '/',
+    Host: process.env.SITE_URL,
+    Sitemap: process.env.SITE_URL + '/sitemap.xml'
+  },
+  // Sitemap généré par netlify
 
   axios: {
     baseURL: process.env.WP_API_URL + '/wp/v2' // Used as fallback if no runtime config is provided

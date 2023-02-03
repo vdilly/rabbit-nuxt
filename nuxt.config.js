@@ -79,7 +79,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   // .env ne marche pas ici, on check la commande
-  buildModules: args.dev ? [] : ['~modules/source-wp'],
+  buildModules: args.dev ? ['~modules/sitemap'] : ['~modules/source-wp', '~modules/sitemap'],
 
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -104,5 +104,5 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     // postcss: null
-  }
+  },
 }

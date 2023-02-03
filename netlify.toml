@@ -55,5 +55,6 @@ package = "@netlify/plugin-sitemap"
   [plugins.inputs]
   exclude = [
     # By Glob pattern
-    '/test'
+    '/200',
+    '/showcase-blocs'
   ]

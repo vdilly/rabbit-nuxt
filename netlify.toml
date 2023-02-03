@@ -57,6 +57,6 @@ package = "@netlify/plugin-sitemap"
     # By Glob pattern
     '/200.html',
     '/200/index.html',
-    '/showcase-blocs/index.html'
+    '/showcase-blocs/index.html',
     'showcase-blocs/index.html'
   ]

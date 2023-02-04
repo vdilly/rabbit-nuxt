@@ -55,9 +55,7 @@ export default {
   ],
   // Global var SCSS
   styleResources: {
-    scss: [
-      '~/assets/scss/_settings.scss',
-    ]
+    scss: ['~/assets/scss/_settings.scss'],
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -77,12 +75,11 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   // .env ne marche pas ici, on check la commande
-  buildModules: args.dev ? ['~modules/sitemap'] : ['~modules/source-wp', '~modules/sitemap'],
+  buildModules: args.dev ? ['~modules/sitemap', '@nuxtjs/style-resources'] : ['~modules/source-wp', '~modules/sitemap', '@nuxtjs/style-resources'],
 
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/style-resources',
     'cookie-universal-nuxt',
     '@nuxtjs/axios',
     'vue-social-sharing/nuxt',
@@ -101,6 +98,9 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    // postcss: null
-  },
+    transpile: [
+      'axios',
+      '@nuxtjs/axios'
+    ],
+  }
 }

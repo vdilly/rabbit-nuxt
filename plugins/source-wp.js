@@ -103,7 +103,6 @@ export default class WordPressSource {
 
     try {
       if (!config.url) config = { url: config }
-      console.log('try  ' + config.url);
       config.useCache = true;
       res = await this.client.request(config)
     } catch ({ message, response, code, config }) {
@@ -117,7 +116,7 @@ export default class WordPressSource {
         throw new Error(`${response.status} - ${config.url}`)
       }
     }
-    console.log('ok succeed ' + config.url)
+    console.log('✔️  ' + config.url)
     return res
   }
   formatWpEntity = (entry) => {
@@ -303,7 +302,7 @@ export default class WordPressSource {
 
     // Safety belt
     function seoError(type) {
-      options.quietErrors.push(`SEO error : ${type} not found on entry ${entry.id} with title : ${entry.title || entry.name}`)
+      options.quietErrors.push(`${entry.title || entry.name} (${entry.id}) : ${type} not found`)
     }
     if (!title) seoError('title')
     if (!url) seoError('url')
@@ -392,10 +391,10 @@ export default class WordPressSource {
   }
   logQuietErrors() {
     if (this.options.quietErrors.length) {
-      console.log("%c SEO Errors:", "font-size: large; color: red; font-weight: bold; ");
+      console.log("%c❌ SEO Errors:", "font-size: large; color: red; font-weight: bold; ");
       console.table(this.options.quietErrors);
     } else {
-      console.log("%c SEO Clear", "font-size: large; color: green; font-weight: bold; ");
+      console.log("%c✔️ SEO Clear", "font-size: large; color: green; font-weight: bold; ");
     }
   }
 }

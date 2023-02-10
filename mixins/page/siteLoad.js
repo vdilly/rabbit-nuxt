@@ -12,10 +12,6 @@ export default {
     const domDependantScripts = ($root) => {
       $root = $root ? $root : document; // si pas d'element root spécifique, c'est le document qui est root
       lazyImg($root);
-
-      vm.$debug('Refresh AOS')
-      vm.$aos?.refreshHard()
-
     }
 
     this.$debug("> site-load");
@@ -24,6 +20,7 @@ export default {
       // Et on lance l'écouteur de dom pour refresh les dom dependant scripts
       domDependantScripts()
       domChange(domDependantScripts);
+      console.groupEnd()
     });
   },
 }

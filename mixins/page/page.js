@@ -1,5 +1,10 @@
 import Vue from "vue";
 
+const firstMixin = {
+  mounted() {
+    console.groupCollapsed('Page load')
+  }
+}
 const pageMixin = {
   head() {
     let seo = {}
@@ -39,5 +44,5 @@ import windowMixin from "./window";
 import siteLoadMixin from "./siteLoad";
 
 export default {
-  mixins: [deviceMixin, windowMixin, siteLoadMixin, pageMixin]
+  mixins: [firstMixin, deviceMixin, windowMixin, siteLoadMixin, pageMixin]
 }

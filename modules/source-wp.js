@@ -12,11 +12,11 @@ export default async function () {
     baseURL: process.env.WP_API_URL + '/wp/v2'
   })
   // Create sourceWP instance
+  console.log("%c ✔️ Fetch WP datas", "font-size: large; color: green; font-weight: bold; ");
   let source = new WordPressSource(client);
   let data = {};
 
   try {
-    console.log('---- FETCH WP DATAS ----')
     // Globaldata
     data.globalDatas = await source.getGlobalDatas();
 
